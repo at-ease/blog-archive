@@ -7,3 +7,7 @@
 现在，GitHub 已经成为了我日常生活中最常用的工具，所以在这里的交流间隙一般不会超过一天。
 
 如果有更迫切的事务需要联系，可以发送邮件到这个地址：**pinggodstudio(at)gmail.com**
+
+## 文章列表
+
+- [测试文章](https://github.com/pinggod/Blog/issues/1)
