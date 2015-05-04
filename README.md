@@ -12,4 +12,5 @@
 
 #### 2015
 
+- [HTML 语义化](https://github.com/pinggod/Blog/issues/2)
 - [当我们在谈 WEB 标准的时候，我们在说什么?](https://github.com/pinggod/Blog/issues/1)
