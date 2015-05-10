@@ -8,6 +8,10 @@
 
 如果有更迫切的事务需要联系，可以发送邮件到这个地址：**pinggodstudio(at)gmail.com**
 
+## 前端资源
+
+我在另一个库 [DTGT](https://github.com/pinggod/DTGT) 中记录了前端学习过程中受益匪浅的一些辅助资源。**`DTGT`** 是 “Documents, Tools, Guidelines 和 Tutorials” 的首字母缩写，顾名思义，就是文档、工具、编程指南和前端教程的集合。
+
 ## 文章列表
 
 #### 2015
