@@ -12,6 +12,7 @@
 
 #### 2015
 
+- [JavaScript 正则数组字符串方法大乱斗](https://github.com/pinggod/Blog/issues/13)
 - [正则表达式](https://github.com/pinggod/Blog/issues/12)
 - [void 和 undefined](https://github.com/pinggod/Blog/issues/11)
 - [Gulp 入门 + ES6 + 常用插件](https://github.com/pinggod/Blog/issues/10)
