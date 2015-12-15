@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[PINGGOD · Focus On Program And Life]]></title>
+  
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://pinggod.com/"/>
+  <updated>2015-12-15T06:07:10.000Z</updated>
+  <id>http://pinggod.com/</id>
+  
+  <author>
+    <name><![CDATA[Sean Sun]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[ES2015]]></title>
+    <link href="http://pinggod.com/2015/ES2015/"/>
+    <id>http://pinggod.com/2015/ES2015/</id>
+    <published>2015-12-15T06:07:10.000Z</published>
+    <updated>2015-12-15T06:07:10.000Z</updated>
+    <content type="html"><![CDATA[<a id="more"></a>
+]]></content>
+    <summary type="html">
+    <![CDATA[<a id="more"></a>
+]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[求值策略]]></title>
+    <link href="http://pinggod.com/2015/%E6%B1%82%E5%80%BC%E7%AD%96%E7%95%A5/"/>
+    <id>http://pinggod.com/2015/求值策略/</id>
+    <published>2015-12-10T05:43:07.000Z</published>
+    <updated>2015-12-10T07:57:53.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>须知参差多态乃是幸福本源。</p>
+</blockquote>
+<p>求值策略所要解决的问题是：何时求值。之所以要控制求值的时间，往往是出于对内存占用和执行效率的考虑。在维基百科的求值策略词条中，列出了五种求值策略：</p>
+<ul>
+<li>预先求值，表达式绑定到变量时，立即求值并附加给变量</li>
+<li>延迟求值，表达式绑定到变量后，并不求值，直到变量被调用时才求值</li>
+<li>局部求值，又称柯里化</li>
+<li>分布求值，map/reduce，典型应用是分布式计算</li>
+<li>短路求值，与 (&amp;&amp;) 、或 (||) 逻辑运算</li>
+</ul>
+<p>顾名思义，预先求值和延迟求值是一对对立的求值策略。在下面的 js 代码段中，声明了变量 x，x 赋值后又被调用了三次：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="number">5</span> + <span class="number">3</span> * (<span class="number">1</span> + <span class="number">5</span> ^ <span class="number">2</span>);</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(x);</span><br><span class="line"><span class="built_in">console</span>.log(x + <span class="number">2</span>);</span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line">func(x);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>在 1 处，变量 x 完成了声明和赋值等初始化工作，它的值由表达式 (5 + 3 * (1 + 5 ^ 2)) 决定。在 2 处，console.log() 函数调用了变量 x 两次。让我们暂时忽略 js 编译器的求值策略，从个人主观的理性思维来思考一下：面对预先求值和延迟求值，你会怎么选择呢？</p>
+<p>做出选择之前，我们需要对变量 x 有一个复杂度的认知：如果表达式的复杂度高，那么该表达式所占用的内存空间也就越高，在变量 x 和表达式解绑前这段内存空间都无法释放掉，意味着 x 的间接内存占用了越高，此外，高复杂度也意味着较长的执行时间，所以复杂度和内存占用、执行效率至少是一种线性相关。</p>
+<p>如此说来，那么我们应该选择预先求值的求值策略，这样的好处是：变量 x 初始化时表达式立即计算，x 被重新赋值为 83，重新赋值后表达式所占用的内存空间被释放掉，达到了节省内存空间的目的；多次调用变量 x 时，x 的值已经是可以直接用于运算的数值，而不是需要计算的表达式，减少了重复运算，提高了执行效率。</p>
+<p>如果事情按照上面描述的美好愿景发展的话，就没有延迟求值策略出现的必要了。在 3 处，我们向函数 func() 传递了变量 x。这里的 func() 类似于一个黑盒，我们不了解其内部的处理机制，也无法确定 x 是否会被使用。这个时候延迟求值的价值就体现出来了，如果变量 x 在函数内部没有被使用，就不会执行求值，避免了预先求值所要执行的求值运算。</p>
+<p>随着表达式的复杂度逐渐提高，预先求值和延迟求值在内存占用、执行效率上的差异就会愈发明显。所以根据数据类型的复杂度，js 将数据类型分为原始值和引用值，传递参数时，原始值按值传递，引用值按引用传递。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>须知参差多态乃是幸福本源。</p>
+</blockquote>
+<p>求值策略所要解决的问题是：何时求值。之所以要控制求值的时间，往往是出于对内存占用和执行效率的考虑。在维基百科的求值策略词条中，列出了五种求值策略：</p>
+<ul>
+<li>预先求值，表达式绑定到变量时，立即求值并附加给变量</li>
+<li>延迟求值，表达式绑定到变量后，并不求值，直到变量被调用时才求值</li>
+<li>局部求值，又称柯里化</li>
+<li>分布求值，map/reduce，典型应用是分布式计算</li>
+<li>短路求值，与 (&amp;&amp;) 、或 (||) 逻辑运算</li>
+</ul>
+<p>顾名思义，预先求值和延迟求值是一对对立的求值策略。在下面的 js 代码段中，声明了变量 x，x 赋值后又被调用了三次：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="number">5</span> + <span class="number">3</span> * (<span class="number">1</span> + <span class="number">5</span> ^ <span class="number">2</span>);</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(x);</span><br><span class="line"><span class="built_in">console</span>.log(x + <span class="number">2</span>);</span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line">func(x);</span><br></pre></td></tr></table></figure>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[inline* and absolute]]></title>
+    <link href="http://pinggod.com/2015/inline-and-absolute/"/>
+    <id>http://pinggod.com/2015/inline-and-absolute/</id>
+    <published>2015-12-06T03:32:17.000Z</published>
+    <updated>2015-12-07T03:51:55.000Z</updated>
+    <content type="html"><![CDATA[<p>在一个容器中，所有元素都是 inline / inline-block 类型，此时可以使用 absolute + margin 的方式实现相对定位，而且相对定位的位置就是脱离文档流之前的位置。</p>
+<p><img src="https://cloud.githubusercontent.com/assets/9530963/11618643/7fe8737c-9cd8-11e5-9919-e47705faa3c7.png" alt="absolute and margin"></p>
+<a id="more"></a>
+<h6 id="在线示例">在线示例</h6><ul>
+<li><a href="http://codepen.io/pinggod/pen/WrNJmE" target="_blank" rel="external">absolute and marign</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在一个容器中，所有元素都是 inline / inline-block 类型，此时可以使用 absolute + margin 的方式实现相对定位，而且相对定位的位置就是脱离文档流之前的位置。</p>
+<p><img src="https://cloud.githubusercontent.com/assets/9530963/11618643/7fe8737c-9cd8-11e5-9919-e47705faa3c7.png" alt="absolute and margin"></p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Jade]]></title>
+    <link href="http://pinggod.com/2015/Jade/"/>
+    <id>http://pinggod.com/2015/Jade/</id>
+    <published>2015-12-03T05:24:27.000Z</published>
+    <updated>2015-12-11T05:24:17.000Z</updated>
+    <content type="html"><![CDATA[<p>如果你熟悉 Sublime Text 和 Emmet 的组合，那么 Jade 也会是你的菜。Jade 类似于 Python，都采用了对缩进敏感的语法形式，比如下面这段代码创建了一个无序列表：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">ul(<span class="class"><span class="keyword">class</span></span>=<span class="string">"inline"</span>)</span><br><span class="line">    li  Item C</span><br><span class="line">    li  Item A</span><br><span class="line">    li  Item B</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="属性">属性</h2><p>Jade 的另一大特点就是和 JavaScript 的融合度很高，比如设置属性：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">- <span class="keyword">var</span> authenticated = <span class="literal">true</span></span><br><span class="line">body(<span class="class"><span class="keyword">class</span></span>= authenticated ? <span class="string">'authed'</span> : <span class="string">'anon'</span>)</span><br><span class="line">- <span class="keyword">var</span> currentUrl = <span class="string">'/about'</span></span><br><span class="line">a(<span class="class"><span class="keyword">class</span></span>=&#123;active: currentUrl === <span class="string">'/'</span>&#125; href=<span class="string">'/'</span>) Home</span><br><span class="line">a(<span class="class"><span class="keyword">class</span></span>=&#123;active: currentUrl === <span class="string">'/about'</span>&#125; href=<span class="string">'/about'</span>) About</span><br></pre></td></tr></table></figure>
+<p>此外，给标签设置行内样式时，需要以对象的形式赋值给 style：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">a(style=&#123;color: <span class="string">'red'</span>, background: <span class="string">'green'</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="插值">插值</h2><p>Jade 提供了字符串插值和标签插值。其中，字符串插值由于要考虑到安全性问题，所以又分成了转义和不转义两种情况：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">// 转义插值 #&#123;&#125;</span><br><span class="line">- var theGreat = "&lt;span&gt;escape!&lt;/span&gt;";</span><br><span class="line">p This will be safe: #&#123;theGreat&#125;</span><br><span class="line"></span><br><span class="line">// 不转义插值 !&#123;&#125;</span><br><span class="line">- var theGreat = "&lt;span&gt;escape!&lt;/span&gt;";</span><br><span class="line">p This will be safe: !&#123;theGreat&#125;</span><br><span class="line"></span><br><span class="line">// 标签插值</span><br><span class="line">p #[a(href="jade-lang.com") Jade]</span><br></pre></td></tr></table></figure>
+<p>编译结果：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 转义插值 #&#123;&#125;--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">p</span>&gt;</span>This will be safe: &amp;lt;span&amp;gt;escape!&amp;lt;/span&amp;gt;<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 不转义插值 !&#123;&#125;--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">p</span>&gt;</span>This will be safe: <span class="tag">&lt;<span class="title">span</span>&gt;</span>escape!<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 标签插值--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">p</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"jade-lang.com"</span>&gt;</span>Jade<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="逻辑语句">逻辑语句</h2><p>Jade 提供了条件、分支、循环、遍历四种逻辑语句，这四种语句继承自 JavaScript，只是语法上有些差异:</p>
+<ul>
+<li>条件语句：if … else if … else</li>
+<li>分支语句：case … when … default</li>
+<li>循环语句：while</li>
+<li>遍历数组：each $elem in [elem…]</li>
+<li>遍历对象：each $key, $value in {key: value}</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">// 分支语句</span><br><span class="line">- var friends = 10</span><br><span class="line">case friends</span><br><span class="line">    when 0</span><br><span class="line">        p you have no friends</span><br><span class="line">    when 1</span><br><span class="line">        p you have a friend</span><br><span class="line">    default</span><br><span class="line">        p you have #&#123;friends&#125; friends</span><br></pre></td></tr></table></figure>
+<h2 id="mixin">mixin</h2><p>Jade 和 Sass 都提供了 mixin 语法来实现代码的复用，两者语法也很相似：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">mixin list(id, ...items)</span><br><span class="line">    ul(id=id)</span><br><span class="line">        each item <span class="keyword">in</span> items</span><br><span class="line">            li= item</span><br><span class="line"></span><br><span class="line">+list(<span class="string">'my-list'</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p>mixin 一般放在独立的文件中，需要使用 <code>include</code> 指令导入到其他文件中。</p>
+<h2 id="extends">extends</h2><p><code>extends</code> 是 Jade 的模板继承语法，通过 <code>extends filename.jade</code> 可以将模板文件导入到其他文件中。继承机制基本上是一个复制代码片段的过程，为了能够动态修改其中的部分内容，Jade 提供了 <code>block</code> 语法：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 声明 block</span></span><br><span class="line">block content</span><br><span class="line">    p Hello</span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改 block</span></span><br><span class="line"><span class="comment">// 同名重新赋值</span></span><br><span class="line">block content</span><br><span class="line">    p Hi</span><br><span class="line"></span><br><span class="line"><span class="comment">// 前置追加</span></span><br><span class="line">block append content</span><br><span class="line">    p APPEND</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后置追加</span></span><br><span class="line">block prepend content</span><br><span class="line">    p PREPEND</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>如果你熟悉 Sublime Text 和 Emmet 的组合，那么 Jade 也会是你的菜。Jade 类似于 Python，都采用了对缩进敏感的语法形式，比如下面这段代码创建了一个无序列表：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">ul(<span class="class"><span class="keyword">class</span></span>=<span class="string">"inline"</span>)</span><br><span class="line">    li  Item C</span><br><span class="line">    li  Item A</span><br><span class="line">    li  Item B</span><br></pre></td></tr></table></figure>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[CSS Flexbox]]></title>
+    <link href="http://pinggod.com/2015/CSS-Flexbox/"/>
+    <id>http://pinggod.com/2015/CSS-Flexbox/</id>
+    <published>2015-12-02T02:42:39.000Z</published>
+    <updated>2015-12-15T05:18:25.000Z</updated>
+    <content type="html"><![CDATA[<p>如果你正在学习使用 CSS 布局，推荐来 <a href="http://zh.learnlayout.com/toc.html" target="_blank" rel="external">learnlayout</a> 了解一下这些年前端所用到的各类布局手法。这里之所以使用“手法”一词，意指其中多少有些偏激取巧，比如使用浮动（float）来定位、使用 margin 来伸缩空间等等。</p>
+<p>float、margin 本不应该用于布局，只是囿于早期的 CSS 布局模块发展缓慢且不合时宜，促使开发者另辟蹊径，借助其他样式来模拟布局效果。最近几年随着浏览器对布局模块的支持度越来越高，Flexible Box Layout（Flexbox）、Grid Layout、Multiple Column Layout 也逐渐为开发者所接受，其中以 Flexbox 的兼容性最好，拥护者也随之水涨船高。</p>
+<p>就个人感受而言，未来的布局方式会归纳为两类：一类是纯粹使用浏览器兼容性高的布局模块，比如 Flexbox，这也是未来的发展趋势；另一类是使用预处理器或者框架自定义的布局模块，这只是目前的缓兵过渡之计。</p>
+<a id="more"></a>
+<p>在几个月前，我曾经使用过一段时间的 <a href="http://susy.oddbird.net/" target="_blank" rel="external">Susy</a>。 Susy 是基于 Sass 的一款布局框架，其核心是使用非布局样式来模拟布局效果，最大的优点在于封装布局样式之后提供了一套简洁明了的布局接口。比如，在下面的 Sass 代码中，<code>.contianer</code> 被附加了一套容器样式，嵌套在其中的 <code>item</code> 占据总体宽度的 4 / 10。</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="class">.container</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> container</span>;</span>  </span><br><span class="line">    <span class="class">.item</span> &#123;</span><br><span class="line">        <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> span</span>(<span class="number">4</span><span class="preprocessor"> of</span><span class="preprocessor"> 10</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Susy 的理念是帮助开发者规避数学计算，所以它有一条大快人心的口号：YOUR MARKUP, YOUR DESIGN, YOUR OPINIONS, OUR MATH。</p>
+</blockquote>
+<h2 id="Flexbox">Flexbox</h2><p>在数学计算的问题上，我觉得 Flexbox 和 Susy 有异曲同工之妙，只是相比起来，原生的 Flexbox 更加简捷。在 Flexbox 中有两个核心元素：<code>container</code> 和 <code>item</code>，所有的样式也是围绕这两类元素计算的。下图中有两条红线，分别代表在水平方向和垂直方向进行布局的基线。</p>
+<p><img src="https://cloud.githubusercontent.com/assets/9530963/11552213/009b2d44-99bd-11e5-88c8-8bdcb72fcd8d.png" alt="Flexbox"></p>
+<p>Flexbox 中的 contianer 元素需要解决两个问题：自身的类型以及内部 item 的排列方式。通过 <code>display: flex</code> 和 <code>display: inline-flex</code> 可以将 container 声明为块级或者行内块级，从而确定了 container 自身的类型。使用以下属性则可以确定 container 内部 item 的排列方式：</p>
+<ul>
+<li>flex-flow：flex-direction 和 flex-wrap 的缩写</li>
+<li>flex-direction：决定 item 的排列方向</li>
+<li>flex-wrap：决定 item 的溢出容器后的处理方式</li>
+<li>justify-content：决定 item 在水平方向上的对齐方式</li>
+<li>align-item：决定 item 在垂直方向上的对齐方式</li>
+<li>align-content：决定多个 main axis 在垂直方向上的对齐方式</li>
+</ul>
+<p><img src="https://cloud.githubusercontent.com/assets/9530963/11552230/2b8a9f8a-99bd-11e5-8b71-35164bc6d091.png" alt="flex-container"></p>
+<p>item 元素需要解决的问题集中于自身上，包括自身在 container 中的顺序、缩放、对齐方式。使用以下属性可以设置 item 自身的布局样式：</p>
+<ul>
+<li>order：决定 item 的顺序，默认值为 0，值越小越靠前</li>
+<li>flex：flex-grow、flex-shrink 和 flex-basis 的缩写</li>
+<li>flex-grow：决定 item 的放大比例，默认值为 0，0 表示不放大</li>
+<li>flex-shrink：决定 item 的缩小比例，默认值为 1，0 表示不缩小</li>
+<li>flex-basis：浏览器分配 container 剩余空间时，决定 item 获得的比重</li>
+<li>align-self: 决定自身在垂直方向的对齐方式</li>
+</ul>
+<p><img src="https://cloud.githubusercontent.com/assets/9530963/11552236/38ab72c0-99bd-11e5-884d-cea1dfc0af1c.png" alt="flex-item"></p>
+<h2 id="box-sizing">box-sizing</h2><p>话外提一下 <code>box-sizing</code>， 该属性用于声明 <code>width</code> 和 <code>height</code> 的约束范围：<code>border-box</code> 表示边框、内边距和内容块的宽高计入容器宽高；<code>content-box</code> 表示只有内容块的宽高计入容器宽高。此外，该属性可继承，可以通过设置 body 的 box-sizing 统一约束容器的宽高。</p>
+<h2 id="FlexFroggy">FlexFroggy</h2><p>这是一个寓教于乐的 Flexbox 布局小游戏，难度中下，很有意思：<a href="http://flexboxfroggy.com" target="_blank" rel="external">http://flexboxfroggy.com</a>。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>如果你正在学习使用 CSS 布局，推荐来 <a href="http://zh.learnlayout.com/toc.html">learnlayout</a> 了解一下这些年前端所用到的各类布局手法。这里之所以使用“手法”一词，意指其中多少有些偏激取巧，比如使用浮动（float）来定位、使用 margin 来伸缩空间等等。</p>
+<p>float、margin 本不应该用于布局，只是囿于早期的 CSS 布局模块发展缓慢且不合时宜，促使开发者另辟蹊径，借助其他样式来模拟布局效果。最近几年随着浏览器对布局模块的支持度越来越高，Flexible Box Layout（Flexbox）、Grid Layout、Multiple Column Layout 也逐渐为开发者所接受，其中以 Flexbox 的兼容性最好，拥护者也随之水涨船高。</p>
+<p>就个人感受而言，未来的布局方式会归纳为两类：一类是纯粹使用浏览器兼容性高的布局模块，比如 Flexbox，这也是未来的发展趋势；另一类是使用预处理器或者框架自定义的布局模块，这只是目前的缓兵过渡之计。</p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[void and undefined]]></title>
+    <link href="http://pinggod.com/2015/void-and-undefined/"/>
+    <id>http://pinggod.com/2015/void-and-undefined/</id>
+    <published>2015-11-30T12:18:37.000Z</published>
+    <updated>2015-11-30T12:39:24.000Z</updated>
+    <content type="html"><![CDATA[<p>一直以来，<code>undefined</code> 都不是 JavaScript 的关键字或保留字，这意味着我们可以修改 window.undefined 的值。由于 undefined 会被频繁调用作为比较运算的操作数，所以在 ES5 规范之后，window.undefined 被定义为不可写、不可配置的属性。常见的 undefined 列述如下:</p>
+<ul>
+<li>变量声明后未赋值，则变量会被自动赋值为 undefined</li>
+<li>函数中定义了一些形参，如果传入的实参少于预定义的形参，那么有一些形参就会匹配不到实参，继而会被自动赋值为 undefined</li>
+<li>没有返回值的函数，默认返回 undefined</li>
+</ul>
+<p><code>void (expression)</code>，void 作为一个运算符，无论表达式的内容是什么，只要跟在 void 之后都会被调用执行，执行完毕后 void 操作符返回 undefined。简而言之，使用 void 运算符有三种用处：生成 undefined；让函数立即执行；充当 <code>javascript:</code> 协议的 URI。</p>
+<a id="more"></a>
+<h2 id="生成_undefined">生成 undefined</h2><p>使用 <code>void 0</code> 生成 undefined 的做法由来已久，既减少了在原形链上查找 window.undefined 的时间，也避免了误用被修改过的 undefined。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkLogin</span> (<span class="params">loginName</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (loginName === <span class="keyword">void</span> <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Wrong!'</span>);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">checkLogin();</span><br><span class="line"><span class="comment">// =&gt; 'Wrong!'</span></span><br></pre></td></tr></table></figure>
+<h2 id="立即执行函数">立即执行函数</h2><p><strong>运算符和函数组合使用，可以让函数立即执行。</strong>实际上，有许多运算符可以让函数立即执行，比如 +、-、!、~ 以及本文提到的 void 等运算符。此外，还有最常见的小括号（分组运算符）：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'立即执行'</span>);</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="comment">// =&gt; '立即执行'</span></span><br></pre></td></tr></table></figure>
+<h2 id="充当_javascript:_协议的_URI">充当 <code>javascript:</code> 协议的 URI</h2><p>对于网页中的点赞、收藏等按钮，如果使用 a 标签来实现的话，往往会用到 <code>href=&quot;javascript:void(0)&quot;</code> 等类似的代码，这段代码的作用是点击链接时让页面不跳转。</p>
+<p>在 href=”javascript:void(0)” 中，使用了一个以 <code>javascript:</code> 协议开头的 URI，浏览器默认会对冒号后面的代码求值，然后将结果显示在新的页面，但有一种情况例外，如果结果是 undefined，浏览器就不会刷新页面渲染新值了。</p>
+<p>实际上，我们有很多方式实现点赞、收藏的效果，无需使用这么 Hack 的方式——虽然这确实很方便。</p>
+<blockquote>
+<p><code>javascript:</code> 协议声明了 URL 的主体是任意的 javascript 代码，由 javascript 解释器编译执行，通常使用 <code>javascript:URL</code> 执行某些不改变当前页面文档的代码，要做到这一点，必须确保 URL 的最后一条语句没有返回值，比如使用 <code>void 0</code>。</p>
+</blockquote>
+<h2 id="参考资料">参考资料</h2><ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined" target="_blank" rel="external">undefined</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/void" target="_blank" rel="external">void 运算符</a></li>
+<li><a href="http://segmentfault.com/a/1190000000474941" target="_blank" rel="external">谈谈Javascript中的void操作符</a></li>
+<li><a href="http://www.jb51.net/article/52358.htm" target="_blank" rel="external">JavaScript中伪协议 javascript:使用探讨</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>一直以来，<code>undefined</code> 都不是 JavaScript 的关键字或保留字，这意味着我们可以修改 window.undefined 的值。由于 undefined 会被频繁调用作为比较运算的操作数，所以在 ES5 规范之后，window.undefined 被定义为不可写、不可配置的属性。常见的 undefined 列述如下:</p>
+<ul>
+<li>变量声明后未赋值，则变量会被自动赋值为 undefined</li>
+<li>函数中定义了一些形参，如果传入的实参少于预定义的形参，那么有一些形参就会匹配不到实参，继而会被自动赋值为 undefined</li>
+<li>没有返回值的函数，默认返回 undefined</li>
+</ul>
+<p><code>void (expression)</code>，void 作为一个运算符，无论表达式的内容是什么，只要跟在 void 之后都会被调用执行，执行完毕后 void 操作符返回 undefined。简而言之，使用 void 运算符有三种用处：生成 undefined；让函数立即执行；充当 <code>javascript:</code> 协议的 URI。</p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[React 组件间的消息传递]]></title>
+    <link href="http://pinggod.com/2015/React-%E7%BB%84%E4%BB%B6%E9%97%B4%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92/"/>
+    <id>http://pinggod.com/2015/React-组件间的消息传递/</id>
+    <published>2015-11-28T10:34:42.000Z</published>
+    <updated>2015-11-30T11:40:26.000Z</updated>
+    <content type="html"><![CDATA[<p>当我们封装了可复用的组件之后，用来驱动组件渲染内容的数据就变得愈发灵活，组件之间数据通信的问题就摆在了桌面上。React 组件间的消息传递主要集中于三种关系中：</p>
+<ul>
+<li>从父组件向子组件的消息传递</li>
+<li>从子组件向父组件的消息传递</li>
+<li>无关联组件之间的消息传递</li>
+</ul>
+<p>前两种关系都可以使用 React 内建的 <code>this.props</code> 对象来处理：</p>
+<p><img src="https://cloud.githubusercontent.com/assets/9530963/11470593/0647f04e-979a-11e5-9c1c-883f5825f9e2.png" alt="父子组件之间的消息传递"></p>
+<a id="more"></a>
+<h2 id="无关联组件之间的消息传递">无关联组件之间的消息传递</h2><p>这里的“无关联”，是指两个组件既不是父子关系，也不是兄弟关系。对于这种关系，可以用一个简单的发布订阅模型来实现，这种模型又被称为观察者模式。</p>
+<p>这里选用的是基于全局对象的发布订阅模型，需要自定义事件名称：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 事件集合</span></span><br><span class="line"><span class="keyword">let</span> events = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发布事件</span></span><br><span class="line"><span class="keyword">const</span> trigger = (event, ...data) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> fns = events[event];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果没有对应方法</span></span><br><span class="line">    <span class="keyword">if</span> (!fns || fns.length === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果存在对应方法，依次执行</span></span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= fns.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        fns[i](...data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听事件</span></span><br><span class="line"><span class="keyword">const</span> on = (event, fn) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 如果尚没有该事件，创建一个数组来存储对应的方法</span></span><br><span class="line">    <span class="keyword">if</span> (!events[event]) &#123;</span><br><span class="line">        events[event] = [];</span><br><span class="line">    &#125;</span><br><span class="line">    events[event].push(fn);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取消监听事件</span></span><br><span class="line"><span class="keyword">const</span> off = (event, fn) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> fns = events[event];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果不存在事件集合</span></span><br><span class="line">    <span class="keyword">if</span> (!fns) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果不存在事件</span></span><br><span class="line">    <span class="keyword">if</span> (!fn &amp;&amp; fns) &#123;</span><br><span class="line">        fns.length = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 取消指定事件</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = fns.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (fn === fns[i]) &#123;</span><br><span class="line">                fns.splice(i, <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PubSub = &#123;</span><br><span class="line">    on: on,</span><br><span class="line">    off: off,</span><br><span class="line">    trigger: trigger</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> PubSub;</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<p>当我们封装了可复用的组件之后，用来驱动组件渲染内容的数据就变得愈发灵活，组件之间数据通信的问题就摆在了桌面上。React 组件间的消息传递主要集中于三种关系中：</p>
+<ul>
+<li>从父组件向子组件的消息传递</li>
+<li>从子组件向父组件的消息传递</li>
+<li>无关联组件之间的消息传递</li>
+</ul>
+<p>前两种关系都可以使用 React 内建的 <code>this.props</code> 对象来处理：</p>
+<p><img src="https://cloud.githubusercontent.com/assets/9530963/11470593/0647f04e-979a-11e5-9c1c-883f5825f9e2.png" alt="父子组件之间的消息传递"></p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[React 组件的生命周期]]></title>
+    <link href="http://pinggod.com/2015/React-%E7%BB%84%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
+    <id>http://pinggod.com/2015/React-组件的生命周期/</id>
+    <published>2015-11-23T01:56:00.000Z</published>
+    <updated>2015-11-28T10:29:05.000Z</updated>
+    <content type="html"><![CDATA[<p>在 React 所实践的组件化中，非常重要的一点就是组件的生命周期，简而言之是组件的挂载、更新和卸载流程。下图详细列述了 React 组件在整个生命周期中所涉及的方法和行为：</p>
+<p><img src="https://cloud.githubusercontent.com/assets/9530963/11421184/409f144a-946e-11e5-8132-3f65ba56aab9.png" alt="React 组件的生命周期"></p>
+<a id="more"></a>
+<p>在组件实例创建之初，会依序调用 <code>getDefaultProps()</code>、<code>getInitialState()</code> 方法初始化数据。在 ES6 中，可以简写为：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">static defaultProps = &#123;</span><br><span class="line">    key: value</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">state = &#123;</span><br><span class="line">    key: value</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>对于从父组件传递来的 props，React 提供了 <code>propTypes</code> 配置对象来校验数据类型或格式，常用类型如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 布尔值</span></span><br><span class="line">React.PropTypes.bool                              </span><br><span class="line"><span class="comment">// 数值</span></span><br><span class="line">React.PropTypes.number                            </span><br><span class="line"><span class="comment">// 字符串</span></span><br><span class="line">React.PropTypes.string                            </span><br><span class="line"><span class="comment">// 函数</span></span><br><span class="line">React.PropTypes.func                              </span><br><span class="line"><span class="comment">// 数组</span></span><br><span class="line">React.PropTypes.array                             </span><br><span class="line"><span class="comment">// 对象</span></span><br><span class="line">React.PropTypes.object                            </span><br><span class="line"><span class="comment">// 数值、字符串、DOM 元素及包含这些类型的数组</span></span><br><span class="line">React.PropTypes.node                              </span><br><span class="line"><span class="comment">// React 元素</span></span><br><span class="line">React.PropTypes.element                           </span><br><span class="line"><span class="comment">// 对象实例</span></span><br><span class="line">React.PropTypes.instanceOf(Message)               </span><br><span class="line"><span class="comment">// 数组包含的值之一</span></span><br><span class="line">React.PropTypes.oneOf([<span class="string">'News'</span> <span class="string">'Photos'</span>])          </span><br><span class="line"><span class="comment">// 数组包含的类型之一</span></span><br><span class="line">React.PropTypes.oneOfType([                       </span><br><span class="line">    React.PropTypes.string,         </span><br><span class="line">    React.PropTypes.number,         </span><br><span class="line">    React.PropTypes.instanceOf(Message)                                  </span><br><span class="line">])                                               </span><br><span class="line"><span class="comment">// 数值数组</span></span><br><span class="line">React.PropTypes.arrayOf(React.PropTypes.number)   </span><br><span class="line"><span class="comment">// 对象的属性值为数值类型</span></span><br><span class="line">React.PropTypes.objectOf(React.PropTypes.number)  </span><br><span class="line"><span class="comment">// 组合类型</span></span><br><span class="line">React.PropTypes.shape(&#123;                           </span><br><span class="line">    React.PropTypes.string                                   </span><br><span class="line">    React.PropTypes.number                                   </span><br><span class="line">&#125;)                                                 </span><br><span class="line"><span class="comment">// 任何类型，必填</span></span><br><span class="line">React.PropTypes.any.isRequired                    </span><br><span class="line"><span class="comment">// 自定义规则</span></span><br><span class="line">customProp: <span class="function"><span class="keyword">function</span>(<span class="params">props propName componentName</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="regexp">/matchme/</span>.test(props[propName])) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Validation failed!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="mount">mount</h2><p>在组件的挂载过程中，会依次调用 componentWillMount()、render() 和 componentDidMount()。挂载完成后，<code>componentWillMount()</code> 和 <code>componentDidMount()</code> 将不会再被触发，<code>render()</code> 则会根据 props 和 state 的变化多次执行。</p>
+<p>在 componentDidMount() 调用之前，只能得到由 render() 返回的虚拟 DOM；在该方法执行时，真实 DOM 的渲染已经完成，此时，可以通过 React 内建的 <code>getDOMNode()</code> 访问真实的 DOM。</p>
+<h2 id="update">update</h2><p>挂载结束后，组件处于监听状态，监听 props 和 state 的变化。props 和 state 的差异在于：state 用于配置组件内的状态，props 则用于在组件间传递数据。</p>
+<p>在实际开发中，这一阶段调用的核心都是围绕 state 展开的。state changed 之后，系统会立即调用 <code>boolean shouldComponentUpdate(object nextProps, object nextState)</code> 方法来决定是否重新渲染页面。当遭遇性能瓶颈时，适当地通过该方法控制页面渲染的频率是为提升性能不二法门。</p>
+<p>当 props changed 时，系统会立即调用 <code>componentWillReciveProps(object nextProps)</code> 方法。该方法常被用来执行 props -&gt; state 的更新，继而触发整个页面的渲染。</p>
+<p>在这一阶段重新渲染页面所需要的同样是 will -&gt; render -&gt; did 三个方法。不同之处在于，此处的 did 和 will 附加了 props 和 state 信息：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">componentWillUpdate(object nextProps, object nextState) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">componentDidUpdate(object prevProps, object prevState) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="unmount">unmount</h2><p>组件卸载前会执行 <code>componentWillUnmount()</code>，用于清理 <code>componentDidMount()</code> 之后创建的组件。此外，对于组件生命周期内累积的监听事件和定时器，也应当在该方法内执行解绑、清除操作。</p>
+<h2 id="组件化">组件化</h2><p>目前组内正在构建一套 React 基础组件，方法和思路与 AlloyTeam <a href="http://www.alloyteam.com/2015/11/we-will-be-componentized-web-long-text/" target="_blank" rel="external">《致我们终将组件化的 Web》</a>一文类似。其中，作者对组件提出了五点要求，如下图所示，值得参考：</p>
+<p><img src="https://cloud.githubusercontent.com/assets/9530963/11451335/7cd052fe-95fd-11e5-8120-d094eb4ee823.png" alt="组件化的要求"></p>
+<p>其中“规范化的接口”，也可更改为可管理的生命周期。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在 React 所实践的组件化中，非常重要的一点就是组件的生命周期，简而言之是组件的挂载、更新和卸载流程。下图详细列述了 React 组件在整个生命周期中所涉及的方法和行为：</p>
+<p><img src="https://cloud.githubusercontent.com/assets/9530963/11421184/409f144a-946e-11e5-8132-3f65ba56aab9.png" alt="React 组件的生命周期"></p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Sass]]></title>
+    <link href="http://pinggod.com/2015/Sass/"/>
+    <id>http://pinggod.com/2015/Sass/</id>
+    <published>2015-11-19T09:19:52.000Z</published>
+    <updated>2015-11-26T02:30:46.000Z</updated>
+    <content type="html"><![CDATA[<p>从 <a href="http://benfrain.com/" target="_blank" rel="external">Ben Frain</a> 的书中可以看出，他是一个勇于实践、善于学习的开发者。一直以来都很关注他的动态，当他的新书《Sass 和 Compass 设计师指南》初版时，就迫不及待地入手了，这是我和 Sass 的第一次见面。后来机缘巧合翻译了 <a href="http://sass-guidelin.es/zh" target="_blank" rel="external">Sass Guidelines</a> 和其它一些颇具实践性的 Sass 文章，零零散散至今大概有了一年的时间。</p>
+<p>以前的翻译专注于“学习”，在这篇文章之后，我将会分配更多的精力到“实践”中，做一些共享性的库或工具回馈社区。</p>
+<div class="tip"><br>    预处理器很强大，但它只是编写 CSS 的辅助工具。出于对扩展和维护等方面的考虑，在大型项目中有必要使用预处理器构建 CSS；但是对于小型项目，原生的 CSS 可能是一种更好的选择。不要肆意使用预处理器！<br></div>
+
+<a id="more"></a>
+<h2 id="Quick_Start">Quick Start</h2><p>Sass 扩展了 CSS 的现有语法，并提供了一些新的语法糖。在下面的简短代码中，集合了 Sass 中最常用的模块引用 <code>@import</code>、变量和嵌套：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 设置字符集</span></span><br><span class="line"><span class="at_rule">@<span class="keyword">charset</span> <span class="string">"UTF-8"</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入模块</span></span><br><span class="line"><span class="at_rule">@<span class="keyword">import</span> <span class="string">"reset"</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建变量</span></span><br><span class="line"><span class="variable">$primary-color</span><span class="value">: <span class="hexcolor">#333</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 嵌套</span></span><br><span class="line"><span class="tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">color</span><span class="value">: <span class="variable">$primary-color</span>;</span></span><br><span class="line">    <span class="tag">ul</span> &#123;</span><br><span class="line">        <span class="attribute">list-style-type</span><span class="value">: none;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="插值字符串">插值字符串</h2><p>Sass 中的插值字符串 <code>#{$var}</code> 有两方面的作用：动态拼接字符串和去除字符串首尾的引号。示例如下：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> header</span>(<span class="variable">$tag</span>) &#123;</span></span><br><span class="line">    #&#123;<span class="variable">$tag</span>&#125;<span class="pseudo">:before</span> &#123;</span><br><span class="line">        <span class="attribute">content</span><span class="value">: <span class="string">"#&#123;$tag&#125;"</span>;</span></span><br><span class="line">        <span class="comment">// 等同于 content: $tag;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.post-content</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> header</span>(<span class="string">"h1"</span>);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译结果：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.post-content</span> <span class="tag">h1</span><span class="pseudo">:before</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">"h1"</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="父级引用符：&amp;">父级引用符：<code>&amp;</code></h2><p>可以将父级引用符 <code>&amp;</code> 看做是一个值为父级选择器的插值语法：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">text-decoration</span><span class="value">: none;</span></span><br><span class="line">    &amp;<span class="pseudo">:hover</span> &#123;</span><br><span class="line">        <span class="attribute">text-decoration</span><span class="value">: underline;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译结果：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">a</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">a</span><span class="pseudo">:hover</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> underline</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="占位符选择器">占位符选择器</h2><p>占位符选择器是 Sass 特有的一种选择器，声明时以 <code>%</code> 开头，编译时不会输出到 CSS 文件中，主要用于抽象组件的公共部分，配合 <code>@extend</code> 指令实现样式的继承机制：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line">%<span class="attribute">font</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span><span class="value">: <span class="number">14px</span>;</span></span><br><span class="line">    <span class="attribute">font-family</span><span class="value">: <span class="string">"Source Sans Pro"</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">body</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">extend</span> %font;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译结果：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">body</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">14px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">font-family</span>:<span class="value"> <span class="string">"Source Sans Pro"</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="数据类型">数据类型</h2><ul>
+<li>字符串 (string): “foo”, foo</li>
+<li>数值 (number): 1.3, 13, 10px</li>
+<li>列表 (list): ( 1.5em 1em 0 2em, Helvetica, Arial, sa ns-serif )</li>
+<li>映射 (map): ( key1: value1, key2: value2 )</li>
+<li>颜色值 (color): blue, #FFFFFF, rgb, hsl, rgba, hsla</li>
+<li>布尔值 (bool): true, false</li>
+<li>空类型 (null): null</li>
+</ul>
+<h2 id="操作符">操作符</h2><ul>
+<li>赋值 <code>:</code></li>
+<li>计算 <code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>、<code>%</code></li>
+<li>比较 <code>==</code>、<code>!=</code>、<code>&gt;</code>、<code>&gt;=</code>、<code>&lt;</code>、<code>&lt;=</code></li>
+<li>逻辑 <code>and</code>、<code>or</code>、<code>not</code></li>
+</ul>
+<p>其中，<code>+</code> 除了用作算术运算之外，也可以用于拼接字符串和求取颜色值。在 Sass 中字符串分为两种：引用字符串（quoted string，外部被引号包裹）和未引用字符串（unquoted string，外部没有引号）。使用 <code>+</code> 拼接字符串时，最终生成的字符串类型为第一个运算子的字符串类型：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span><span class="value">: <span class="string">"Source Sans "</span> + TC;</span></span><br><span class="line">    <span class="tag">p</span> &#123;</span><br><span class="line">        <span class="attribute">font-family</span><span class="value">: sans- + <span class="string">"serif"</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译结果：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">body</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">font-family</span>:<span class="value"> <span class="string">"Source Sans TC"</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">body</span> <span class="tag">p</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">font-family</span>:<span class="value"> sans-serif</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>使用 <code>+</code> 求取颜色值时，必须保证运算子具有相同的不透明度：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">color</span><span class="value">: <span class="function">rgba</span>(<span class="number">70</span>, <span class="number">132</span>, <span class="number">153</span>, <span class="number">1</span>) + <span class="function">rgba</span>(<span class="number">32</span>, <span class="number">68</span>, <span class="number">121</span>, <span class="number">1</span>);</span></span><br><span class="line">    <span class="comment">// =&gt; color: #66c8ff;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">background-color</span><span class="value">: <span class="function">rgba</span>(<span class="number">70</span>, <span class="number">132</span>, <span class="number">153</span>, .<span class="number">9</span>) + <span class="function">rgba</span>(<span class="number">32</span>, <span class="number">68</span>, <span class="number">121</span>, .<span class="number">7</span>);</span></span><br><span class="line">    <span class="comment">// alpha channels must be equal when combining colors </span></span><br><span class="line">    <span class="comment">// 报错：不透明通道值必须相等</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="tip"><br>    <code>/</code> 在 CSS 中是有意义的，为了避免和 Sass 除法运算的混淆，所有的除法操作都应该使用小括号 <code>()</code> 包裹，比如使用 <code>font-size: (10px / 2)</code> 产出 <code>font-size: 5px</code>。<br></div>
+
+<h2 id="变量标识符">变量标识符</h2><p>Sass 中的变量有三种身份：普通变量、默认值变量（<code>!default</code>）和全局变量（<code>!global</code>），而且这些变量具有作用域的概念，每个代码块 <code>{}</code> 内一个作用域，整个代码文件内也有一个作用域。</p>
+<p>当我们引用普通变量时，Sass 首先会从当前作用域开始检索变量，如果找不到就上溯到父级作用域，直到递归到最顶层的作用域：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="variable">$color</span><span class="value">: orange;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">div</span> &#123;</span><br><span class="line">    <span class="comment">// 对 $color 重新赋值</span></span><br><span class="line">    <span class="variable">$color</span><span class="value">: blue;</span></span><br><span class="line">    <span class="attribute">color</span><span class="value">: <span class="variable">$color</span>;</span></span><br><span class="line">    <span class="tag">p</span> &#123;</span><br><span class="line">        <span class="attribute">color</span><span class="value">: <span class="variable">$color</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">color</span><span class="value">: <span class="variable">$color</span>;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译结果：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">div</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">color</span>:<span class="value"> blue</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">div</span> <span class="tag">p</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">color</span>:<span class="value"> blue</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">a</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">color</span>:<span class="value"> orange</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>默认值变量往往用于主题的配置文件，起到标识默认值，方便后续的重写覆盖。在最顶层作用域下，变量默认具有全局性，此时使用 <code>!global</code> 并没有实际意义；在块级作用域中，可以通过 <code>!global</code> 将变量提升为全局变量，但这么做势必降低代码的可维护性，所以目前全局变量显得有些鸡肋。</p>
+</blockquote>
+<h2 id="@_指令"><code>@</code> 指令</h2><ul>
+<li>@import 模块引用</li>
+<li>@media 媒体查询</li>
+<li>@extend 选择器继承</li>
+<li>@at-root 嵌套提取</li>
+<li>@debug / @warn / @error 异常和测试</li>
+</ul>
+<p><code>@extend</code> 的强大无可置疑，但是复杂性也一直为人诟病，稍微控制不当就会生成冗余的选择器。归根结底，使用 <code>@extend</code> 是为了继承组件的公有样式，所以在不影响功能的基础上，应该适当的束缚它的能力。到目前为止，最优秀的实践方式就是 <code>@extend</code> 搭配占位符选择器。</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line">%btn &#123;</span><br><span class="line">    <span class="attribute">color</span><span class="value">: white;</span></span><br><span class="line">    <span class="attribute">font-size</span><span class="value">: <span class="number">20px</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.btn-danger</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">extend</span> %btn;</span></span><br><span class="line">    <span class="attribute">background-color</span><span class="value">: red;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.btn-default</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">extend</span> %btn;</span></span><br><span class="line">    <span class="attribute">background-color</span><span class="value">: gray;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译结果：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.btn-danger</span>, <span class="class">.btn-default</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> white</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">20px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.btn-danger</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> red</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.btn-default</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> gray</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>在这个组合中，占位符选择器本身不会被编译到 CSS 文件中，可以节省文件体积，而且 <code>@extend</code> 只继承了单一的占位符选择器，杜绝了选择器泛滥。此外，相比起 <code>@mixin</code> 来，<code>@extend</code> 搭配占位符选择器生成的结果会聚合在同一个样式集中：</p>
+<p><img src="https://cloud.githubusercontent.com/assets/9530963/11413823/93e5c6ee-9428-11e5-9c5f-4c360bda8da8.png" alt="@extend vs @mixin"></p>
+<blockquote>
+<p>如果再上升一个层次分工的话，那就需要比较一下 <code>@mixin</code> 和 <code>@extend</code>。这两种方式都可以生成公有样式，但是仅此而已就是浪费了 <code>@mixin</code> 的能力。就目前的最佳实践来说，建议使用 <code>@extend</code> 搭配占位符选择器继承公有样式，使用 <code>@mixin</code> 产出动态样式。<code>@mixin</code> 的详细介绍见后续小节。</p>
+</blockquote>
+<h2 id="控制指令">控制指令</h2><ul>
+<li>@if … @else if … @else … 条件判断</li>
+<li>@for $var from start through end [start, end] 循环</li>
+<li>@for $var from start to end [start, end) 循环</li>
+<li>@each … in … 遍历</li>
+<li>@while</li>
+</ul>
+<p><code>@each</code> 可以用来遍历 list 和 map 类型的数据，示例如下：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="variable">$btn</span><span class="value">: (</span><br><span class="line">    danger: red, </span><br><span class="line">    primary: blue, </span><br><span class="line">    warning: orange</span><br><span class="line">);</span></span><br><span class="line"></span><br><span class="line"><span class="at_rule">@<span class="keyword">each</span> <span class="variable">$type</span>, <span class="variable">$color</span><span class="preprocessor"> in</span> <span class="variable">$btn</span> &#123;</span></span><br><span class="line">    <span class="class">.btn-</span>#&#123;<span class="variable">$type</span>&#125; &#123;</span><br><span class="line">        <span class="attribute">color</span><span class="value">: <span class="variable">$color</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译结果：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.btn-danger</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> red</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.btn-primary</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> blue</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.btn-warning</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> orange</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="混合宏_@mixin">混合宏 <code>@mixin</code></h2><p>在 <code>@extend</code> 部分已经介绍到 <code>@mixin</code> 的一个功能是生成公有样式，但事实上，建议你避开使用该功能，而是着眼于使用 <code>@mixin</code> 动态生成共有样式，更优雅地实现组件复用：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> btn</span>(<span class="variable">$fontSize</span>, <span class="variable">$borderRadius</span>) &#123;</span></span><br><span class="line">    <span class="attribute">font-size</span><span class="value">: <span class="variable">$fontSize</span>;</span></span><br><span class="line">    <span class="attribute">border-radius</span><span class="value">: <span class="variable">$borderRadius</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.btn-sm</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> btn</span>(<span class="number">14px</span>,<span class="preprocessor"> 3px</span>);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.btn-lg</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> btn</span>(<span class="number">18px</span>,<span class="preprocessor"> 5px</span>);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译结果：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.btn-sm</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">14px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">3px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.btn-lg</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">18px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">5px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><code>@mixin</code> 的参数除了上面示例的普通参数，还包括默认值参数和不定参数。默认值参数通过提供默认样式，可以在参数缺失时，保障代码的健壮性：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> btn</span>(<span class="variable">$fontSize</span>, <span class="variable">$borderRadius</span>:<span class="preprocessor"> 5px</span>) &#123;</span></span><br><span class="line">    <span class="attribute">font-size</span><span class="value">: <span class="variable">$fontSize</span>;</span></span><br><span class="line">    <span class="attribute">border-radius</span><span class="value">: <span class="variable">$borderRadius</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.btn-lg</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> btn</span>(<span class="number">18px</span>);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译结果：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.btn-lg</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">18px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">5px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>不定参数可以保存零个或多个值，最常用的地方就是为同一属性添加多个值，比如多重阴影：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> box-shadow</span>(<span class="variable">$shadows</span>...) &#123;</span></span><br><span class="line">    -moz-<span class="attribute">box-shadow</span><span class="value">: <span class="variable">$shadows</span>;</span></span><br><span class="line">    -webkit-<span class="attribute">box-shadow</span><span class="value">: <span class="variable">$shadows</span>;</span></span><br><span class="line">    <span class="attribute">box-shadow</span><span class="value">: <span class="variable">$shadows</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.shadows</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> box-shadow</span>(<span class="number">0px</span><span class="preprocessor"> 4px</span><span class="preprocessor"> 5px</span> <span class="hexcolor">#666</span>,<span class="preprocessor"> 2px</span><span class="preprocessor"> 6px</span><span class="preprocessor"> 10px</span> <span class="hexcolor">#999</span>);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译结果：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.shadows</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">-moz-box-shadow</span>:<span class="value"> <span class="number">0px</span> <span class="number">4px</span> <span class="number">5px</span> <span class="hexcolor">#666</span>, <span class="number">2px</span> <span class="number">6px</span> <span class="number">10px</span> <span class="hexcolor">#999</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">-webkit-box-shadow</span>:<span class="value"> <span class="number">0px</span> <span class="number">4px</span> <span class="number">5px</span> <span class="hexcolor">#666</span>, <span class="number">2px</span> <span class="number">6px</span> <span class="number">10px</span> <span class="hexcolor">#999</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">box-shadow</span>:<span class="value"> <span class="number">0px</span> <span class="number">4px</span> <span class="number">5px</span> <span class="hexcolor">#666</span>, <span class="number">2px</span> <span class="number">6px</span> <span class="number">10px</span> <span class="hexcolor">#999</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>此外，在传参时也可以使用不定参数：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> colors</span>(<span class="variable">$text</span>, <span class="variable">$background</span>, <span class="variable">$border</span>) &#123;</span></span><br><span class="line">    <span class="attribute">color</span><span class="value">: <span class="variable">$text</span>;</span></span><br><span class="line">    <span class="attribute">background-color</span><span class="value">: <span class="variable">$background</span>;</span></span><br><span class="line">    <span class="attribute">border-color</span><span class="value">: <span class="variable">$border</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$values</span><span class="value">: <span class="hexcolor">#ff0000</span>, <span class="hexcolor">#00ff00</span>, <span class="hexcolor">#0000ff</span>;</span></span><br><span class="line"><span class="class">.primary</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> colors</span>(<span class="variable">$values</span>...);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$value-map</span><span class="value">: (text: <span class="hexcolor">#00ff00</span>, background: <span class="hexcolor">#0000ff</span>, border: <span class="hexcolor">#ff0000</span>);</span></span><br><span class="line"><span class="class">.secondary</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> colors</span>(<span class="variable">$value-map</span>...);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译结果：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.primary</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#ff0000</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#00ff00</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-color</span>:<span class="value"> <span class="hexcolor">#0000ff</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.secondary</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#00ff00</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#0000ff</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-color</span>:<span class="value"> <span class="hexcolor">#ff0000</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<div class="tip"><br>    在 <code>@mixin</code> 中配置参数时，先写普通参数，然后是默认值参数，最后是不定参数。<br></div>
+
+<h2 id="函数指令_@function">函数指令 <code>@function</code></h2><p>相比起上面的继承和动态生成，<code>@function</code> 在生成方式上自由度更高。此外，还可以嵌套上面的各种指令和操作符，对数据进行筛选、在加工，生成特定样式。在下面的代码中，混合宏根据栅格的数量，动态生成容器的宽度：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="variable">$grid-width</span><span class="value">: <span class="number">40px</span>;</span></span><br><span class="line"><span class="variable">$gutter-width</span><span class="value">: <span class="number">10px</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="at_rule">@function<span class="preprocessor"> width</span>(<span class="variable">$n</span>) &#123;</span></span><br><span class="line">    <span class="at_rule">@return <span class="variable">$n</span> * <span class="variable">$grid-width</span> + (<span class="variable">$n</span><span class="preprocessor"> -</span><span class="preprocessor"> 1</span>) * <span class="variable">$gutter-width</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.container</span> &#123; </span><br><span class="line">    <span class="attribute">width</span><span class="value">: <span class="function">width</span>(<span class="number">5</span>);</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译结果：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.container</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">240px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h6 id="参考资料">参考资料</h6><ul>
+<li><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#blue-instance_method" target="_blank" rel="external">Sass 内建函数</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>从 <a href="http://benfrain.com/">Ben Frain</a> 的书中可以看出，他是一个勇于实践、善于学习的开发者。一直以来都很关注他的动态，当他的新书《Sass 和 Compass 设计师指南》初版时，就迫不及待地入手了，这是我和 Sass 的第一次见面。后来机缘巧合翻译了 <a href="http://sass-guidelin.es/zh">Sass Guidelines</a> 和其它一些颇具实践性的 Sass 文章，零零散散至今大概有了一年的时间。</p>
+<p>以前的翻译专注于“学习”，在这篇文章之后，我将会分配更多的精力到“实践”中，做一些共享性的库或工具回馈社区。</p>
+<div class="tip"><br>    预处理器很强大，但它只是编写 CSS 的辅助工具。出于对扩展和维护等方面的考虑，在大型项目中有必要使用预处理器构建 CSS；但是对于小型项目，原生的 CSS 可能是一种更好的选择。不要肆意使用预处理器！<br></div>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[数据类型的分类]]></title>
+    <link href="http://pinggod.com/2015/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%86%E7%B1%BB/"/>
+    <id>http://pinggod.com/2015/数据类型的分类/</id>
+    <published>2015-11-15T11:29:36.000Z</published>
+    <updated>2015-11-22T11:32:43.000Z</updated>
+    <content type="html"><![CDATA[<p>开始写作本文的时候，我已经顺利地度过了四个月的前端实习生活，其间经手的项目勉强称得上稳定和健壮。但是刚刚学习前端的那些日子，可没现在这么自信，回想起来仍然颇多感慨。</p>
+<p>《JavaScript 典型应用与最佳实践》是我学习 JavaScript 的启蒙书籍，初版于 2008 年，面色古老而又心思缜密。其中的原始值和引用值一节，让我对 JavaScript 中数据类型的理解豁然开朗。如果从写作的角度看这本书，它的亮点在于以一种结构化的思维由浅入深地引导读者，主干和分支条缕清晰。有趣的是，在我用谷歌为结构化思维（Structed Thinking）查找一些理论依据的时候，链接到了一本更古老的书籍《金字塔原理：思考、写作和解决问题的逻辑》，书中介绍的正是作者自 1963 年以来反复实践的一套结构化思维，具体的细节等我读完后再聊吧。</p>
+<a id="more"></a>
+<p>最近项目中使用到的技术都比较激进，比如 ES6 / React / Flux 等等。在 ES6 的代码中你能看到诸多其他语言的影子，比如 Python，所以上一周我决定重新回顾一下 Python 中的要点，选用的参考资料是由 Wesley J. Chun 编写的《Python 核心编程（第二版）》。</p>
+<p>当读到 4.8 节《标准类型的分类》时，我可以确定，这又是一次结构化思维在知识传播过程中华丽的表演。在高级程序设计语言中，数据类型是必不可少的一部分。理解一门语言的数据类型，也是最基础的一步。虽然下面的示例交错使用 Python 和 JavaScript，但其中所叙述的本质是具有广泛性的。</p>
+<h2 id="Python">Python</h2><p>Python 中每个对象都有三个特性：id, type 和 value。这些特性在对象初始化时创建。Python 内建了多种数据类型，基本类型包括：</p>
+<ul>
+<li>integer, long integer, float, complex number</li>
+<li>string</li>
+<li>list</li>
+<li>tuple</li>
+<li>dictionary</li>
+</ul>
+<p>对数据类型分类，可以让我们更清晰地理解类型之间的关系以及工作原理。首先，使用存储模型进行分类。存储类型的衡量标准就是看对象能保存多少个对象。对于只能存储单个基本类型的对象，我们称之为原子或标量存储；那些可以存储多个基本类型的对象，称之为容器存储。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">分类</th>
+<th style="text-align:center">Python 类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">标量 / 原子存储</td>
+<td style="text-align:center">数值、字符串</td>
+</tr>
+<tr>
+<td style="text-align:center">容器类型</td>
+<td style="text-align:center">列表、元素、字典</td>
+</tr>
+</tbody>
+</table>
+<p>然后，使用更新模型进行分类，更新模型的分类依据是看对象是否允许多次赋值。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">分类</th>
+<th style="text-align:center">Python 类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">可变类型</td>
+<td style="text-align:center">列表、字典</td>
+</tr>
+<tr>
+<td style="text-align:center">不可变类型</td>
+<td style="text-align:center">数值、字符串、元组</td>
+</tr>
+</tbody>
+</table>
+<p>最后，使用访问模型进行分类，访问模型的分类依据是看访问方式：直接存取、顺序存取以及映射存取。直接存储通过地址直接访问内存获取数据，数值属于这一类型；顺序存取通过对象的索引从 0 顺序访问内部元素，字符串、列表和元组都属于这一类型；映射存储与顺序存取类型，不同点在于它使用哈希键来访问数据，字典属于这一类型。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">分类</th>
+<th style="text-align:center">Python 类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">直接访问</td>
+<td style="text-align:center">数值</td>
+</tr>
+<tr>
+<td style="text-align:center">顺序访问</td>
+<td style="text-align:center">字符串、列表、元组</td>
+</tr>
+<tr>
+<td style="text-align:center">映射访问</td>
+<td style="text-align:center">字典</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>文中使用这么多的模型对数据类型分类，将基本类型和扩展类型进行区别，描述了各种类型的具体特征。简而言之，文中调侃了一句话：“一个优秀的工匠应该知道自己的工具箱有什么宝贝”。</p>
+</blockquote>
+<h2 id="JavaScript">JavaScript</h2><p>ECMAScript 规范中定义了变量的两种类型：原始值类型和引用值类型。用以区分的依据就是它们在内存中的存储类型：值存储和址存储。</p>
+<p>为什么要分值和地址两种方式？一般而言，值存储的变量（原始值类型）都具有占据空间小、大小固定的特点。只有 string 是个特例，虽然它不具备大小固定的要求，但它是不可变的，是稳定而又会被频繁调用的。在其他语言中，string 大多是可变的。</p>
+<p>址存储的类型，具有占据空间大、大小不固定的特点，因此如果使用值存储的方式放在内存中，将会影响程序运行的性能。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>开始写作本文的时候，我已经顺利地度过了四个月的前端实习生活，其间经手的项目勉强称得上稳定和健壮。但是刚刚学习前端的那些日子，可没现在这么自信，回想起来仍然颇多感慨。</p>
+<p>《JavaScript 典型应用与最佳实践》是我学习 JavaScript 的启蒙书籍，初版于 2008 年，面色古老而又心思缜密。其中的原始值和引用值一节，让我对 JavaScript 中数据类型的理解豁然开朗。如果从写作的角度看这本书，它的亮点在于以一种结构化的思维由浅入深地引导读者，主干和分支条缕清晰。有趣的是，在我用谷歌为结构化思维（Structed Thinking）查找一些理论依据的时候，链接到了一本更古老的书籍《金字塔原理：思考、写作和解决问题的逻辑》，书中介绍的正是作者自 1963 年以来反复实践的一套结构化思维，具体的细节等我读完后再聊吧。</p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+</feed>
