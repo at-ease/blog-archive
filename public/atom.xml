@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://pinggod.com/"/>
-  <updated>2015-12-27T09:15:25.000Z</updated>
+  <updated>2015-12-27T09:20:18.000Z</updated>
   <id>http://pinggod.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://pinggod.com/2015/mac-tool-kit/"/>
     <id>http://pinggod.com/2015/mac-tool-kit/</id>
     <published>2015-12-26T10:17:00.000Z</published>
-    <updated>2015-12-27T09:15:25.000Z</updated>
+    <updated>2015-12-27T09:20:18.000Z</updated>
     <content type="html"><![CDATA[<p>这会是一篇持续更新的文章，用于记录我在 mac 中常用的开发工具。过去的一年（2015）里，我使用 mac 作为开发的主力平台，在上面折腾过各类软件，以实现最高的开发效率和最舒适的开发环境。一切都是为了开发成果服务，脱离结果强调过程不是我支持的态度，简而言之，这些都是一些增益技巧。</p>
 <p>文中工具的排序规则，毕竟是程序员，凡是讲个规则和流程：</p>
 <ol>
@@ -31,7 +31,7 @@
 <li>每次接触新工具，将 random seed 设为该工具，循环执行 2、3、4 过程</li>
 <li>其他工具根据肌肉对键盘的非条件反射随机排列</li>
 </ol>
-<p><img src="https://mss.sankuai.com/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1451207596357.png" alt="mac tool kit 排列方法 2015-12-27.png"></p>
+<p><img src="/img/mac-tool-kit.png" alt="mac tool kit 排列方法 2015-12-27.png"></p>
 <a id="more"></a>
 <h2 id="Preparation">Preparation</h2><p>在选择下文中的工具时，主要有两点参考标准：</p>
 <ul>
@@ -52,7 +52,7 @@
 <li>每次接触新工具，将 random seed 设为该工具，循环执行 2、3、4 过程</li>
 <li>其他工具根据肌肉对键盘的非条件反射随机排列</li>
 </ol>
-<p><img src="https://mss.sankuai.com/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1451207596357.png" alt="mac tool kit 排列方法 2015-12-27.png"></p>]]>
+<p><img src="/img/mac-tool-kit.png" alt="mac tool kit 排列方法 2015-12-27.png"></p>]]>
     
     </summary>
     
@@ -203,9 +203,9 @@
     <link href="http://pinggod.com/2015/inline-and-absolute/"/>
     <id>http://pinggod.com/2015/inline-and-absolute/</id>
     <published>2015-12-06T03:32:17.000Z</published>
-    <updated>2015-12-15T09:15:01.000Z</updated>
+    <updated>2015-12-27T09:31:08.000Z</updated>
     <content type="html"><![CDATA[<p>在一个容器中，所有元素都是 inline / inline-block 类型，此时可以使用 absolute + margin 的方式实现相对定位，而且相对定位的位置就是脱离文档流之前的位置。</p>
-<p><img src="https://cloud.githubusercontent.com/assets/9530963/11618643/7fe8737c-9cd8-11e5-9919-e47705faa3c7.png" alt="absolute and margin"></p>
+<p><img src="/img/inline-and-absolute.png" alt="absolute and margin"></p>
 <a id="more"></a>
 <h6 id="在线示例">在线示例</h6><ul>
 <li><a href="http://codepen.io/pinggod/pen/WrNJmE" target="_blank" rel="external">absolute and marign</a></li>
@@ -213,7 +213,7 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>在一个容器中，所有元素都是 inline / inline-block 类型，此时可以使用 absolute + margin 的方式实现相对定位，而且相对定位的位置就是脱离文档流之前的位置。</p>
-<p><img src="https://cloud.githubusercontent.com/assets/9530963/11618643/7fe8737c-9cd8-11e5-9919-e47705faa3c7.png" alt="absolute and margin"></p>]]>
+<p><img src="/img/inline-and-absolute.png" alt="absolute and margin"></p>]]>
     
     </summary>
     
@@ -270,7 +270,7 @@
     <link href="http://pinggod.com/2015/CSS-Flexbox/"/>
     <id>http://pinggod.com/2015/CSS-Flexbox/</id>
     <published>2015-12-02T02:42:39.000Z</published>
-    <updated>2015-12-15T09:15:01.000Z</updated>
+    <updated>2015-12-27T09:32:02.000Z</updated>
     <content type="html"><![CDATA[<p>如果你正在学习使用 CSS 布局，推荐来 <a href="http://zh.learnlayout.com/toc.html" target="_blank" rel="external">learnlayout</a> 了解一下这些年前端所用到的各类布局手法。这里之所以使用“手法”一词，意指其中多少有些偏激取巧，比如使用浮动（float）来定位、使用 margin 来伸缩空间等等。</p>
 <p>float、margin 本不应该用于布局，只是囿于早期的 CSS 布局模块发展缓慢且不合时宜，促使开发者另辟蹊径，借助其他样式来模拟布局效果。最近几年随着浏览器对布局模块的支持度越来越高，Flexible Box Layout（Flexbox）、Grid Layout、Multiple Column Layout 也逐渐为开发者所接受，其中以 Flexbox 的兼容性最好，拥护者也随之水涨船高。</p>
 <p>就个人感受而言，未来的布局方式会归纳为两类：一类是纯粹使用浏览器兼容性高的布局模块，比如 Flexbox，这也是未来的发展趋势；另一类是使用预处理器或者框架自定义的布局模块，这只是目前的缓兵过渡之计。</p>
@@ -281,7 +281,7 @@
 <p>Susy 的理念是帮助开发者规避数学计算，所以它有一条大快人心的口号：YOUR MARKUP, YOUR DESIGN, YOUR OPINIONS, OUR MATH。</p>
 </blockquote>
 <h2 id="Flexbox">Flexbox</h2><p>在数学计算的问题上，我觉得 Flexbox 和 Susy 有异曲同工之妙，只是相比起来，原生的 Flexbox 更加简捷。在 Flexbox 中有两个核心元素：<code>container</code> 和 <code>item</code>，所有的样式也是围绕这两类元素计算的。下图中有两条红线，分别代表在水平方向和垂直方向进行布局的基线。</p>
-<p><img src="https://cloud.githubusercontent.com/assets/9530963/11552213/009b2d44-99bd-11e5-88c8-8bdcb72fcd8d.png" alt="Flexbox"></p>
+<p><img src="/img/flexbox.png" alt="Flexbox"></p>
 <p>Flexbox 中的 contianer 元素需要解决两个问题：自身的类型以及内部 item 的排列方式。通过 <code>display: flex</code> 和 <code>display: inline-flex</code> 可以将 container 声明为块级或者行内块级，从而确定了 container 自身的类型。使用以下属性则可以确定 container 内部 item 的排列方式：</p>
 <ul>
 <li>flex-flow：flex-direction 和 flex-wrap 的缩写</li>
@@ -291,7 +291,7 @@
 <li>align-item：决定 item 在垂直方向上的对齐方式</li>
 <li>align-content：决定多个 main axis 在垂直方向上的对齐方式</li>
 </ul>
-<p><img src="https://cloud.githubusercontent.com/assets/9530963/11552230/2b8a9f8a-99bd-11e5-8b71-35164bc6d091.png" alt="flex-container"></p>
+<p><img src="/img/flexbox-container.png" alt="flex-container"></p>
 <p>item 元素需要解决的问题集中于自身上，包括自身在 container 中的顺序、缩放、对齐方式。使用以下属性可以设置 item 自身的布局样式：</p>
 <ul>
 <li>order：决定 item 的顺序，默认值为 0，值越小越靠前</li>
@@ -301,7 +301,7 @@
 <li>flex-basis：浏览器分配 container 剩余空间时，决定 item 获得的比重</li>
 <li>align-self: 决定自身在垂直方向的对齐方式</li>
 </ul>
-<p><img src="https://cloud.githubusercontent.com/assets/9530963/11552236/38ab72c0-99bd-11e5-884d-cea1dfc0af1c.png" alt="flex-item"></p>
+<p><img src="/img/flexbox-cell.png" alt="flex-item"></p>
 <h2 id="box-sizing">box-sizing</h2><p>话外提一下 <code>box-sizing</code>， 该属性用于声明 <code>width</code> 和 <code>height</code> 的约束范围：<code>border-box</code> 表示边框、内边距和内容块的宽高计入容器宽高；<code>content-box</code> 表示只有内容块的宽高计入容器宽高。此外，该属性可继承，可以通过设置 body 的 box-sizing 统一约束容器的宽高。</p>
 <h2 id="FlexFroggy">FlexFroggy</h2><p>这是一个寓教于乐的 Flexbox 布局小游戏，难度中下，很有意思：<a href="http://flexboxfroggy.com" target="_blank" rel="external">http://flexboxfroggy.com</a>。</p>
 ]]></content>
@@ -363,7 +363,7 @@
     <link href="http://pinggod.com/2015/React-%E7%BB%84%E4%BB%B6%E9%97%B4%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92/"/>
     <id>http://pinggod.com/2015/React-组件间的消息传递/</id>
     <published>2015-11-28T10:34:42.000Z</published>
-    <updated>2015-12-15T09:15:01.000Z</updated>
+    <updated>2015-12-27T09:32:41.000Z</updated>
     <content type="html"><![CDATA[<p>当我们封装了可复用的组件之后，用来驱动组件渲染内容的数据就变得愈发灵活，组件之间数据通信的问题就摆在了桌面上。React 组件间的消息传递主要集中于三种关系中：</p>
 <ul>
 <li>从父组件向子组件的消息传递</li>
@@ -371,7 +371,7 @@
 <li>无关联组件之间的消息传递</li>
 </ul>
 <p>前两种关系都可以使用 React 内建的 <code>this.props</code> 对象来处理：</p>
-<p><img src="https://cloud.githubusercontent.com/assets/9530963/11470593/0647f04e-979a-11e5-9c1c-883f5825f9e2.png" alt="父子组件之间的消息传递"></p>
+<p><img src="/img/react-component-comunication.png" alt="父子组件之间的消息传递"></p>
 <a id="more"></a>
 <h2 id="无关联组件之间的消息传递">无关联组件之间的消息传递</h2><p>这里的“无关联”，是指两个组件既不是父子关系，也不是兄弟关系。对于这种关系，可以用一个简单的发布订阅模型来实现，这种模型又被称为观察者模式。</p>
 <p>这里选用的是基于全局对象的发布订阅模型，需要自定义事件名称：</p>
@@ -384,7 +384,7 @@
 <li>无关联组件之间的消息传递</li>
 </ul>
 <p>前两种关系都可以使用 React 内建的 <code>this.props</code> 对象来处理：</p>
-<p><img src="https://cloud.githubusercontent.com/assets/9530963/11470593/0647f04e-979a-11e5-9c1c-883f5825f9e2.png" alt="父子组件之间的消息传递"></p>]]>
+<p><img src="/img/react-component-comunication.png" alt="父子组件之间的消息传递"></p>]]>
     
     </summary>
     
@@ -395,9 +395,9 @@
     <link href="http://pinggod.com/2015/React-%E7%BB%84%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
     <id>http://pinggod.com/2015/React-组件的生命周期/</id>
     <published>2015-11-23T01:56:00.000Z</published>
-    <updated>2015-12-15T09:15:01.000Z</updated>
+    <updated>2015-12-27T09:30:30.000Z</updated>
     <content type="html"><![CDATA[<p>在 React 所实践的组件化中，非常重要的一点就是组件的生命周期，简而言之是组件的挂载、更新和卸载流程。下图详细列述了 React 组件在整个生命周期中所涉及的方法和行为：</p>
-<p><img src="https://cloud.githubusercontent.com/assets/9530963/11421184/409f144a-946e-11e5-8132-3f65ba56aab9.png" alt="React 组件的生命周期"></p>
+<p><img src="/img/react-lifecycle.png" alt="React 组件的生命周期"></p>
 <a id="more"></a>
 <p>在组件实例创建之初，会依序调用 <code>getDefaultProps()</code>、<code>getInitialState()</code> 方法初始化数据。在 ES6 中，可以简写为：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">static defaultProps = &#123;</span><br><span class="line">    key: value</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">state = &#123;</span><br><span class="line">    key: value</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -412,12 +412,12 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">componentWillUpdate(object nextProps, object nextState) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">componentDidUpdate(object prevProps, object prevState) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="unmount">unmount</h2><p>组件卸载前会执行 <code>componentWillUnmount()</code>，用于清理 <code>componentDidMount()</code> 之后创建的组件。此外，对于组件生命周期内累积的监听事件和定时器，也应当在该方法内执行解绑、清除操作。</p>
 <h2 id="组件化">组件化</h2><p>目前组内正在构建一套 React 基础组件，方法和思路与 AlloyTeam <a href="http://www.alloyteam.com/2015/11/we-will-be-componentized-web-long-text/" target="_blank" rel="external">《致我们终将组件化的 Web》</a>一文类似。其中，作者对组件提出了五点要求，如下图所示，值得参考：</p>
-<p><img src="https://cloud.githubusercontent.com/assets/9530963/11451335/7cd052fe-95fd-11e5-8120-d094eb4ee823.png" alt="组件化的要求"></p>
+<p><img src="/img/react-component.png" alt="组件化的要求"></p>
 <p>其中“规范化的接口”，也可更改为可管理的生命周期。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>在 React 所实践的组件化中，非常重要的一点就是组件的生命周期，简而言之是组件的挂载、更新和卸载流程。下图详细列述了 React 组件在整个生命周期中所涉及的方法和行为：</p>
-<p><img src="https://cloud.githubusercontent.com/assets/9530963/11421184/409f144a-946e-11e5-8132-3f65ba56aab9.png" alt="React 组件的生命周期"></p>]]>
+<p><img src="/img/react-lifecycle.png" alt="React 组件的生命周期"></p>]]>
     
     </summary>
     
@@ -428,7 +428,7 @@
     <link href="http://pinggod.com/2015/Sass/"/>
     <id>http://pinggod.com/2015/Sass/</id>
     <published>2015-11-19T09:19:52.000Z</published>
-    <updated>2015-12-15T09:15:01.000Z</updated>
+    <updated>2015-12-27T09:29:02.000Z</updated>
     <content type="html"><![CDATA[<p>从 <a href="http://benfrain.com/" target="_blank" rel="external">Ben Frain</a> 的书中可以看出，他是一个勇于实践、善于学习的开发者。一直以来都很关注他的动态，当他的新书《Sass 和 Compass 设计师指南》初版时，就迫不及待地入手了，这是我和 Sass 的第一次见面。后来机缘巧合翻译了 <a href="http://sass-guidelin.es/zh" target="_blank" rel="external">Sass Guidelines</a> 和其它一些颇具实践性的 Sass 文章，零零散散至今大概有了一年的时间。</p>
 <p>以前的翻译专注于“学习”，在这篇文章之后，我将会分配更多的精力到“实践”中，做一些共享性的库或工具回馈社区。</p>
 <div class="tip"><br>    预处理器很强大，但它只是编写 CSS 的辅助工具。出于对扩展和维护等方面的考虑，在大型项目中有必要使用预处理器构建 CSS；但是对于小型项目，原生的 CSS 可能是一种更好的选择。不要肆意使用预处理器！<br></div>
@@ -491,7 +491,7 @@
 <p>编译结果：</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.btn-danger</span>, <span class="class">.btn-default</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> white</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">20px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.btn-danger</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> red</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.btn-default</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> gray</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>在这个组合中，占位符选择器本身不会被编译到 CSS 文件中，可以节省文件体积，而且 <code>@extend</code> 只继承了单一的占位符选择器，杜绝了选择器泛滥。此外，相比起 <code>@mixin</code> 来，<code>@extend</code> 搭配占位符选择器生成的结果会聚合在同一个样式集中：</p>
-<p><img src="https://cloud.githubusercontent.com/assets/9530963/11413823/93e5c6ee-9428-11e5-9c5f-4c360bda8da8.png" alt="@extend vs @mixin"></p>
+<p><img src="/img/mixin-vs-extend.png" alt="@extend vs @mixin"></p>
 <blockquote>
 <p>如果再上升一个层次分工的话，那就需要比较一下 <code>@mixin</code> 和 <code>@extend</code>。这两种方式都可以生成公有样式，但是仅此而已就是浪费了 <code>@mixin</code> 的能力。就目前的最佳实践来说，建议使用 <code>@extend</code> 搭配占位符选择器继承公有样式，使用 <code>@mixin</code> 产出动态样式。<code>@mixin</code> 的详细介绍见后续小节。</p>
 </blockquote>

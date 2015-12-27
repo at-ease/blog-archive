@@ -9,14 +9,14 @@
 
 无关联组件之间的消息传递这里的“无关联”，是指两个组件既不是父子关系，也不是兄弟关系。对于这种关系，可以用一个简单的发布订阅模型来实现，这种模型又被称为观察者模式。
 这里选用的是基于全局对象的发布订阅模型，需要自定义事件名称：
-&lt;"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">微博</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">React 组件间的消息传递</h1><div class="post-meta"><div class="post-time">Nov 28, 2015</div></div><div class="post-content"><p>当我们封装了可复用的组件之后，用来驱动组件渲染内容的数据就变得愈发灵活，组件之间数据通信的问题就摆在了桌面上。React 组件间的消息传递主要集中于三种关系中：</p>
+// 事件集合&lt;b"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">微博</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">React 组件间的消息传递</h1><div class="post-meta"><div class="post-time">Nov 28, 2015</div></div><div class="post-content"><p>当我们封装了可复用的组件之后，用来驱动组件渲染内容的数据就变得愈发灵活，组件之间数据通信的问题就摆在了桌面上。React 组件间的消息传递主要集中于三种关系中：</p>
 <ul>
 <li>从父组件向子组件的消息传递</li>
 <li>从子组件向父组件的消息传递</li>
 <li>无关联组件之间的消息传递</li>
 </ul>
 <p>前两种关系都可以使用 React 内建的 <code>this.props</code> 对象来处理：</p>
-<p><img src="https://cloud.githubusercontent.com/assets/9530963/11470593/0647f04e-979a-11e5-9c1c-883f5825f9e2.png" alt="父子组件之间的消息传递"></p>
+<p><img src="/img/react-component-comunication.png" alt="父子组件之间的消息传递"></p>
 <a id="more"></a>
 <h2 id="无关联组件之间的消息传递">无关联组件之间的消息传递</h2><p>这里的“无关联”，是指两个组件既不是父子关系，也不是兄弟关系。对于这种关系，可以用一个简单的发布订阅模型来实现，这种模型又被称为观察者模式。</p>
 <p>这里选用的是基于全局对象的发布订阅模型，需要自定义事件名称：</p>
