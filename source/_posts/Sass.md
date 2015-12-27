@@ -254,7 +254,7 @@ a {
 
 在这个组合中，占位符选择器本身不会被编译到 CSS 文件中，可以节省文件体积，而且 `@extend` 只继承了单一的占位符选择器，杜绝了选择器泛滥。此外，相比起 `@mixin` 来，`@extend` 搭配占位符选择器生成的结果会聚合在同一个样式集中：
 
-![@extend vs @mixin](https://cloud.githubusercontent.com/assets/9530963/11413823/93e5c6ee-9428-11e5-9c5f-4c360bda8da8.png)
+![@extend vs @mixin](/img/mixin-vs-extend.png)
 
 > 如果再上升一个层次分工的话，那就需要比较一下 `@mixin` 和 `@extend`。这两种方式都可以生成公有样式，但是仅此而已就是浪费了 `@mixin` 的能力。就目前的最佳实践来说，建议使用 `@extend` 搭配占位符选择器继承公有样式，使用 `@mixin` 产出动态样式。`@mixin` 的详细介绍见后续小节。
 

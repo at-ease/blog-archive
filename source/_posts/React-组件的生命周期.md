@@ -4,7 +4,7 @@ date: 2015-11-23 09:56:00
 
 在 React 所实践的组件化中，非常重要的一点就是组件的生命周期，简而言之是组件的挂载、更新和卸载流程。下图详细列述了 React 组件在整个生命周期中所涉及的方法和行为：
 
-![React 组件的生命周期](https://cloud.githubusercontent.com/assets/9530963/11421184/409f144a-946e-11e5-8132-3f65ba56aab9.png)
+![React 组件的生命周期](/img/react-lifecycle.png)
 
 <!-- more -->
 
@@ -102,6 +102,6 @@ componentDidUpdate(object prevProps, object prevState) {
 
 目前组内正在构建一套 React 基础组件，方法和思路与 AlloyTeam [《致我们终将组件化的 Web》](http://www.alloyteam.com/2015/11/we-will-be-componentized-web-long-text/)一文类似。其中，作者对组件提出了五点要求，如下图所示，值得参考：
 
-![组件化的要求](https://cloud.githubusercontent.com/assets/9530963/11451335/7cd052fe-95fd-11e5-8120-d094eb4ee823.png)
+![组件化的要求](/img/react-component.png)
 
 其中“规范化的接口”，也可更改为可管理的生命周期。

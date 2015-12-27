@@ -10,7 +10,7 @@ date: 2015-11-28 18:34:42
 
 前两种关系都可以使用 React 内建的 `this.props` 对象来处理：
 
-![父子组件之间的消息传递](https://cloud.githubusercontent.com/assets/9530963/11470593/0647f04e-979a-11e5-9c1c-883f5825f9e2.png)
+![父子组件之间的消息传递](/img/react-component-comunication.png)
 
 <!-- more -->
 

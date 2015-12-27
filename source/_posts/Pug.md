@@ -1,8 +1,12 @@
-title: Jade
+title: Pug
 date: 2015-12-03 13:24:27
 ---
 
-如果你熟悉 Sublime Text 和 Emmet 的组合，那么 Jade 也会是你的菜。Jade 类似于 Python，都采用了对缩进敏感的语法形式，比如下面这段代码创建了一个无序列表：
+<div class="tip"
+    由于商标版权问题，Jade 已经改名为了 Pug，详见 [issue](https://github.com/pugjs/jade/issues/2184)。
+</div>
+
+如果你熟悉 Sublime Text 和 Emmet 的组合，那么 Pug 也会是你的菜。Pug 类似于 Python，都采用了对缩进敏感的语法形式，比如下面这段代码创建了一个无序列表：
 
 ```javascript
 ul(class="inline")
@@ -17,7 +21,7 @@ ul(class="inline")
 
 ## 属性
 
-Jade 的另一大特点就是和 JavaScript 的融合度很高，比如设置属性：
+Pug 的另一大特点就是和 JavaScript 的融合度很高，比如设置属性：
 
 ```javascript
 - var authenticated = true
@@ -35,7 +39,7 @@ a(style={color: 'red', background: 'green'})
 
 ## 插值
 
-Jade 提供了字符串插值和标签插值。其中，字符串插值由于要考虑到安全性问题，所以又分成了转义和不转义两种情况：
+Pug 提供了字符串插值和标签插值。其中，字符串插值由于要考虑到安全性问题，所以又分成了转义和不转义两种情况：
 
 ```javascript
 // 转义插值 #{}
@@ -47,7 +51,7 @@ p This will be safe: #{theGreat}
 p This will be safe: !{theGreat}
 
 // 标签插值
-p #[a(href="jade-lang.com") Jade]
+p #[a(href="Pug-lang.com") Pug]
 ```
 
 编译结果：
@@ -60,12 +64,12 @@ p #[a(href="jade-lang.com") Jade]
 <p>This will be safe: <span>escape!</span></p>
 
 <!-- 标签插值-->
-<p><a href="jade-lang.com">Jade</a></p>
+<p><a href="Pug-lang.com">Pug</a></p>
 ```
 
 ## 逻辑语句
 
-Jade 提供了条件、分支、循环、遍历四种逻辑语句，这四种语句继承自 JavaScript，只是语法上有些差异:
+Pug 提供了条件、分支、循环、遍历四种逻辑语句，这四种语句继承自 JavaScript，只是语法上有些差异:
 
 - 条件语句：if ... else if ... else
 - 分支语句：case ... when ... default
@@ -87,7 +91,7 @@ case friends
 
 ## mixin
 
-Jade 和 Sass 都提供了 mixin 语法来实现代码的复用，两者语法也很相似：
+Pug 和 Sass 都提供了 mixin 语法来实现代码的复用，两者语法也很相似：
 
 ```javascript
 mixin list(id, ...items)
@@ -102,7 +106,7 @@ mixin 一般放在独立的文件中，需要使用 `include` 指令导入到其
 
 ## extends
 
-`extends` 是 Jade 的模板继承语法，通过 `extends filename.jade` 可以将模板文件导入到其他文件中。继承机制基本上是一个复制代码片段的过程，为了能够动态修改其中的部分内容，Jade 提供了 `block` 语法：
+`extends` 是 Pug 的模板继承语法，通过 `extends filename.Pug` 可以将模板文件导入到其他文件中。继承机制基本上是一个复制代码片段的过程，为了能够动态修改其中的部分内容，Pug 提供了 `block` 语法：
 
 ```javascript
 // 声明 block
