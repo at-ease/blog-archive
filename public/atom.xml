@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://pinggod.com/"/>
-  <updated>2015-12-27T09:20:18.000Z</updated>
+  <updated>2016-01-02T09:39:25.000Z</updated>
   <id>http://pinggod.com/</id>
   
   <author>
@@ -15,13 +15,68 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[WEB 开发者必看的技术站点]]></title>
+    <link href="http://pinggod.com/2015/%E5%BC%80%E5%8F%91%E8%80%85%E5%BF%85%E7%9C%8B%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AB%99%E7%82%B9/"/>
+    <id>http://pinggod.com/2015/开发者必看的技术站点/</id>
+    <published>2015-12-31T06:49:13.000Z</published>
+    <updated>2016-01-02T09:39:25.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>本文总结自 Quora 上的一个问答：<a href="https://www.quora.com/What-are-the-top-10-websites-a-web-developer-must-see" target="_blank" rel="external">What are the top 10 websites a web developer must see</a>。</p>
+</blockquote>
+<p>读专业书、看教程视频、浏览技术博客、参加讲座分享……这些提高技能的途径各有优劣，相比较而言，博客或者说技术网站可以最快接触前沿技术、分享技术实践，所以，除了依赖谷歌反馈的词条，我们还可以主动收集一些优秀的技术站点，便于自己了解、参与和实践业界最活跃的技术。</p>
+<a id="more"></a>
+<ol>
+<li><p><a href="https://github.com" target="_blank" rel="external">GitHub</a> —— 当下最流行的版本管理工具，云集了世界上最优秀的开发者。在 GitHub 开源之风盛行，我喜欢在这里关注各类优秀项目，也喜欢在这里查找各种工具，比如需要某个 alfred 的插件，在这里搜一下也许就能找到，如果遇到了问题，和开发者反馈一下也不是什么难事。最近喜欢浏览 trending 和 follow 大神，便于了解业界动态，顺便细化下自己的技术栈。</p>
+</li>
+<li><p><a href="http://alistapart.com/" target="_blank" rel="external">A List Apart</a>—— 我想给这个网站定义几个头衔，比如顶级、前沿、经典、最具影响力之类等等。这个网站创办十八年了（from 1998），专注对前端方向的探索，每一篇文章都是深入思考的结晶。典型的文章就是<a href="http://alistapart.com/article/responsive-web-design" target="_blank" rel="external">《Responsive Web Design》</a>，发表之后迅速启发了业界的开发思维，打开了响应式设计的大门。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org" target="_blank" rel="external">MDN</a> —— Mozilla 开发者网络知识库，权威、全面的 WEB 文档，支持多种语言，示例丰富。</p>
+</li>
+<li><p><a href="http://stackoverflow.com/" target="_blank" rel="external">Stack Overflow</a> —— 活跃的技术问答社区。一般问题都有开发者问过了，如果找不到，换一换关键字，最后的方式才应该是提问。作为开发者，为了使用 Stack Overflow 也应该给自己准备一个翻墙工具，永远不要闭门造车般的解决问题。</p>
+</li>
+<li><p><a href="http://caniuse.com/" target="_blank" rel="external">Can I Use</a> —— 如果你有兼容性问题，先来这里看看浏览器的支持情况吧。</p>
+</li>
+<li><p><a href="https://css-tricks.com/" target="_blank" rel="external">CSS-Tricks</a> —— 这里发表所有和 CSS 有关的技巧和教程，当然如果你想来这里找点黑科技，也是有的。</p>
+</li>
+<li><p><a href="http://tympanus.net/codrops/" target="_blank" rel="external">Codrops</a> —— 如果有一天我可以靠理想生活，那我肯定要先实践一番 Codrops 上的教程，这些教程的效果绝对出彩，这也是前端吸引我的魅力所在。</p>
+</li>
+<li><p><a href="http://codepen.io/" target="_blank" rel="external">CodePen</a> —— 在线 WEB 开发工具。一方面我们可以在这里快速实践自己的灵感，另一方面当我们的调试遇到困境，在这里搭一个 DEMO 详细描述下问题，然后发给有经验的人，绝对是最佳的问答礼仪。</p>
+</li>
+<li><p><a href="https://dribbble.com/" target="_blank" rel="external">Dribble</a> —— 作为前端开发者，要求我们必须具备一定的审美水平，来 Dribble 看看吧，你会重新燃起创造力的激情，比如用 WEB 技术实践几个 Driible 的原型图，那一定帅得不行不行的。</p>
+</li>
+<li><p><a href="http://csszengarden.com/" target="_blank" rel="external">CSS Zen Garden（CSS 禅意花园）</a>—— 现在网站的效果越来风格化，无论是简约还是拟物都十分精致，相比而言，来自上个年代的 CSS 禅意花园已经显得并不是很出彩了，但实际上其中还有很多重要的东西值得学习，建议各位读一读<a href="http://book.douban.com/subject/2052176/" target="_blank" rel="external"> CSS 禅意花园</a>这本书，看一下作者对各个主题的分析，了解从设计立意到编码开发的诸多思考。</p>
+</li>
+</ol>
+<p>下面这些网站的内容大都涵盖了从 WEB 到设计、从图形到动效、从数据到运维的方方面面，是非常全面的技术站点：</p>
+<ol>
+<li><p><a href="https://dzone.com/" target="_blank" rel="external">DZone</a> —— Programming, Web Development, and DevOps news, tutorials and tools for beginners to experts. Hundreds of free publications, over 1M members, totally free.</p>
+</li>
+<li><p><a href="http://www.smashingmagazine.com/" target="_blank" rel="external">Smashing Magazine</a> —— Smashing Magazine is an online magazine for professional Web designers and developers, with a focus on useful techniques, best practices and valuable resources.</p>
+</li>
+<li><p><a href="http://www.sitepoint.com/" target="_blank" rel="external">SitePoint</a> —— Learn Web Design &amp; Development with SitePoint tutorials, courses and books - HTML5, CSS3, JavaScript, PHP, mobile app development, Responsive Web Design.</p>
+</li>
+<li><p><a href="http://www.codeproject.com/" target="_blank" rel="external">CodeProject</a> —— Free source code and tutorials for Software developers and Architects.; Updated: 2 Jan 2016.</p>
+</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>本文总结自 Quora 上的一个问答：<a href="https://www.quora.com/What-are-the-top-10-websites-a-web-developer-must-see">What are the top 10 websites a web developer must see</a>。</p>
+</blockquote>
+<p>读专业书、看教程视频、浏览技术博客、参加讲座分享……这些提高技能的途径各有优劣，相比较而言，博客或者说技术网站可以最快接触前沿技术、分享技术实践，所以，除了依赖谷歌反馈的词条，我们还可以主动收集一些优秀的技术站点，便于自己了解、参与和实践业界最活跃的技术。</p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[mac tool kit]]></title>
     <link href="http://pinggod.com/2015/mac-tool-kit/"/>
     <id>http://pinggod.com/2015/mac-tool-kit/</id>
     <published>2015-12-26T10:17:00.000Z</published>
-    <updated>2015-12-27T09:20:18.000Z</updated>
+    <updated>2016-01-03T05:31:25.000Z</updated>
     <content type="html"><![CDATA[<p>这会是一篇持续更新的文章，用于记录我在 mac 中常用的开发工具。过去的一年（2015）里，我使用 mac 作为开发的主力平台，在上面折腾过各类软件，以实现最高的开发效率和最舒适的开发环境。一切都是为了开发成果服务，脱离结果强调过程不是我支持的态度，简而言之，这些都是一些增益技巧。</p>
-<p>文中工具的排序规则，毕竟是程序员，凡是讲个规则和流程：</p>
+<p>文中工具的排序规则（核心是优先安装具有依赖关系的软件）：</p>
 <ol>
 <li>从常用工具中随机选择一个工具作为 random seed</li>
 <li>根据 random seed 的配置过程进行上溯，上溯到的目标工具排在 random seed 之前</li>
@@ -33,16 +88,99 @@
 </ol>
 <p><img src="/img/mac-tool-kit.png" alt="mac tool kit 排列方法 2015-12-27.png"></p>
 <a id="more"></a>
-<h2 id="Preparation">Preparation</h2><p>在选择下文中的工具时，主要有两点参考标准：</p>
+<h2 id="preparation">preparation</h2><p>在选择下文中的工具时，主要有两点参考标准：</p>
 <ul>
 <li>快速，指响应速度和切换速度，或者可以提高这两点的工具。目前键盘操作是无冲突下最快速的控制方式，所以这也是围绕速度进行评估的关键点。</li>
 <li>界面有设计亮点，这纯属前端职业病</li>
 </ul>
+<div class="tip"><br>    初始化 mac 之后，依次进入系统偏好设置 -&gt; 键盘 -&gt; 修饰键，将 Caps Lock 键映射为 Control 键，别问为什么，用心去体会吧 —— Casp Lock 的功能价值与它在键盘布局中所占有的重要位置极度不相符。<br></div>
+
+<h2 id="applications_list">applications list</h2><ol>
+<li><p><a href="https://www.iterm2.com/downloads.html" target="_blank" rel="external">iTerm2</a>，终端工具，替代系统自带的终端，主题 <a href="https://github.com/zenorocha/dracula-theme" target="_blank" rel="external">dracula-theme</a>。</p>
+<ul>
+<li>Xcode command Line Tool，Homebrew 的依赖，可通过 <code>xcode-select --install</code> 命令或者安装 Xcode 来完成</li>
+</ul>
+</li>
+<li><p><a href="https://developer.apple.com/cn/xcode/downloads/" target="_blank" rel="external">Xcode</a>，苹果产品开发环境，</p>
+</li>
+<li><p><a href="http://brew.sh/" target="_blank" rel="external">Homebrew</a>，OS X 的包管理工具：</p>
+<ul>
+<li><a href="https://github.com/creationix/nvm" target="_blank" rel="external">nvm</a>，node 版本管理工具</li>
+<li><a href="https://github.com/nodejs/node" target="_blank" rel="external">node</a>，运行在服务端的 JavaScript，使用 nvm 统一管理</li>
+<li><a href="https://tmux.github.io/" target="_blank" rel="external">tmux</a>，终端复用工具</li>
+<li><a href="http://mama.indstate.edu/users/ice/tree/" target="_blank" rel="external">tree</a>，树状结构目录</li>
+<li><a href="https://www.python.org" target="_blank" rel="external">python / python3</a>，python 开发环境</li>
+<li><a href="http://nginx.org/" target="_blank" rel="external">nginx</a>，反向代理服务器</li>
+<li><a href="https://github.com/jakubroztocil/httpie" target="_blank" rel="external">httpie</a>，替代 curl 的 HTTP 终端工具</li>
+</ul>
+</li>
+<li><p><a href="http://caskroom.io/" target="_blank" rel="external">Homebrew Cask</a>，使用 hombrew 安装，可用于安装 OS X 应用：</p>
+<ul>
+<li><a href="http://caskroom.io/search" target="_blank" rel="external">haskell platform</a>，haskell 开发环境</li>
+</ul>
+</li>
+<li><p><a href="http://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html" target="_blank" rel="external">Chrome / Chrome Canary</a>，插件众多，开发调试便利，平时也比较依赖谷歌体系内的东西。插件：</p>
+<ul>
+<li><a href="https://chrome.google.com/webstore/detail/github-old-header/bbencfiifelhglgknaheifiekmjndlek" target="_blank" rel="external">GitHub Old Header</a>，在顶部导航区提供一个指向个人页面的链接</li>
+<li><a href="https://chrome.google.com/webstore/detail/http-status/cknfnacbckhfpjahnmkblajcpledpfnp" target="_blank" rel="external">HTTP status</a>，在地址栏显示 HTTTP 状态码</li>
+<li><a href="https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=zh-CN" target="_blank" rel="external">JSON Formatter</a>，格式化浏览器预览到的 JSON 数据</li>
+<li><a href="https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc?hl=zh-CN" target="_blank" rel="external">Octotree</a>，为 GitHub 仓库提供一个树状结构目录</li>
+<li><a href="https://chrome.google.com/webstore/detail/save-to-pocket/niloccemoadcdkdjlinkgdfekeahmflj?hl=zh-CN" target="_blank" rel="external">Save to Pocket</a>，右键保存到 Pocket</li>
+</ul>
+</li>
+<li><p><a href="http://www.sublimetext.com/3" target="_blank" rel="external">Sublime Text 3</a>，编辑器，适用多平台响应迅速扩展能力强。插件：</p>
+<ul>
+<li><a href="https://packagecontrol.io/installation#st3" target="_blank" rel="external">Package Control</a>，Sublime 扩展插件的安装和管理工具</li>
+<li><a href="https://packagecontrol.io/packages/DashDoc" target="_blank" rel="external">DashDoc</a>，调用 Dash</li>
+<li><a href="http://emmet.io/" target="_blank" rel="external">Emmet</a>，前端开发工具集</li>
+<li><a href="https://packagecontrol.io/packages/BracketHighlighter" target="_blank" rel="external">BracketHighlighter</a>，标签和符号的高亮工具</li>
+<li><a href="https://packagecontrol.io/packages/SideBarEnhancements" target="_blank" rel="external">SideBarEnhancements</a>，侧边栏功能扩展插件</li>
+<li><a href="https://github.com/equinusocio/material-theme" target="_blank" rel="external">Material Theme</a>，谷歌 material 风格的简洁主题</li>
+<li><a href="https://packagecontrol.io/packages/Babel" target="_blank" rel="external">Babel</a>，JSX 和 ES6 的高亮插件，不具有编译功能</li>
+<li><a href="https://packagecontrol.io/packages/DocBlockr" target="_blank" rel="external">DocBlockr</a>，Javascript, PHP, CoffeeScript, Actionscript, C &amp; C++ 规范化注释</li>
+</ul>
+</li>
+<li><p><a href="https://kapeli.com/dash" target="_blank" rel="external">Dash</a>，开发文档、代码片段管理工具</p>
+</li>
+<li><p><a href="https://www.alfredapp.com/" target="_blank" rel="external">alfred</a>，必备辅助工具，提高工作效率，不要让双手离开键盘</p>
+</li>
+<li><p><a href="https://getpocket.com/" target="_blank" rel="external">Pocket</a>，离线阅读工具，也被用来做知识管理</p>
+</li>
+<li><p><a href="http://snip.qq.com/" target="_blank" rel="external">Snip</a>，滚动截屏必备工具</p>
+</li>
+<li><p><a href="http://realmacsoftware.com/ember/" target="_blank" rel="external">Ember</a>，图库管理，可以订阅 dribbble popular。</p>
+</li>
+<li><p><a href="https://products.office.com/zh-cn/mac/microsoft-office-for-mac" target="_blank" rel="external">Microsoft office</a>，我喜欢用 PowerPoint 来做流程图、序列图……</p>
+</li>
+<li><p><a href="http://www.irradiatedsoftware.com/tuck/" target="_blank" rel="external">Tuck</a>，将应用程序隐藏到窗口边缘</p>
+</li>
+<li><p><a href="http://www.irradiatedsoftware.com/sizeup/" target="_blank" rel="external">SizeUp</a>，管理应用程序窗口的位置和大小</p>
+</li>
+</ol>
+<h2 id="host_configuration">host configuration</h2><p>最近在熟悉云主机的使用，下面是配置过程：</p>
+<ol>
+<li><p>ssh root 账号登录云主机，通过 <code>passwd</code> 命令更改主机密码，至于怎样设置结构复杂的密码，建议参考文章<a href="http://www.hello-code.com/diary/201409/2223.html" target="_blank" rel="external">《每一个程序员都有一颗当诗人的心》</a>。</p>
+</li>
+<li><p>使用 root 账号创建普通用户：<code>adduser sean</code>、<code>passwd sean</code>，然后为新用户配置权限，通过 <code>visudo</code> 命令添加 <code>sean ALL=(ALL) ALL</code> 配置信息，完成后退出 root 账户，使用普通账户登录云主机，比如这里的 sean。</p>
+</li>
+<li><p>安装常用工具：</p>
+<ul>
+<li><a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">oh-my-zsh</a></li>
+<li><a href="https://github.com/amix/vimrc" target="_blank" rel="external">amix/vimrc</a></li>
+<li><a href="https://github.com/bling/vim-airline" target="_blank" rel="external">bling/vim-airline</a></li>
+<li><a href="https://github.com/powerline/fonts" target="_blank" rel="external">powerline/fonts</a></li>
+<li><a href="https://github.com/creationix/nvm" target="_blank" rel="external">nvm</a></li>
+<li><a href="https://github.com/nodejs/node" target="_blank" rel="external">node</a></li>
+<li><a href="https://github.com/tldr-pages/tldr" target="_blank" rel="external">node:tldr</a></li>
+<li><a href="https://packages.debian.org/search?keywords=tree" target="_blank" rel="external">apt-get:tree</a></li>
+</ul>
+</li>
+</ol>
 <h2 id="tldr">tldr</h2><p>不断地在中英文间进行切换也是非常低效率的操作，所以，初步设定在 2016 年底脱离非业务开发下对中文输入的依赖——不过我最喜欢的哲学思维还是先秦百家交叉融汇出的框架。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>这会是一篇持续更新的文章，用于记录我在 mac 中常用的开发工具。过去的一年（2015）里，我使用 mac 作为开发的主力平台，在上面折腾过各类软件，以实现最高的开发效率和最舒适的开发环境。一切都是为了开发成果服务，脱离结果强调过程不是我支持的态度，简而言之，这些都是一些增益技巧。</p>
-<p>文中工具的排序规则，毕竟是程序员，凡是讲个规则和流程：</p>
+<p>文中工具的排序规则（核心是优先安装具有依赖关系的软件）：</p>
 <ol>
 <li>从常用工具中随机选择一个工具作为 random seed</li>
 <li>根据 random seed 的配置过程进行上溯，上溯到的目标工具排在 random seed 之前</li>
@@ -224,8 +362,8 @@
     <link href="http://pinggod.com/2015/Pug/"/>
     <id>http://pinggod.com/2015/Pug/</id>
     <published>2015-12-03T05:24:27.000Z</published>
-    <updated>2015-12-21T02:32:46.000Z</updated>
-    <content type="html"><![CDATA[<div class="tip" 由于商标版权问题，jade="" 已经改名为了="" pug，详见="" [issue](https:="" github.com="" pugjs="" jade="" issues="" 2184)。="" <="" div="">
+    <updated>2015-12-28T09:57:24.000Z</updated>
+    <content type="html"><![CDATA[<div class="tip"><br>    由于商标版权问题，Jade 已经改名为了 Pug，详见 <a href="https://github.com/pugjs/jade/issues/2184" target="_blank" rel="external">issue</a>。<br></div>
 
 <p>如果你熟悉 Sublime Text 和 Emmet 的组合，那么 Pug 也会是你的菜。Pug 类似于 Python，都采用了对缩进敏感的语法形式，比如下面这段代码创建了一个无序列表：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">ul(<span class="class"><span class="keyword">class</span></span>=<span class="string">"inline"</span>)</span><br><span class="line">    li  Item C</span><br><span class="line">    li  Item A</span><br><span class="line">    li  Item B</span><br></pre></td></tr></table></figure>
@@ -252,11 +390,9 @@
 <p>mixin 一般放在独立的文件中，需要使用 <code>include</code> 指令导入到其他文件中。</p>
 <h2 id="extends">extends</h2><p><code>extends</code> 是 Pug 的模板继承语法，通过 <code>extends filename.Pug</code> 可以将模板文件导入到其他文件中。继承机制基本上是一个复制代码片段的过程，为了能够动态修改其中的部分内容，Pug 提供了 <code>block</code> 语法：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 声明 block</span></span><br><span class="line">block content</span><br><span class="line">    p Hello</span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改 block</span></span><br><span class="line"><span class="comment">// 同名重新赋值</span></span><br><span class="line">block content</span><br><span class="line">    p Hi</span><br><span class="line"></span><br><span class="line"><span class="comment">// 前置追加</span></span><br><span class="line">block append content</span><br><span class="line">    p APPEND</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后置追加</span></span><br><span class="line">block prepend content</span><br><span class="line">    p PREPEND</span><br></pre></td></tr></table></figure>
-</div>]]></content>
+]]></content>
     <summary type="html">
-    <![CDATA[<div class="tip"
-    由于商标版权问题，Jade 已经改名为了 Pug，详见 [issue](https://github.com/pugjs/jade/issues/2184)。
-</div>
+    <![CDATA[<div class="tip"><br>    由于商标版权问题，Jade 已经改名为了 Pug，详见 <a href="https://github.com/pugjs/jade/issues/2184">issue</a>。<br></div>
 
 <p>如果你熟悉 Sublime Text 和 Emmet 的组合，那么 Pug 也会是你的菜。Pug 类似于 Python，都采用了对缩进敏感的语法形式，比如下面这段代码创建了一个无序列表：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">ul(<span class="class"><span class="keyword">class</span></span>=<span class="string">"inline"</span>)</span><br><span class="line">    li  Item C</span><br><span class="line">    li  Item A</span><br><span class="line">    li  Item B</span><br></pre></td></tr></table></figure>]]>

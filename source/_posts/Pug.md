@@ -2,7 +2,7 @@ title: Pug
 date: 2015-12-03 13:24:27
 ---
 
-<div class="tip"
+<div class="tip">
     由于商标版权问题，Jade 已经改名为了 Pug，详见 [issue](https://github.com/pugjs/jade/issues/2184)。
 </div>
 
