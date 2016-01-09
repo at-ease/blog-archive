@@ -44,6 +44,7 @@ date: 2015-12-26 18:17:00
     - [python / python3](https://www.python.org)，python 开发环境
     - [nginx](http://nginx.org/)，反向代理服务器
     - [httpie](https://github.com/jakubroztocil/httpie)，替代 curl 的 HTTP 终端工具
+    - [optipng](http://optipng.sourceforge.net/)，png 优化工具
 
 1. [Homebrew Cask](http://caskroom.io/)，使用 hombrew 安装，可用于安装 OS X 应用：
     - [haskell platform](http://caskroom.io/search)，haskell 开发环境
@@ -102,28 +103,3 @@ date: 2015-12-26 18:17:00
 ## tldr
 
 不断地在中英文间进行切换也是非常低效率的操作，所以，初步设定在 2016 年底脱离非业务开发下对中文输入的依赖——不过我最喜欢的哲学思维还是先秦百家交叉融汇出的框架。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

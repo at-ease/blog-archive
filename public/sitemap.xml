@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://pinggod.com/2015/ES2015/</loc>
+    <lastmod>2016-01-08T10:05:58.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://pinggod.com/2015/mac-tool-kit/</loc>
-    <lastmod>2016-01-03T05:31:25.000Z</lastmod>
+    <lastmod>2016-01-03T08:58:49.000Z</lastmod>
   </url>
   
   <url>
@@ -39,11 +44,6 @@
   <url>
     <loc>http://pinggod.com/2015/Sass/</loc>
     <lastmod>2015-12-27T09:29:02.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://pinggod.com/2015/ES2015/</loc>
-    <lastmod>2015-12-21T01:49:53.000Z</lastmod>
   </url>
   
   <url>
