@@ -33,6 +33,7 @@ date: 2015-12-26 18:17:00
 
 1. [iTerm2](https://www.iterm2.com/downloads.html)，终端工具，替代系统自带的终端，主题 [dracula-theme](https://github.com/zenorocha/dracula-theme)。
     - Xcode command Line Tool，Homebrew 的依赖，可通过 `xcode-select --install` 命令或者安装 Xcode 来完成
+    - [ici](https://github.com/Flowerowl/ici)，终端词典，基于爱词霸词库 
 
 1. [Xcode](https://developer.apple.com/cn/xcode/downloads/)，苹果产品开发环境，
 
@@ -44,7 +45,6 @@ date: 2015-12-26 18:17:00
     - [python / python3](https://www.python.org)，python 开发环境
     - [nginx](http://nginx.org/)，反向代理服务器
     - [httpie](https://github.com/jakubroztocil/httpie)，替代 curl 的 HTTP 终端工具
-    - [optipng](http://optipng.sourceforge.net/)，png 优化工具
 
 1. [Homebrew Cask](http://caskroom.io/)，使用 hombrew 安装，可用于安装 OS X 应用：
     - [haskell platform](http://caskroom.io/search)，haskell 开发环境
@@ -77,8 +77,6 @@ date: 2015-12-26 18:17:00
 1. [Ember](http://realmacsoftware.com/ember/)，图库管理，可以订阅 dribbble popular。
 
 1. [Microsoft office](https://products.office.com/zh-cn/mac/microsoft-office-for-mac)，我喜欢用 PowerPoint 来做流程图、序列图……
-
-1. [Tuck](http://www.irradiatedsoftware.com/tuck/)，将应用程序隐藏到窗口边缘
 
 1. [SizeUp](http://www.irradiatedsoftware.com/sizeup/)，管理应用程序窗口的位置和大小
 
