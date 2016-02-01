@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://pinggod.com/"/>
-  <updated>2016-01-23T02:22:06.000Z</updated>
+  <updated>2016-01-29T06:28:04.000Z</updated>
   <id>http://pinggod.com/</id>
   
   <author>
@@ -15,11 +15,211 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Mongodb]]></title>
+    <link href="http://pinggod.com/2016/mongodb/"/>
+    <id>http://pinggod.com/2016/mongodb/</id>
+    <published>2016-01-28T07:58:12.000Z</published>
+    <updated>2016-01-29T06:28:04.000Z</updated>
+    <content type="html"><![CDATA[<p>Mongodb 提供了 Homebrew 的安装方式，安装过程如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew update</span><br><span class="line">brew install mongodb</span><br><span class="line">mkdir -p /data/db</span><br><span class="line">chmod u+rw /data/db</span><br><span class="line">mongod</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>Mongodb 安装完全后，在 bin 文件夹下有以下可执行程序：</p>
+<ul>
+<li><code>mongod</code>，mongodb 的执行和部署程序</li>
+<li><code>mongo</code>，连接 mongodb 服务器的客户端</li>
+<li><code>mongoimport / mongoexport</code>，mongodb 数据导入导出程序</li>
+<li><code>mongoreestore / mongodump</code>，mongodb 二进制数据导入导出程序，常用做数据备份和恢复</li>
+<li><code>mongooplog</code>，操作日志记录程序</li>
+<li><code>mongostat</code>，mongodb 状态监控和查询程序</li>
+</ul>
+<p>Mongodb 数据库的简单组成结构及分工职责：</p>
+<ul>
+<li><code>data</code>，存储数据库的数据文件</li>
+<li><code>log</code>，存储数据库的日志文件</li>
+<li><code>bin</code>，存储数据库的可执行文件</li>
+<li><code>conf</code>，存储数据库的配置文件</li>
+</ul>
+<p>创建一个轻量的 Mongodb 数据库：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir mongodb-in-action</span><br><span class="line"><span class="built_in">cd</span> mongodb-in-action</span><br><span class="line">mkdir data <span class="built_in">log</span> conf bin</span><br><span class="line">cp /usr/<span class="built_in">local</span>/Cellar/mongodb/<span class="number">3.2</span>.<span class="number">1</span>/bin/&#123;mongod,mongo&#125; ./bin/</span><br><span class="line">touch conf/mongod.conf</span><br></pre></td></tr></table></figure>
+<p><code>conf/mongod.conf</code> 是这个数据库的配置文件，内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">port = <span class="number">12345</span></span><br><span class="line"></span><br><span class="line">dbpath = data</span><br><span class="line">logpath = <span class="built_in">log</span>/mongod.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否启用后台进程</span></span><br><span class="line">fork = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>然后使用指定的配置文件启动 Mongodb 服务器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./bin/mongod <span class="operator">-f</span> ./conf/mongod.conf</span><br></pre></td></tr></table></figure>
+<p>接下来我们使用 <code>mongo</code> 连接数据库，连接之前查看 <code>mongo --help</code> 信息：</p>
+<ul>
+<li>查看第二行的 <code>usage</code> 了解使用方式</li>
+<li>查看第三行开始的示例了解连接格式</li>
+<li>查看 options 字段下的内容了解可用参数</li>
+<li>查看 Authentication Options 字段下的内容了解认证登录的方式</li>
+</ul>
+<p>接下来连接 <code>mongodb-in-action</code> 的 test 数据库:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./bin/mongo <span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">12345</span>/<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<p>在 mongo 客户端中关闭 mongodb 数据库：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">use admin</span><br><span class="line">db.shutdownServer()</span><br></pre></td></tr></table></figure>
+<h2 id="基本操作">基本操作</h2><p>Mongodb 数据库的常用操作：</p>
+<ul>
+<li><code>show dbs</code>，显示所有数据库</li>
+<li><code>use dbname</code>，切换到 dbname 数据库</li>
+<li><code>db.dropDatabase()</code>，删除当前数据库</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">use admin</span><br><span class="line"></span><br><span class="line"><span class="comment">// 显示集合</span></span><br><span class="line">show collections</span><br><span class="line"></span><br><span class="line"><span class="comment">// 简单插入数据</span></span><br><span class="line">db.imooc_collections.insert(&#123; x: <span class="number">1</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 简单查询数据</span></span><br><span class="line">db.imooc_collections.find()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 Javascript 语法插入多条数据</span></span><br><span class="line"><span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    db.imooc_collections.insert(&#123; x: i * <span class="number">5</span>&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 统计数据量</span></span><br><span class="line">db.imooc_collections.find().count()</span><br><span class="line"></span><br><span class="line"><span class="comment">// skip() 跳过数据</span></span><br><span class="line"><span class="comment">// limit() 限制返回的数据长度</span></span><br><span class="line"><span class="comment">// sort() 数据排序</span></span><br><span class="line">db.imooc_collections.find().skip(<span class="number">3</span>).limit(<span class="number">2</span>).sort(&#123;x:<span class="number">1</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 简单更新数据</span></span><br><span class="line">db.imooc_collections.update( &#123;x: <span class="number">1</span>&#125;, &#123;x: <span class="number">999</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 $set 操作符进行局部更新</span></span><br><span class="line">db.imooc_collections.insert( &#123; x: <span class="number">1</span>, y: <span class="number">2</span>, z: <span class="number">3</span>&#125; )</span><br><span class="line">db.imooc_collections.update( &#123; y: <span class="number">2</span> &#125;, &#123; $set: &#123; z: <span class="number">0</span> &#125; &#125; )</span><br><span class="line"></span><br><span class="line"><span class="comment">// Mongodb 默认更新找到的第一条数据</span></span><br><span class="line"><span class="comment">// 同时更新多条数据需要是，第二个 JSON 参数必须是 $set </span></span><br><span class="line"><span class="comment">// 第三个参数表示匹配不到数据时自动插入更新数据</span></span><br><span class="line"><span class="comment">// 第四个参数表示是否同时更新多条记录</span></span><br><span class="line">db.imooc_collections.update( &#123; x: <span class="number">999</span> &#125;, &#123; $set: &#123; x: <span class="number">321</span> &#125; &#125;, <span class="literal">false</span>, <span class="literal">true</span> )</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除数据使用 remove()，该方法参数不能为空</span></span><br><span class="line">db.imooc_collections.remove( &#123;x: <span class="number">0</span>&#125; )</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除整个集合或者表</span></span><br><span class="line">db.imooc_collections.drop()</span><br></pre></td></tr></table></figure>
+<h2 id="索引">索引</h2><p>索引是对数据库单列或多列进行排序的结构，使用索引可以快速访问数据库中的特定信息。Mongodb 中的索引主要分为以下几种：</p>
+<ul>
+<li>_id 索引。_id 索引是大多数集合默认创建的索引类型，对于每一个插入的数据，Mongodb 都会自动生成一条唯一的 _id 字段</li>
+<li>单键索引，单键索引是最普通的索引，值为单一的值，比如字符串、数值或日期，不会自动创建</li>
+<li>多键索引，与单键索引不同的地方就在于它的值可以是复合类型数据</li>
+<li>复合索引，用于有多个查询条件的情景中</li>
+<li>过期索引，指在特定时间后会过期的索引，索引过期后，相应的数据也会被删除，常用于存储登录信息、存储日志等数据。存储在过期索引字段的值必须是指定的事件类型（ISODate 或者 ISODate 数组)</li>
+<li>全文索引，对字符串和字符串数组创建全文可搜索的索引</li>
+<li>地理位置索引，</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 查看字段是否存在</span></span><br><span class="line">db.imooc_collections.find(&#123; x: &#123; $exists: <span class="literal">true</span> &#125; &#125; )</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看当前集合的所有索引</span></span><br><span class="line">db.imooc_collections.getIndexes()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建单键索引</span></span><br><span class="line">db.imooc_collections.ensureIndex(&#123; x: <span class="number">1</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建多键索引</span></span><br><span class="line"><span class="comment">// 如果插入的是数组，默认添加多键索引</span></span><br><span class="line">db.imooc_collections.insert(&#123; x: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>] &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建复合索引</span></span><br><span class="line">db.imooc_collections.ensureIndex(&#123; x: <span class="number">1</span>, y: <span class="number">2</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建过期数据</span></span><br><span class="line">db.imooc_collections.insert(&#123; x: <span class="keyword">new</span> <span class="built_in">Date</span>() &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建过期索引</span></span><br><span class="line">db.imooc_collections.ensureIndex(&#123; x: <span class="number">1</span> &#125;, &#123; expireAfterSeconds: <span class="number">10</span> &#125; )</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建全文索引</span></span><br><span class="line">db.articles.ensureIndex(&#123; key: <span class="string">"text"</span> &#125;)</span><br><span class="line">db.articles.ensureIndex(&#123; k_1: <span class="string">"text"</span>, k_2: <span class="string">"text"</span> &#125;)</span><br><span class="line">db.articles.ensureIndex(&#123; <span class="string">"$**"</span>: <span class="string">"text"</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 全文索引示例</span></span><br><span class="line">db.article.insert(&#123; <span class="string">"article"</span>: <span class="string">"aa bb cc"</span> &#125;)</span><br><span class="line">db.article.insert(&#123; <span class="string">"article"</span>: <span class="string">"aa bb cc dd"</span> &#125;)</span><br><span class="line">db.article.insert(&#123; <span class="string">"article"</span>: <span class="string">"aa bb cc dd ee"</span> &#125;)</span><br><span class="line">db.article.find(&#123; $text: &#123; $search: <span class="string">"cc"</span> &#125; &#125; )</span><br><span class="line"></span><br><span class="line"><span class="comment">// 全文索引相似度查询</span></span><br><span class="line">db.article.find(&#123; </span><br><span class="line">        $text: &#123; $search: <span class="string">"aa bb"</span> &#125; </span><br><span class="line">    &#125;, &#123; </span><br><span class="line">        score: &#123; $meta: <span class="string">"textScore"</span> &#125; </span><br><span class="line">&#125;)</span><br><span class="line">.sort(&#123; </span><br><span class="line">    score: &#123; $meta: <span class="string">"textScore"</span> &#125; </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>全文索引支持相似度查询，相似度查询的格式是在查询条件后添加字段：<code>{ score: { $meta: &quot;textScore&quot; } }</code>，配合 sort 方法可以根据相似度对搜索结果进行排序。全文查找的注意点：</p>
+<ul>
+<li><code>$search: &quot;aa bb cc&quot;</code>，查询匹配 aa/bb/cc 其中之一的项</li>
+<li><code>$search: &quot;aa bb -cc&quot;</code>，查询匹配 aa/bb 其中之一但不包含 cc 的项</li>
+<li><code>$search: &quot;\&quot;aa\&quot; \&quot;bb\&quot;&quot;</code>，查询同时包含 aa/bb 的项</li>
+</ul>
+<p>索引的四个重要特性，这四个特性也是 ensureIndex() 的四个可选参数：</p>
+<ul>
+<li>名字</li>
+<li>唯一性</li>
+<li>稀疏性</li>
+<li>是否定时删除</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">db.imooc.ensureIndex(</span><br><span class="line">    &#123; x: <span class="number">1</span> &#125;, </span><br><span class="line">    &#123; name: <span class="string">"xIndex"</span> &#125;,</span><br><span class="line">    &#123; unique: <span class="literal">true</span> &#125;,</span><br><span class="line">    &#123; sparse: <span class="literal">true</span> &#125;,</span><br><span class="line">    &#123; expireAfterSconds: <span class="number">10</span> &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="地理位置索引">地理位置索引</h2><p>地址位置索引用于在 mongodb 中存储位置信息，创建后，各个位置之间可以相互检索。地理位置索引分为两类：2d 索引，用于存储和查找平面上的点；2dsphere 索引，用于存储和查找球面上的点。查找方式主要有两种：查找距离某个点一定距离内的点；查找包含在某个区域中的点。</p>
+<p>在 2d 索引中指定区域有以下三种格式：</p>
+<ol>
+<li><code>$box: [ [lx, ly], [rx, ry] ]</code>，指定矩形</li>
+<li><code>$center: [ [x, y], r ]</code>，指定圆形</li>
+<li><code>$polygon: [ [x1, y1], [x2, y2], [x3, y3] ]</code>，指定多边形</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建地理位置数据</span></span><br><span class="line">db.localindex.insert(&#123; w: [<span class="number">1</span>,<span class="number">1</span>] &#125;)</span><br><span class="line">db.localindex.insert(&#123; w: [<span class="number">1</span>,<span class="number">2</span>] &#125;)</span><br><span class="line">db.localindex.insert(&#123; w: [<span class="number">2</span>,<span class="number">2</span>] &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 2d 索引</span></span><br><span class="line">db.localindex.ensureIndex(&#123; w: <span class="string">"2d"</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据 [1, 1] 查询附近的点</span></span><br><span class="line"><span class="comment">// 匹配的点和 [1, 1] 的最大距离为 10</span></span><br><span class="line">db.localindex.find(&#123; w: &#123; $near: [<span class="number">1</span>, <span class="number">1</span>], $maxDistance: <span class="number">10</span> &#125; &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在矩形区域内查找某个点</span></span><br><span class="line">db.localindex.find(&#123; w: &#123; $geoWithin: &#123; $box: [ [<span class="number">0</span>, <span class="number">0</span>], [<span class="number">1.5</span>, <span class="number">2.5</span>] ] &#125; &#125; &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在圆形区域内查找某个点</span></span><br><span class="line">db.localindex.find(&#123; w: &#123; $geoWithin: &#123; $center: [ [<span class="number">1</span>,<span class="number">1</span>], <span class="number">1</span> ] &#125; &#125; &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在多边形区域内查找某个点</span></span><br><span class="line">db.localindex.find(&#123;w: &#123;$geoWithin: &#123;$polygon: [[<span class="number">0</span>, <span class="number">0</span>],[<span class="number">1</span>, <span class="number">0</span>],[<span class="number">1</span>, <span class="number">3</span>]]&#125;&#125;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 2dsphere 索引</span></span><br><span class="line">db.localindex.ensureIndex(&#123; w: <span class="string">"2dsphere &#125;)</span></span><br></pre></td></tr></table></figure>
+<h2 id="索引构建分析">索引构建分析</h2><p>评判索引构建情况的四种工具：</p>
+<ol>
+<li>mongostat</li>
+<li>profile 集合</li>
+<li>日志</li>
+<li>explain</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Mongodb 提供了 Homebrew 的安装方式，安装过程如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew update</span><br><span class="line">brew install mongodb</span><br><span class="line">mkdir -p /data/db</span><br><span class="line">chmod u+rw /data/db</span><br><span class="line">mongod</span><br></pre></td></tr></table></figure>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[CSS Counters]]></title>
+    <link href="http://pinggod.com/2016/CSS-Counters/"/>
+    <id>http://pinggod.com/2016/CSS-Counters/</id>
+    <published>2016-01-25T04:23:35.000Z</published>
+    <updated>2016-01-26T04:31:20.000Z</updated>
+    <content type="html"><![CDATA[<p>Several years ago, a question was rasied by someone on Weibo: how to code the module of calculating commodity price, which plays a big role in Taobao commodity detail pages. Usually at the detail page, the commodity has many options, such like size and color. The amount will change real time when users change their options. This question is not noly business-oriented, but also has many solving methods. JS came to my mind first at the time.</p>
+<p>The last two weeks, I’m digesting technical posts which collected in Pocket and Weibo over past three years. There are many Best Practice in it, such like CSS Counters which the rest is going to say. </p>
+<a id="more"></a>
+<p>CSS Counters is proposed in CSS2.1, so not only modern browsers, but also IE8+ support it. CSS Counters is a auto-counter, and it should coordinate with pseudo-classes <code>::before</code> and <code>::after</code> to use。</p>
+<h2 id="Property">Property</h2><p>CSS Counters have a series of property or method to use:</p>
+<ul>
+<li><code>counter-reset</code>, used to initialize a counter. It receives two parameters: the first is a string identifier, and the second is a optional number which used to initialize counter’s default value.   </li>
+<li><code>counter-increment</code>, used to increse the counter’s value, and it receives a optional number parameter. If the optional parameter exsits, the counter will plus it instead of the default value one.</li>
+<li><code>counter()</code>, used to get counter’s result in the <code>content</code> property.</li>
+</ul>
+<h2 id="Usage">Usage</h2><p>As metioned above, we could use counter-reset property to defined a counter. Look at the following html structure:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">p</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>And styles:</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="tag">ul</span> &#123;</span><br><span class="line">    <span class="attribute">counter-reset</span><span class="value">: li-counter <span class="number">10</span>;</span></span><br><span class="line">    <span class="tag">li</span> &#123;</span><br><span class="line">        <span class="attribute">counter-increment</span><span class="value">: li-counter <span class="number">2</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="tag">p</span><span class="pseudo">::before</span> &#123;</span><br><span class="line">        <span class="attribute">content</span><span class="value">: <span class="function">counter</span>(li-counter);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Based on above code fragments, counter called “li-counter” was created, and its initial value is 10. At the li tag, counter-increment comes in and increse the counter’s vlaue. Finally, p tag was created with pseudo-class <code>::before</code> to display the counter’s end result.</p>
+<h2 id="Example">Example</h2><div class="counter-wrap"><ul class="row"><li class="price-10"><input type="radio" name="color" id="white"><label for="white">White(+10)</label></li><li class="price-13"><input type="radio" name="color" id="red"><label for="red">Red(+13)</label></li><li class="price-15"><input type="radio" name="color" id="green"><label for="green">Green(+15)</label></li></ul><ul class="row"><li class="price-4"><input type="radio" name="size" id="small"><label for="small">Small(+4)</label></li><li class="price-8"><input type="radio" name="size" id="large"><label for="large">Large(+8)</label></li></ul><ul class="row"><li class="price-total"></li></ul></div>
+
+<style>
+@charset "UTF-8";
+.counter-wrap {
+  width: 360px;
+  margin: 0 auto;
+  counter-reset: price 10;
+}
+
+.counter-wrap ul.row {
+  margin: 2px 2px 2px 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.counter-wrap li {
+  display: inline-block;
+  margin: 10px 2px;
+  text-align: center;
+}
+
+.counter-wrap input {
+  position: absolute;
+  clip: rect(0 0 0 0);
+}
+
+.counter-wrap label {
+  padding: 10px 16px;
+  color: white;
+  background-color: #79BD8F;
+  border-radius: 5px;
+}
+
+.counter-wrap input:checked + label {
+  background-color: #F06161;
+}
+
+.counter-wrap input#small:checked {
+  counter-increment: price 4;
+}
+
+.counter-wrap input#large:checked {
+  counter-increment: price 8;
+}
+
+.counter-wrap input#white:checked {
+  counter-increment: price 10;
+}
+
+.counter-wrap input#red:checked {
+  counter-increment: price 13;
+}
+
+.counter-wrap input#green:checked {
+  counter-increment: price 15;
+}
+
+.counter-wrap li.price-total {
+  padding: 10px 16px;
+  background-color: #BEEB9F;
+  border-radius: 5px;
+}
+.counter-wrap li.price-total::before {
+  content: "$" counter(price);
+  color: #D83C65;
+  font-weight: bold;
+}
+</style>
+
+<p>As you can see, here is a simple commodity form with multiple options. If you click colors or sizes, the amount will change real time. With this approach, code is cleaner and more robust.</p>
+<p>For more infomation about this example, you could look over my Codepen playground via this <a href="http://codepen.io/pinggod/pen/JGpVNx?editors=1100" target="_blank" rel="external">link</a>.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Several years ago, a question was rasied by someone on Weibo: how to code the module of calculating commodity price, which plays a big role in Taobao commodity detail pages. Usually at the detail page, the commodity has many options, such like size and color. The amount will change real time when users change their options. This question is not noly business-oriented, but also has many solving methods. JS came to my mind first at the time.</p>
+<p>The last two weeks, I’m digesting technical posts which collected in Pocket and Weibo over past three years. There are many Best Practice in it, such like CSS Counters which the rest is going to say. </p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[WEB 开发者必看的技术站点]]></title>
     <link href="http://pinggod.com/2015/%E5%BC%80%E5%8F%91%E8%80%85%E5%BF%85%E7%9C%8B%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AB%99%E7%82%B9/"/>
     <id>http://pinggod.com/2015/开发者必看的技术站点/</id>
     <published>2015-12-31T06:49:13.000Z</published>
-    <updated>2016-01-23T02:22:06.000Z</updated>
+    <updated>2016-01-25T04:24:19.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>本文总结自 Quora 上的一个问答：<a href="https://www.quora.com/What-are-the-top-10-websites-a-web-developer-must-see" target="_blank" rel="external">What are the top 10 websites a web developer must see</a>。</p>
 </blockquote>
@@ -200,7 +400,7 @@
     <link href="http://pinggod.com/2015/ES2015/"/>
     <id>http://pinggod.com/2015/ES2015/</id>
     <published>2015-12-15T06:07:10.000Z</published>
-    <updated>2016-01-12T02:30:07.000Z</updated>
+    <updated>2016-02-01T01:01:27.000Z</updated>
     <content type="html"><![CDATA[<p>ES2015 是最新的 JavaScript 语法规范，也是前端工程化高速发展所催化出的产物。JS 的不成熟一直为人诟病，前端的高速发展又离不开 JS，所以这次激进的变革显得十分必要。</p>
 <p>虽然 ES2015 规范发布了，但是要原生的运行在浏览器上还是受到诸多因素的肘制，比如各版本浏览器的用户量、浏览器厂商对新特性的支持度等等。目前的权宜之计是使用 Babel 之类的编译器将 ES2015 代码转换为 ES5，所以下文中的 ES2015 代码也暂时以 Babel 的解析结果为准。各版本浏览器对 ES2015（ES6）、ES2016（ES7）的支持度可以参考这里：<a href="http://kangax.github.io/compat-table/es6/" target="_blank" rel="external">ES2015 兼容性列表</a>。</p>
 <a id="more"></a>
