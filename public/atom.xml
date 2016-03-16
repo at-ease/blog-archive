@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://pinggod.com/"/>
-  <updated>2016-02-12T02:52:00.000Z</updated>
+  <updated>2016-03-16T11:25:07.000Z</updated>
   <id>http://pinggod.com/</id>
   
   <author>
@@ -15,13 +15,688 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[洗牌算法]]></title>
+    <link href="http://pinggod.com/2016/%E6%B4%97%E7%89%8C%E7%AE%97%E6%B3%95/"/>
+    <id>http://pinggod.com/2016/洗牌算法/</id>
+    <published>2016-03-16T05:45:02.000Z</published>
+    <updated>2016-03-16T11:25:07.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>翻译自 <a href="https://www.kirupa.com/html5/shuffling_array_js.htm" target="_blank" rel="external">Shuffling an Array in JavaScript</a></p>
+</blockquote>
+<p>洗牌算法是一个比较形象的术语，本质上让一个数组内的元素随机排列。举例来说，我们有一个如下图所示的数组，数组长度为 9，数组内元素的值顺次分别是 1~9：</p>
+<p><img src="/img/shuffle-array-1.png" alt="shffle-array-1"></p>
+<p>从上面这个数组入手，我们要做的就是打乱数组内元素的顺序：</p>
+<p><img src="/img/shuffle-array-2.png" alt="shffle-array-2"></p>
+<a id="more"></a>
+<h2 id="代码实现">代码实现</h2><p>维基百科上的 <a href="http://en.wikipedia.org/wiki/Knuth_shuffle" target="_blank" rel="external">Fisher–Yates shuffle</a> 词条对洗牌算法做了详细介绍，下面演示的算法也是基于其中的理论编写的：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.shuffle = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> input = <span class="keyword">this</span>;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = input.length-<span class="number">1</span>; i &gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">var</span> randomIndex = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*(i+<span class="number">1</span>)); </span><br><span class="line">        <span class="keyword">var</span> itemAtIndex = input[randomIndex]; </span><br><span class="line">         </span><br><span class="line">        input[randomIndex] = input[i]; </span><br><span class="line">        input[i] = itemAtIndex;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> input;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> tempArray = [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span> ]</span><br><span class="line">tempArray.shuffle();</span><br><span class="line"> </span><br><span class="line"><span class="comment">// and the result is...</span></span><br><span class="line">alert(tempArray);</span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，我们创建了一个 <code>shffle()</code> 方法，该方法用于随机排列数组内的元素。此外，我们将该方法挂载在了 <code>Array</code> 对象的原型下面，所以任何数组都可以直接调用该方法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> tempArray = [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span> ]</span><br><span class="line">tempArray.shuffle();</span><br></pre></td></tr></table></figure>
+<h2 id="工作原理">工作原理</h2><p>看完代码之后，让我们看看它对数组都做了写什么。首先，该方法选中数组的最后一个元素：</p>
+<p><img src="/img/shuffle-array-3.png" alt="shffule-array-3"></p>
+<p>接下来确定挑选随机元素的范围，从数组的第一个元素到上一步选中的元素都属于这一范围：</p>
+<p><img src="/img/shuffle-array-4.png" alt="shffule-array-4"></p>
+<p>确定范围后，从中随机挑选一个数，这里假设随机选中的元素为 4：</p>
+<p><img src="/img/shuffle-array-5.png" alt="shffule-array-5"></p>
+<p>然后交换最后一个元素和随机选中的元素的值：</p>
+<p><img src="/img/shuffle-array-6.png" alt="shffule-array-6"></p>
+<p>上面的交换完成后，相当于我们完成了对数组最后一个元素的随机处理。接下来选中数组内倒数第二的元素：</p>
+<p><img src="/img/shuffle-array-7.png" alt="shffule-array-7"></p>
+<p>之所以从后往前处理，是因为这样便于确定随机选择的范围。这次我们假定随机到的元素为 2:</p>
+<p><img src="/img/shuffle-array-8.png" alt="shffule-array-8"></p>
+<p>接着交换倒数第一个元素和 2 号元素的值，完成对倒数第二个元素随机排列的处理。然后是选中倒数第三个元素，重复之前的操作：</p>
+<p><img src="/img/shuffle-array-9.png" alt="shffule-array-9"></p>
+<p>剩下的就是一些重复性的工作，不多做介绍了。</p>
+<h2 id="分析代码">分析代码</h2><p>在上一节给各位用图例演示了洗牌流程，下面我们从代码本身看看洗牌流程。先从 <code>shuffle</code> 函数说起吧：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.shuffle = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> input = <span class="keyword">this</span>;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = input.length-<span class="number">1</span>; i &gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">var</span> randomIndex = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*(i+<span class="number">1</span>)); </span><br><span class="line">        <span class="keyword">var</span> itemAtIndex = input[randomIndex]; </span><br><span class="line">         </span><br><span class="line">        input[randomIndex] = input[i]; </span><br><span class="line">        input[i] = itemAtIndex;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> input;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>shuffle</code> 函数挂载在 <code>Array</code> 对象的原型之下，便于数组直接调用该函数。在 <code>shuffle</code> 函数内部，<code>this</code> 引用的就是调用该 <code>shuffle</code> 的数组：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> input = <span class="keyword">this</span>;</span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，我用一个新的变量引用 <code>this</code>，也就是调用 <code>shuffle</code> 函数的数组。下一步，看一下 <code>for</code> 循环内都干了什么：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = input.length-<span class="number">1</span>; i &gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">var</span> randomIndex = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*(i+<span class="number">1</span>)); </span><br><span class="line">    <span class="keyword">var</span> itemAtIndex = input[randomIndex]; </span><br><span class="line">     </span><br><span class="line">    input[randomIndex] = input[i]; </span><br><span class="line">    input[i] = itemAtIndex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该循环用于遍历所有数组内的所有元素，并进行随机交换。注意，遍历顺序是从后往前进行的，也就是说从 <code>input.length-1</code> 位置的元素开始，知道遍历到数组中的第一个元素。遍历过程中的位置由变量 <code>i</code> 指定。</p>
+<p>这里的变量 <code>i</code> 就是上面图例中被选中的元素：</p>
+<p><img src="/img/shuffle-array-3.png" alt="shffule-array-3"></p>
+<p>接下来，使用了两行代码在指定范围内挑选一个随机元素：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> randomIndex = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*(i+<span class="number">1</span>)); </span><br><span class="line"><span class="keyword">var</span> itemAtIndex = input[randomIndex];</span><br></pre></td></tr></table></figure>
+<p>变量 <code>randomIndex</code> 存储了一个随机数，该随机数可以用作数组的索引，进而提取一个随机元素。注意，该随机数的最大值并不是数组的长度，而是变量 <code>i</code> 的值。</p>
+<p>确定了随机元素的索引之后，用新的变量保存该元素的值，然后交换选中元素和随机元素的值：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> itemAtIndex = input[randomIndex];</span><br><span class="line">input[randomIndex] = input[i]; </span><br><span class="line">input[i] = itemAtIndex;</span><br></pre></td></tr></table></figure>
+<p>在这三行代码中，第一行使用新的变量保存了随机元素的值；第二行将选中元素 <code>input[i]</code> 的值赋给随机元素 <code>input[randomIndex]</code>；第三行就随机元素的值 <code>itemAtIndex</code> 赋给选中元素 <code>input[i]</code>。本质上是一个互换两个元素的值的过程，并不难理解。</p>
+<p>至此，循环内的逻辑就介绍完了，剩下的都是重复操作。</p>
+<h2 id="随机性测试">随机性测试</h2><p><div id="random-chart" style="width=100%;"></div></p>
+<script src="http://cdn.hcharts.cn/jquery/jquery-2.1.4.min.js"></script>
+<script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+<script>
+    $(function() {
+        var sum = [];
+        var array = []
+        var arrayLength = 21;
+        var iterateTimes = 10000;
+
+        Array.prototype.shuffle = function () {
+            var arr = this;
+
+            for (var i = arr.length - 1; i >= 0; i--) {
+                var randomIndex = Math.floor(Math.random() * (i + 1));
+                var randomElemValue = arr[randomIndex];
+
+                arr[randomIndex] = arr[i];
+                arr[i] = randomElemValue;
+            }
+            return arr;
+        }
+
+        function init (len) {
+            for (var i = 0; i < len; i++) {
+                sum[i] = 0;
+                array[i] = i;
+            }
+        }
+
+        function createArray () {
+            var arr = [];
+
+            for (var i = 0; i < arrayLength; i++) {
+                arr[i] = i;
+            }
+
+            return arr;
+        }
+
+        function calculateSum (times) {
+            for (var i = 0; i < times; i++) {
+                var arr = createArray().shuffle();
+                for (var j = 0; j < arrayLength; j++) {
+                    sum[j] += arr[j];
+                }
+            }
+        }
+
+        init(arrayLength);
+        calculateSum(iterateTimes);
+
+        $("#random-chart").highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: '洗牌的随机性结果'
+            },
+            xAxis: {
+                categories: array
+            },
+            yAxis: {
+                title: {
+                    text: '总值'
+                }
+            },
+            series: [{
+                name: '不同位置的总值',
+                color: '#42b983',
+                data: sum
+            }]
+        });
+    });
+</script>
+
+<p>上图是使用 Highcharts 制作的随机性测试图表，以可视化的方式校验本文中洗牌算法的随机性。每次刷新页面都会重新计算和生成该图表。</p>
+<p>生成上图的数据是这样计算而来的：首先创建一个数组（上图使用的数组为 <code>[0, 1, 2 ... 18, 19, 20]</code>），然后使用本文中的洗牌算法重新排序，排序完成后记录每一个元素的值……以此步骤执行 100000 次，最后对同一索引位置上的数值进行求和。如此执行 10000 次之后，索引之间的总值应该相差不大。</p>
+<p>由计算可得：</p>
+<p>$$average=\frac{(0+20)\times21\times10000}{2\times21}=100k$$</p>
+<h6 id="参考资料">参考资料</h6><ul>
+<li><a href="https://www.kirupa.com/html5/shuffling_array_js.htm" target="_blank" rel="external">Shuffling an Array in JavaScript</a></li>
+<li><a href="https://bost.ocks.org/mike/shuffle/" target="_blank" rel="external">Fisher–Yates Shuffle</a></li>
+<li><a href="https://news.ycombinator.com/item?id=3464607" target="_blank" rel="external">Hacker News: A visual explanation of Fisher–Yates shuffle</a></li>
+<li><a href="http://stackoverflow.com/questions/962802/is-it-correct-to-use-javascript-array-sort-method-for-shuffling/962890#962890" target="_blank" rel="external">Stack Overflow: Is it correct to use JavaScript Array.sort() method for shuffling?</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>翻译自 <a href="https://www.kirupa.com/html5/shuffling_array_js.htm">Shuffling an Array in JavaScript</a></p>
+</blockquote>
+<p>洗牌算法是一个比较形象的术语，本质上让一个数组内的元素随机排列。举例来说，我们有一个如下图所示的数组，数组长度为 9，数组内元素的值顺次分别是 1~9：</p>
+<p><img src="/img/shuffle-array-1.png" alt="shffle-array-1"></p>
+<p>从上面这个数组入手，我们要做的就是打乱数组内元素的顺序：</p>
+<p><img src="/img/shuffle-array-2.png" alt="shffle-array-2"></p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[JavaScript 21 问]]></title>
+    <link href="http://pinggod.com/2016/JavaScript-21-%E9%97%AE/"/>
+    <id>http://pinggod.com/2016/JavaScript-21-问/</id>
+    <published>2016-03-12T12:22:26.000Z</published>
+    <updated>2016-03-12T15:45:24.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>翻译自：<a href="https://www.codementor.io/javascript/tutorial/21-essential-javascript-tech-interview-practice-questions-answers" target="_blank" rel="external">21 Essential JavaScript Interview Questions</a></p>
+</blockquote>
+<p>JavaScript 因其历史原因一直存在诸多缺陷，本文所讨论的只是其中的一小部分，适合为初学者答疑解惑，此外文中观点尚存在不足之处，或者对部分问题 ES6 已经纠正和改善。</p>
+<a id="more"></a>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>翻译自：<a href="https://www.codementor.io/javascript/tutorial/21-essential-javascript-tech-interview-practice-questions-answers">21 Essential JavaScript Interview Questions</a></p>
+</blockquote>
+<p>JavaScript 因其历史原因一直存在诸多缺陷，本文所讨论的只是其中的一小部分，适合为初学者答疑解惑，此外文中观点尚存在不足之处，或者对部分问题 ES6 已经纠正和改善。</p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2016 JavaScript 技术栈展望]]></title>
+    <link href="http://pinggod.com/2016/2016-JavaScript-%E6%8A%80%E6%9C%AF%E6%A0%88%E5%B1%95%E6%9C%9B/"/>
+    <id>http://pinggod.com/2016/2016-JavaScript-技术栈展望/</id>
+    <published>2016-03-11T03:45:31.000Z</published>
+    <updated>2016-03-12T12:23:15.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>翻译自 <a href="https://medium.com/javascript-and-opinions/state-of-the-art-javascript-in-2016-ab67fc68eb0b#.iwbk5gf69" target="_blank" rel="external">State of the Art JavaScript in 2016</a></p>
+</blockquote>
+<p>如果你正在筹划新的前端项目或者重构现有项目，那么你需要认识到现在的前端开发环境已经今非昔比，这其中有太多的选择了：React、Flux、Angular、Aurelia、Mocha、Jasmine、Babel、TypeScript、Flow…… 它们的本意是将开发简单化，却无形中提高了学习成本，也给未来项目的维护带来了不确定性。</p>
+<p>好在这一现象正在退热，优胜劣汰，优秀的项目慢慢沉淀下来，开发方式也越来越清晰。有些开发者正在尝试使用基于上述技术的框架进行开发，也在一定程度上减少了学习成本。</p>
+<p>本文中主要介绍了一些我在 web 应用开发中所涉及和推崇的技术，其中有一些技术上存在争议，所以我对于每一技术都只做简单的介绍和分析。所有的这些观点都是基于我个人的经验和对社区的接触总结而来的，所以各位还请按需各取所用。</p>
+<a id="more"></a>
+<h2 id="React">React</h2><p>React 可谓风头正盛一时无两：</p>
+<ul>
+<li>组件化使应用程序更易于开发和维护</li>
+<li>学习曲线平缓，核心 API 简洁清晰，易于学习</li>
+<li>JSX 语法不落俗套，充分发挥了 JavaScript 的能量</li>
+<li>天生适配 Flux 和 Redux</li>
+<li>社区活跃且具有创造力，奉献了诸多优秀的开发工具</li>
+<li>单向数据流比双向数据绑定的方式更适合复杂应用程序，质量更高</li>
+<li>支持服务端渲染</li>
+</ul>
+<p>虽然比起 Ember、Aurelia 和 Angular 这些功能丰富的框架，React 不是全能手，但 React 的开发环境更加健壮。就目前而言，使用 React 已经不是一个技术选择，而是一个商业行为，它能提供更高效和更有效的生产力。</p>
+<blockquote>
+<p>当你想开发移动应用时，因为已经学习了 React 语法，所以可以直接上手 React Native 开发跨平台应用。</p>
+</blockquote>
+<h2 id="Redux">Redux</h2><p>现在，我们已经具有了开发视图层的能力，接下来，我们需要使用其他工具管理应用程序中的状态和生命周期，在这里推荐的工具就是：Redux。</p>
+<p>为了配合 React，Facebook 开发了管理单向数据流的工具 Flux，虽然 Flux 基本上实现了对单项数据流的支持，但是同时也带了其他问题，比如如何保存状态、何处发起 Ajax 请求等等。</p>
+<p>为了解决这些问题，又衍生了一系列效仿 Flux 模式的框架：Fluxible、Reflux、Alt、Flummox、Lux、Nuclear、Fluxxor……</p>
+<p>目前来说被开发社区广泛支持的一个实现就是 Redux。</p>
+<p>在 Redux 中，大多数的组件都是纯函数式的组件，也只有一个集中的存储和资源中心。Redux 的实例方法负责整个数据的操作和维护。相比 Flux 来说，Redux 的思路更加清晰。</p>
+<p>更重要的是，Redux 非常易于学习。Redux 的作者 Dan Abramov 是一个优秀的教师，他制作了一系列深入浅出的 Redux 视频教程。通过观看这些视频，即可成为一个 Redux 方面的专家。我曾经见识到一个零基础的 React 团队在短短几周内迅速开发出了测试版产品，且代码非常稳健和老练。</p>
+<p>Redux 周边的生态系统和 Redux 本身一样健壮。从神奇的 <a href="https://github.com/gaearon/redux-devtools" target="_blank" rel="external">devtool</a> 到强大的记忆化工具 <a href="https://github.com/reactjs/reselect" target="_blank" rel="external">reselect</a>，Redux 开发社区为开发者提供了应有尽有的工具。</p>
+<p>开发者可能会本能地去尝试抽象出一个 Redux 模板，这么做有诸多好处，但请在认清需求的基础上来封装模板，而不要盲目的去尝试。</p>
+<h2 id="ES6_和_Babel">ES6 和 Babel</h2><p>是时候抛弃 CoffeeScript 了，这是因为它的诸多特性已在 ES6 中出现类似的语法，而 ES6 是实施标准，代表了 JavaScript 未来的发展方向。</p>
+<p>目前最新的浏览器已经支持了 ES6 的大部分特性。Babel 是一个强大的转换工具，用于将 ES6 转换为 ES5。此外，根据目标浏览器可以调整代码转换的程度。</p>
+<p>那么是否有类型系统呢？TypeScript 和 Flow 都为 JavaScript 提供了静态类型系统，使用静态类型检查，可以有效捕获错误，减少测试量。目前来说，我建议对此持观望态度。</p>
+<p>TypeScript 在尽力让 JavaScript 向 C# 或 Java 的方向发展，但缺少了许多高级的类型系统特性，比如代数数据类型（algebraic data types）。此外，它不能像 Flow 一样有效地处理 null。</p>
+<p>相比而言，Flow 更加强大，捕获的错误类型也更多，但难于配置。此外，它对 JavaScript 新特性的支持弱于 Babel，也不支持 Windows 系统。</p>
+<p>就我个人的角度而言，在前端开发中类型系统并不是至关重要的一环（此处可能有争议）。在类型系统更加健壮且对 Babel 更友好之前，还是让我们静观其变吧。</p>
+<h2 id="ESLint">ESLint</h2><p>另一个无可争议的工具是 ESLint。ESLint 支持 ES6 语法，还提供了 React 插件，已经不单单是一个代码审查工具了。目前来说，JSLint 已经过时了，ESLint 可以替代 JSHint 和 JSCS 独树一帜了。</p>
+<p>开发者可以根据自己的需求配置 ESLint，不过在这里我建议根据 <a href="https://github.com/airbnb/javascript" target="_blank" rel="external">AirBNB 的开发规范</a>进行配置，也可以直接使用 <a href="https://www.npmjs.com/package/eslint-config-airbnb" target="_blank" rel="external">ESLint airbnb config</a>。当然这份规范中尚有不足之处，但保持团队整体代码的一致性，可以有效提高代码的可读性。</p>
+<p>当你熟悉了 ESLint 之后，建议开发者深入地尝试其中的规则。ESLint 捕获的错误越多，产品的稳定性越高。</p>
+<h2 id="NPM，CommonJS_和_ES6_modules">NPM，CommonJS 和 ES6 modules</h2><p>忘记 Bower 吧，用 NPM 接管一切。类似 Browserify 和 Webpack 的构建工具间接提高了 NPM 在 web 开发中的地位。使用 NPM，版本管理将会更加简单，也将更多地与 Node.js 生态系统接触。目前对于 CSS 的处理尚不足够完善。</p>
+<p>你可能会考虑如何在部署服务器上执行构建呢？与 Ruby 的 Bundler 有所不同，NPM 使用了通配符检索文件，且第三方包可以在代码开发中以及项目发布前做任意修改。使用 <a href="https://docs.npmjs.com/cli/shrinkwrap" target="_blank" rel="external">shrinkwrap</a> 文件可以冻结项目中的第三方依赖，我建议使用 User 的 shrinkwrap，提高输出的一致性。此外，开发者也可以考虑使用类似 <a href="https://www.npmjs.com/package/sinopia" target="_blank" rel="external">Sinopia</a> 的工具托管自己的私有 NPM 服务器。</p>
+<p>Babel 会将 ES6 module 语法转换为 CommonJS。CommonJS 是一种历经实践的语法，这意味着稳定和通用，此外，使用类似 <a href="http://www.2ality.com/2015/12/webpack-tree-shaking.html" target="_blank" rel="external">tree shaking</a> （Webpack 2.0 和 Rollup 已经支持该特性）的机制我们还能实现静态代码分析。</p>
+<h2 id="Webpack">Webpack</h2><p>除非你乐意在页面添加数百个脚本标签，否则的话你应该尝试用构建工具来打包页面的资源了。此外，你还需要某些工具让浏览器支持 NPM 第三方包。在这里，我推荐你使用 Webpack。</p>
+<p>一年之前对于上述工作，开发者还有诸多工具可以选择，比如基于 JavaScript 的 RequireJS、Browserify 和 Webpack 解决方案，此外还有号称能对 ES6 的模块进行最佳优化的 RollupJS.</p>
+<p>在尝试了所有的工具之后，我强烈建议开发者选择 Webpack:</p>
+<ul>
+<li>通过配置可以应对各种情况</li>
+<li>支持主流的模块加载方式（AMD，CommonJS，globals）</li>
+<li>内部机制可以修复破损的模块</li>
+<li>可以处理 CSS</li>
+<li>全面的缓存系统</li>
+<li>支持热重载</li>
+<li>可以加载大多数的资源</li>
+<li>提供高效的<a href="https://github.com/webpack/docs/wiki/optimization" target="_blank" rel="external">性能优化方案</a></li>
+</ul>
+<p>Webpack 也非常善于处理大型的单页应用，支持代码分割和惰性加载。</p>
+<p>但是值得注意的是，Webpack 的学习曲线异常陡峭。不过一旦你学会了它，那么你就掌握了最强大的构建系统。</p>
+<p>那么 Gulp 和 Grunt 呢？相比而言，Webpack 更善于处理各类资源。如果你需要执行其他类型的构建任务，那么 Gulp 和 Grunt 还是有用的。对于类似运行 Webpack 的基本任务，我建议直接使用 <a href="https://docs.npmjs.com/cli/run-script" target="_blank" rel="external">NPM 脚本</a>。</p>
+<h2 id="Mocha_+_Chai_+_Sinon">Mocha + Chai + Sinon</h2><p>在 JavaScript 中，有大量可选的单元测试工具，每一个都很稳定和健壮。如果你只是用于单元测试，那么现有工具完全可以胜任你的需求。</p>
+<p>常见的测试工具有 Jasmine、Mocha、Tape、Ava、Jest 等，它们各有所长。</p>
+<p>我对一个测试框架的要求有如下几条：</p>
+<ul>
+<li>可以在浏览器运行，便于调试</li>
+<li>执行速度快</li>
+<li>便于处理异步测试</li>
+<li>便于在命令行中使用</li>
+<li>可以兼容任意断言和数据模拟的第三方库</li>
+</ul>
+<p>第一条标准就排除了 Ava 和 Jest。</p>
+<p>我喜欢 Chai 断言是因为其种类丰富、功能齐全的插件，喜欢 Mocha 是因为其对异步的良好支持。强烈建议使用 <a href="https://github.com/prodatakey/dirty-chai" target="_blank" rel="external">Dirty Chai</a> 避免某些问题。Webpack 的 <a href="https://github.com/webpack/mocha-loader" target="_blank" rel="external">mocha-leader</a> 插件允许开发者自动执行测试。</p>
+<p>对于 React 而言，开发者可以参考一下 AirBNB 的 <a href="https://github.com/airbnb/enzyme" target="_blank" rel="external">Enzyme</a> 和 <a href="https://github.com/jquense/teaspoon" target="_blank" rel="external">Teaspoon</a>。</p>
+<p>我非常钟爱 Mocha 的特性，如果你想要的只是最基础的功能，可以参考<a href="https://medium.com/javascript-scene/why-i-use-tape-instead-of-mocha-so-should-you-6aa105d8eaf4" target="_blank" rel="external">这篇文章</a>了解一下 Tape。</p>
+<h2 id="Lodash">Lodash</h2><p>JavaScript 并没有一个类似 Java 或 .NET 的核心工具库，所以开发者大都会从外部引用一个外部工具库。</p>
+<p>目前来说，Lodash 是此类工具中的佼佼者。此外，由于它<a href="http://filimanjaro.com/blog/2014/introducing-lazy-evaluation/" target="_blank" rel="external">惰性执行</a>的特性，也让它是目前性能最佳的工具之一。使用 Lodash 时无需引用全部资源，开发者可以按需使用其中的函数。在 4.x 版本中，Lodash 为偏爱函数式编程的开发者提供了一个“函数式开发”模式。</p>
+<p>如果你熟悉函数式编程，你可以了解一下 <a href="http://ramdajs.com/0.19.1/index.html" target="_blank" rel="external">Ramda</a>。如果你决定使用这个库，可能需要引用一些 Lodash 函数。</p>
+<h2 id="fetch">fetch</h2><p>许多基于 React 的应用程序都不再使用 jQuery 了。除非你正在维护一个陈旧的项目或者用到的第三方库依赖了 jQuery，否则已经没有必要使用它了。</p>
+<p>我喜欢让项目保持简洁，在代码中只使用 <a href="http://ramdajs.com/0.19.1/index.html" target="_blank" rel="external">fetch</a> 。fetch 基于 promise，Firefox 和 Chrome 都封装了该接口。对于其他浏览器，则需要提供一个腻子脚本。我建议使用 <a href="https://github.com/matthew-andrews/isomorphic-fetch" target="_blank" rel="external">isomorphic-fetch</a> 在各个浏览器和服务端保持功能的一致性。</p>
+<p>当然也可以其他优秀的第三方库异步获取数据，但我觉得 fetch 已经够用了。</p>
+<h2 id="同构_JavaScript">同构 JavaScript</h2><p>同构 JavaScript 是指同时运行在客户端和服务端的 JavaScript，常用于在服务端预先渲染页面，提高性能，便于 SEO。使用 React 可以实现同构 JavaScript，但是并不简单，它提高了程序的复杂度，限制了开发者可选的工具和第三方库。</p>
+<p>如果你正在构建一个 B2C 的站点，比如电商网站，那么你可能就需要使用同构 JavaScript。不过，对于内部站点或者 B2B 程序，性能就不是最重要的了，则同构 JavaScript 也就不是太重要了。</p>
+<h2 id="API">API</h2><p>最近每个人好像都在思考如何处理 API。每个人都在随波逐流的使用 <a href="https://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank" rel="external">RESTfull API</a>，<a href="https://en.wikipedia.org/wiki/SOAP" target="_blank" rel="external">SOAP</a> 已经成为了过去时。目前业界存在各种 API 协议，比如 HATEOAS、JSON API、HAL、GraphQL 等。</p>
+<p>GraphQL 赋予了客户端进行任意查询的能力。搭配 <a href="https://facebook.github.io/relay/" target="_blank" rel="external">Relay</a>，可以更好地处理客户端的状态和缓存。不过，创建 GraphQL 的服务端接口的难度还较大，且大多数的文档都是面向 Node.js 的。</p>
+<p>Netflix 的 <a href="https://github.com/Netflix/falcor" target="_blank" rel="external">Falcor</a> 看起来提供了和 GraphQL/Relay 相似的能力，同时还降低了服务端的需求，但它目前尚处于开发者预览状态，尚未应用于实际开发。</p>
+<p>所有已知的规范都各有缺陷，有些过于复杂，有些只能处理数据读取而不嗯那个更新，有些和 REST 差异显著。许多开发者选择自己开发，但是还会遇到上述的问题。</p>
+<p>我不认为上述有一个完美的解决方案，但我对 API 有一个自己的认知：</p>
+<ul>
+<li>可预测，遵循一致性协议</li>
+<li>支持在一次查询中获取多个实体</li>
+<li>支持更新操作</li>
+<li>易于调试</li>
+<li>易于使用</li>
+</ul>
+<p>到目前为止，我还没有发现满足上述所有条件的解决方案。</p>
+<p>如果你正在使用 RESFful，建议参考 <a href="http://swagger.io/" target="_blank" rel="external">Swagger</a> 来编写 API。</p>
+<h2 id="Electron">Electron</h2><p><a href="https://github.com/atom/electron" target="_blank" rel="external">Electron</a> 可以使用前端技术构建桌面程序，GitHub 团队出品的 Atom 编辑器就是基于 Electron 创建的。本质上，Electron 内部封装了一个 Node.js，可以打开 Chrome 窗口渲染 UI，还可以访问操作系统本地的 API，并且没有浏览器中的沙盒机制。开发者可以通过 Electron 打包和分发应用程序。</p>
+<p>这是创建跨平台软件最简单的方式，而且还可以利用上述的所有工具。此外，Electron 有完整的文档和活跃的开发社区。</p>
+<p>你可能听说过 <a href="http://nwjs.io/" target="_blank" rel="external">nw.js</a> 的大名，虽然它已经存在了多年，但相比来说，Electron 更加稳定和易用。</p>
+<p>这里有一个基于 <a href="https://github.com/chentsulin/electron-react-boilerplate" target="_blank" rel="external">Electron、React 和 hot reload 的模板</a>，尝试一下吧。</p>
+<h2 id="延伸">延伸</h2><p>下面是一些我在 Twitter 上关注的对象：</p>
+<ul>
+<li><a href="https://github.com/gaearon" target="_blank" rel="external">Dan Abramov</a>, Redux 的创建者</li>
+<li><a href="https://twitter.com/Vjeux" target="_blank" rel="external">Christopher Chedeau</a>, 非常活跃的 React 开发者，现就职与 Facebook</li>
+<li><a href="https://github.com/jeffmo" target="_blank" rel="external">Jeff Morrison</a>, Flow 的核心贡献者之一</li>
+<li><a href="https://twitter.com/sebmarkbage" target="_blank" rel="external">Sebastian Markbåge</a>, React 的创建者之一</li>
+<li><a href="https://twitter.com/floydophone" target="_blank" rel="external">Pete Hunt</a></li>
+<li><a href="https://twitter.com/reactjs" target="_blank" rel="external">React</a></li>
+<li>更多值得关注的对象请参考 <a href="https://twitter.com/oguzbilgic/lists/react-influencers" target="_blank" rel="external">React Influencers</a></li>
+</ul>
+<p>建议阅读 Pate Hunt 的 <a href="https://github.com/petehunt/react-howto" target="_blank" rel="external">Learning React</a>!</p>
+<p>Dan Abramov 发布一系列的视频教程 <a href="https://egghead.io/series/getting-started-with-redux" target="_blank" rel="external">Getting started with Redux</a>，强烈推荐！此外，Dan 还发布过一个<a href="https://medium.com/@dan_abramov/my-react-list-862227952a8c#.740o0wzee" target="_blank" rel="external">关注列表</a>，比上述更加详细。</p>
+<p>Mark Erikson 的 <a href="https://github.com/markerikson/react-redux-links" target="_blank" rel="external">React/Redux links</a> 集合也是很好的学习材料。</p>
+<h2 id="按需使用">按需使用</h2><p>JavaScript 的生态环境发展迅速，正日益强大起来。React 的最佳实践正在固化，周边工具的职责和能力也日益清晰。</p>
+<p>最重要的事情就是要牢记：保持简洁，按需使用。</p>
+<p>如果你的应用程序只有两三屏，那么就无需使用路由系统；如果你正在创建一个单页应用，那么甚至不需要 Redux，只需要 React 自己的 state 属性即可；如果你正在创建一个简单的 CRUD 程序，那么你就不需要使用 Relay；如果你正在学习 ES6，并不需要深入地了解 Async/Await 或装饰器；如果你刚刚开始学习 React，并不需要使用热重载和服务端渲染；如果你刚刚接触 Webpack，你就不需要分离代码和合并多个资源；如果你刚刚学习 Redux，你不需要理解使用 Redux-Form 和 Redux-Sagas。</p>
+<p>保持简洁，每次只做一件事！</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>翻译自 <a href="https://medium.com/javascript-and-opinions/state-of-the-art-javascript-in-2016-ab67fc68eb0b#.iwbk5gf69">State of the Art JavaScript in 2016</a></p>
+</blockquote>
+<p>如果你正在筹划新的前端项目或者重构现有项目，那么你需要认识到现在的前端开发环境已经今非昔比，这其中有太多的选择了：React、Flux、Angular、Aurelia、Mocha、Jasmine、Babel、TypeScript、Flow…… 它们的本意是将开发简单化，却无形中提高了学习成本，也给未来项目的维护带来了不确定性。</p>
+<p>好在这一现象正在退热，优胜劣汰，优秀的项目慢慢沉淀下来，开发方式也越来越清晰。有些开发者正在尝试使用基于上述技术的框架进行开发，也在一定程度上减少了学习成本。</p>
+<p>本文中主要介绍了一些我在 web 应用开发中所涉及和推崇的技术，其中有一些技术上存在争议，所以我对于每一技术都只做简单的介绍和分析。所有的这些观点都是基于我个人的经验和对社区的接触总结而来的，所以各位还请按需各取所用。</p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[性能优化的十二个方面]]></title>
+    <link href="http://pinggod.com/2016/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E5%8D%81%E4%BA%8C%E4%B8%AA%E6%96%B9%E9%9D%A2/"/>
+    <id>http://pinggod.com/2016/性能优化的十二个方面/</id>
+    <published>2016-03-04T12:37:34.000Z</published>
+    <updated>2016-03-04T12:50:06.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>翻译自：<a href="https://auth0.com/blog/2016/02/22/12-steps-to-a-faster-web-app/" target="_blank" rel="external">12 steps to a faster web app</a></p>
+</blockquote>
+<p>现在，web app 日益重视用户的交互体验，了解性能优化的方式则可以有效提高用户体验。阅读和实践下面的性能优化技巧，可以帮你改善应用的流畅度、渲染时间和其他方面的性能表现。</p>
+<a id="more"></a>
+<h2 id="概述">概述</h2><p>对 web app 进行性能优化是一份冗杂沉重的工作，这不仅是因为构建一个 web app 需要前后端协作，而且需要多方面的技术栈：数据库、后端、前端，需要运行在多种平台：iOS，安卓，Chrome，Firefox，Edge。这太复杂了！不过，还是有一些历经实践的通用方式可以用来优化 web app 的性能。在接下来的小节中，我们将逐步介绍相关的细节。</p>
+<blockquote>
+<p>一份来自 Bing 的研究表明，页面加载时间每增加 10ms，每年就会减少 $250k 的收入。</p>
+</blockquote>
+<h4 id="过早优化">过早优化</h4><p>性能优化的难点在于找出开发中值得优化的地方。Donald Knuth 说过一句经典的话：“过早的优化是一切罪恶的根源”。这句话背后的意思是说：花费大量时间改善 1% 的性能毫无意义。同时，某些优化方案反倒影响了可读性或可维护性，甚至引入了新的问题。换言之，性能优化不应该被视为“榨干应用程序性能的方法”，而应该视为“对性能和收益的平衡性所进行的探索”。在践行以下优化技巧时一定要牢记，盲目优化会影响生产效率，甚至得不偿失。最好的方式是使用分析工具来查找性能瓶颈，并在性能优化和开发效率、可维护性等方面保持平衡。</p>
+<blockquote>
+<p>开发者浪费了大量的时间去思考或者担心程序的执行速度，但实际上从调试和后期维护的角度看，这些优化措施往往会带来严重的负面影响。我们应该着重 97% 的运行表现：过早的性能优化是一切罪恶的根源。当然，我们也不应该放弃 3% 的痛点。</p>
+</blockquote>
+<h2 id="1-_文件压缩和模块打包">1. 文件压缩和模块打包</h2><p>JavaScript 通常是直接使用源码的方式分发的，而源码解析起来往往要慢于字节码。对于小脚本来说，两者解析的速度并不大，但对于大的应用程序来说，则会明显影响应用程序的启动速度。解决这一痛点，正是 <a href="https://auth0.com/blog/2015/10/14/7-things-you-should-know-about-web-assembly/" target="_blank" rel="external">WebAssembly</a> 的出发点之一，它将大幅改善程序的启动速度。文件压缩是剔除文件中无用字符的流程，虽然处理后的代码丧失了可读性，但提高了浏览器的解析速度。</p>
+<p>另一方面，模块打包可以将不同的脚本合并为一个脚本，从而降低 HTTP 请求，减少资源加载时间。通常来说，这种工作都会交给相应的工具来处理，比如 <a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insert</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">"Sample "</span> + i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; ++i) &#123;</span><br><span class="line">    insert(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>压缩之后：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">!<span class="function"><span class="keyword">function</span>(<span class="params">r</span>)</span>&#123;<span class="function"><span class="keyword">function</span> <span class="title">t</span>(<span class="params">o</span>)</span>&#123;<span class="keyword">if</span>(e[o])<span class="keyword">return</span> e[o].exports;<span class="keyword">var</span> n=e[o]=&#123;exports:&#123;&#125;,id:o,loaded:!<span class="number">1</span>&#125;;<span class="keyword">return</span> r[o].call(n.exports,n,n.exports,t),n.loaded=!<span class="number">0</span>,n.exports&#125;<span class="keyword">var</span> e=&#123;&#125;;<span class="keyword">return</span> t.m=r,t.c=e,t.p=<span class="string">""</span>,t(<span class="number">0</span>)&#125;([<span class="function"><span class="keyword">function</span>(<span class="params">r,t</span>)</span>&#123;<span class="function"><span class="keyword">function</span> <span class="title">e</span>(<span class="params">r</span>)</span>&#123;<span class="built_in">document</span>.write(<span class="string">"Sample "</span>+r)&#125;<span class="keyword">for</span>(<span class="keyword">var</span> o=<span class="number">0</span>;<span class="number">30</span>&gt;o;++o)e(o)&#125;]);</span><br><span class="line"><span class="comment">//# sourceMappingURL=bundle.min.js.map</span></span><br></pre></td></tr></table></figure>
+<h4 id="深度打包">深度打包</h4><p>使用 Webpack，我们也可以压缩 CSS 和合并图片，进一步改善程序的启动速度。更多有关 Webpack 的信息请参考<a href="http://webpack.github.io/docs/" target="_blank" rel="external">官方文档</a>。</p>
+<h2 id="2-_按需加载">2. 按需加载</h2><p>按需加载资源或者说惰性加载资源（特别是图片）对优化 web app 的性能有很大帮助。对于图片较多的页面，使用惰性加载通常有以下三点好处：</p>
+<ul>
+<li>减少并发请求，缓解服务器压力，提高加载速度</li>
+<li>减少浏览器的内存占用率</li>
+<li>降低服务器的负载</li>
+</ul>
+<p>图片或其他资源惰性加载的方案一般是，在程序启动时加载首屏资源，在页面滚动时持续加载即将进入视口的资源。由于这种方法往往需要与页面结构和开发方式相协调，所以常常使用现有的插件和扩展来实现惰性加载。举例来说，<a href="https://github.com/loktar00/react-lazy-load" target="_blank" rel="external">react-lazy-load</a> 是一个基于 React 的图片惰性加载插件：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> MyComponent = () =&gt; (</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br><span class="line">    Scroll to load images.</span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">"filler"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">LazyLoad</span> <span class="attribute">height</span>=<span class="value">&#123;762&#125;</span> <span class="attribute">offsetVertical</span>=<span class="value">&#123;300&#125;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">'http://apod.nasa.gov/apod/image/1502/HDR_MVMQ20Feb2015ouellet1024.jpg'</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">LazyLoad</span>&gt;</span></span><br><span class="line">    (...)</span></span><br></pre></td></tr></table></figure>
+<p>一个典型的按需加载实例就是谷歌的<a href="https://www.google.com/search?site=&amp;tbm=isch&amp;source=hp&amp;biw=1366&amp;bih=707&amp;q=parrots&amp;oq=parrots&amp;gs_l=img.12...0.0.0.4086.0.0.0.0.0.0.0.0..0.0....0...1ac..64.img..0.0.0.UJrFBFKkWMA" target="_blank" rel="external">图片搜索工具</a>，点击这一链接并滚动页面，打开开发者工具注意资源的加载时间。</p>
+<h2 id="3-_array-ids">3. array-ids</h2><p>如果你正在使用 React / Ember / Angular 或者其他操作 DOM 的第三方库，那么使用 array-ids（或者是 Angular 1.x 中的 <code>track-by</code> 特性）可以有效提高页面性能，对动态网站的性能优化尤为突出。从最新的基准测试中我们也可以看出其中的优势：<a href="https://auth0.com/blog/2016/01/11/updated-and-improved-more-benchmarks-virtual-dom-vs-angular-12-vs-mithril-js-vs-the-rest/" target="_blank" rel="external">More Benchmarks: Virtual DOM vs Angular 1 &amp; 2 vs Mithril.js vs cito.js vs The Rest (Updated and Improved!)</a>。</p>
+<p><img src="https://cdn.auth0.com/blog/newdombenchs2/usedheap.svg" alt="https://cdn.auth0.com/blog/newdombenchs2/usedheap.svg"></p>
+<p>其背后的核心概念就是尽可能多地重复利用现有节点。Array-ids 便于 DOM 操作引擎根据获取到的 DOM 节点与真实的节点相匹配。如果没有 array-id 或者 track-by，大多数第三方库都会简单粗暴的删除节点然后再创建节点，这会严重影响程序的执行速度。</p>
+<h2 id="4-_缓存">4. 缓存</h2><p>缓存常用来存储频繁调用的数据，当缓存后的数据再次被调用时，就可以由缓存直接提供数据，提高数据的响应速度。通常来说，一个 web app 都是由多个组件构成的，在这些组件中都能发现缓存的影子。比如动态内容服务器和客户端之间使用的缓存，通过减少通用请求降低服务器负载，可以改善页面的响应时间；比如代码中的缓存处理，可以优化某些通用的脚本访问模式。此外，还有数据库缓存和长进程缓存等。</p>
+<p>简而言之，缓存是改善应用程序响应速度和降低 CPU 负载的有效方式。在一个开发体系中，最难的不是如何使用缓存，而是找出哪里适合使用缓存。对于这一问题，我还是建议使用事件分析工具（profiler）：找出性能瓶颈，检测缓存是否成功，测试缓存是否容易失效……这些问题都需要历经实践才能得出有效的结论。</p>
+<p>使用缓存可以优化资源加载，比如，使用 <a href="https://addyosmani.com/basket.js/" target="_blank" rel="external">basket.js</a> 利用本地存储缓存应用的脚本，在第二次调用资源时可以迅速从本地存储中获得相应的资源。</p>
+<p>Amazon CloudFront 是现在比较流行的一项缓存服务。CloudFront 的工作机制类似内容分发网络（CDN），可以为动态内容设置缓存。</p>
+<h2 id="5-_HTTP/2">5. HTTP/2</h2><p>目前，已经有越来越多的浏览器支持 HTTP/2。HTTP/2 的优势在于它与服务器的并发连接，比如，如果需要加载的小型资源（前提是你不对资源进行打包）比较多，HTTP/2 在响应时间和性能上都要远远优胜于 HTTP/1。你可以点击 <a href="https://http2.akamai.com/demo" target="_blank" rel="external">Akamai 的 HTTP/2 示例</a> 查看两者的区别。</p>
+<p><img src="https://cdn.auth0.com/blog/fasterweb/http2demo.png" alt="https://cdn.auth0.com/blog/fasterweb/http2demo.png"></p>
+<h2 id="6-_性能剖析">6. 性能剖析</h2><p>性能剖析是应用程序进行性能优化的重要步骤。如上文所说，盲目地优化应用程序往往会降低生产力、产生新的痛点且难以维护。性能剖析的作用就是要找出应用程序中潜在的风险区域。</p>
+<p>对 web 应用程序来说，响应速度是一个非常重要的衡量指标，所以开发者都会尽可能地去提高资源的加载速度和页面的渲染速度。Chrome 浏览器提供了一系列优秀的性能剖析工具，其中最常用的就是开发者工具中的 timeline 和 network，善用它们可以准确定位有关响应速度的风险区域。</p>
+<p><img src="https://cdn.auth0.com/blog/fasterweb/timeline.png" alt="https://cdn.auth0.com/blog/fasterweb/timeline.png"></p>
+<p>timeline 面板便于快速查找耗时操作。</p>
+<p><img src="https://cdn.auth0.com/blog/fasterweb/network.png" alt="https://cdn.auth0.com/blog/fasterweb/network.png"></p>
+<p>network 面板便于定位由请求时间和串行加载引起的响应速度问题。</p>
+<p>此外，如果合理分析内存的使用率，也将有效提高应用程序的性能。如果你的页面中有大量的视觉元素（比如动态的表格）或者大量的交互元素（比如游戏），那么对内存使用的剖析就可以有效减少卡顿，提高帧速。如果你想了解如何在 Chrome 开发者工具中进行内存剖析，请参考这篇文章：<a href="https://auth0.com/blog/2016/01/26/four-types-of-leaks-in-your-javascript-code-and-how-to-get-rid-of-them/" target="_blank" rel="external">《4 Types of Memory Leaks in JavaScript and How to Get Rid Of Them 》</a>。</p>
+<p>Chrome 开发者工具也可以对 CPU 的使用进行剖析，更多详细信息请参考来自谷歌文档的这篇文章：<a href="https://developer.chrome.com/devtools/docs/cpu-profiling" target="_blank" rel="external">《 Profiling JavaScript Performance》</a>。</p>
+<p><img src="https://cdn.auth0.com/blog/fasterweb/cpu.png" alt="https://cdn.auth0.com/blog/fasterweb/cpu.png"></p>
+<p>找出性能的核心痛点，才能让你更加高效地进行性能优化。</p>
+<p>相对而言，对后端进行性能剖析稍显困难。一般而言，从最耗时的请求入手查找相应的服务器是个不错的方法。这里并没有推荐任何有关后端的性能剖析工具，这是因为具体的剖析工具要视具体的后端技术栈而定。</p>
+<h4 id="算法">算法</h4><p>在大多数情况下，选择更高效的算法可以比局部优化获得更佳的收益。从某种意义上说，对 CPU 和内存进行性能剖析有助于帮助开发者找出应用程序中较大的性能瓶颈。如果这些瓶颈并不是由代码的错误引起的，那很有可能就是算法的问题。</p>
+<h2 id="7-_负载均衡">7. 负载均衡</h2><p>在上文的缓存一节中，简单提到了内容分发网络（CDN）的概念。根据服务器或者地理区域分发负载可以有效提高资源的响应速度，这一优势在处理并发链接时尤为明显。</p>
+<p>简而言之，负载均衡类似于一种轮询方案，基于反向代理服务器 <a href="http://nginx.org/en/docs/http/load_balancing.html" target="_blank" rel="external">nginx</a> 或者成熟的分发网络（比如 <a href="https://www.cloudflare.com/" target="_blank" rel="external">Cloudflare</a> 和 <a href="https://aws.amazon.com/cloudfront/" target="_blank" rel="external">Amazon CloudFront</a> 构建。</p>
+<p><img src="https://cdn.auth0.com/blog/fasterweb/diagram.png" alt="https://cdn.auth0.com/blog/fasterweb/diagram.png"></p>
+<p>为了实现负载均衡，需要将动态内容和静态内容进行分离，便于执行并行连接。换言之，串行访问削弱了负载均衡检索最佳路径并进行分发的能力。此外，并行加载资源还可以加快应用程序的启动速度。</p>
+<p>负载均衡也可以构建的很精细。如果数据模型不能够很好地与最终的一致性算法或缓存保持良好的匹配关系，那么必将导致诸多问题。幸运的是，大多数的应用程序所请求的数据都是一个缩减集，该缩减集本身具有较高级别的一致性。如果你的应用程序还没有具备这样的能力，那么你需要考虑重构它了。</p>
+<h2 id="8-_同构_JavaScript">8. 同构 JavaScript</h2><p>对于 web 应用程序来说，一个增强用户体验的法门就是减少启动时间或者减少首屏渲染时间，这一点对于需要在客户端执行大量逻辑操作的单页应用尤为重要。在客户端执行的逻辑操作越多，通常意味着需要在首屏渲染前加载更多的资源。同构 JavaScript 就是用来解决这一问题的：JavaScript 可以同时在客户端和服务端执行，所以可以在服务端渲染出来首屏，然后将其发送给客户端，再由客户端的 JavaScript 接手剩下的逻辑处理。这一方案限制了服务端只能基于 JavaScript 框架，但可以提高用户体验。目前，在 <a href="https://www.meteor.com/" target="_blank" rel="external">Meteor.js</a> 中已经可以直接使用这一方式了。此外，在 <a href="https://github.com/DavidWells/isomorphic-react-example" target="_blank" rel="external">React</a> 框架中也可以采用这种方式，代码如下所示：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> React = <span class="built_in">require</span>(<span class="string">'react/addons'</span>);</span><br><span class="line"><span class="keyword">var</span> ReactApp = React.createFactory(<span class="built_in">require</span>(<span class="string">'../components/ReactApp'</span>).ReactApp);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">app</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// React.renderToString takes your component</span></span><br><span class="line">        <span class="comment">// and generates the markup</span></span><br><span class="line">        <span class="keyword">var</span> reactHtml = React.renderToString(ReactApp(&#123;&#125;));</span><br><span class="line">        <span class="comment">// Output html rendered by react</span></span><br><span class="line">        <span class="comment">// console.log(myAppHtml);</span></span><br><span class="line">        res.render(<span class="string">'index.ejs'</span>, &#123;reactOutput: reactHtml&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>下面是 Meteor.js 的简单示例：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (Meteor.isClient) &#123;</span><br><span class="line">  Template.hello.greeting = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Welcome to myapp."</span>;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  Template.hello.events(&#123;</span><br><span class="line">    <span class="string">'click input'</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="comment">// template data, if any, is available in 'this'</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">console</span> !== <span class="string">'undefined'</span>)</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"You pressed the button"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (Meteor.isServer) &#123;</span><br><span class="line">  Meteor.startup(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// code to run on server at startup</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你开发的是大中型复杂应用且支持同构发布，那么可以尝试一下这种方式，效果很可能令人震撼。</p>
+<h2 id="9-_索引">9. 索引</h2><p>如果数据库查询占据了太多的执行时间，那么你应该考虑优化数据库的执行速度了。每种数据库和数据模型都各有特色。数据库优化有多种方向：数据模型、数据库类型以及其他配置，所以优化起来并不简单。不过，我们还是有一些通用的优化技巧，比如说：索引。索引根据数据库的数据创建快速访问的数据结构，改善对特定数据的检索速度。现在大多数的数据库都支持索引功能，</p>
+<p>在使用索引优化数据库之前，你应该研究当前应用程序的访问模式，分析最常用到的查询是什么，哪一个键或者字段会被频繁查询等等。</p>
+<h2 id="10-_编译工具">10. 编译工具</h2><p>JavaScript 技术栈日益复杂，这也推动了语言本身的进步。不幸的是，JavaScript 的发展目前还要受限于用户的访问环境。虽然 ECMAScript 2015 已经对 JavaScript 做出了诸多改进，但是开发者尚不能直接遵循这一规范的代码。针对这一问题，也就衍生出了诸多编译工具，这些工具常用于将 ECMAScript 2015 的代码转换为 ECMAScript 5 的代码。此外，模块打包和文件压缩也加入到了编译过程，最终用于生成线上版本的代码。这些工具将代码转换为了一个受限的版本，间接影响到了最终代码的执行效率。谷歌开发者 Paul Irish 测试了代码转换对性能和文件大小的影响，详情请<a href="https://github.com/paulirish/The-cost-of-transpiling-es2015-in-2016" target="_blank" rel="external">点击链接</a>。虽然大多数情况下影响甚微，但这些差异仍然值得引起注意，因为随着应用程序的复杂大增高，这些差异也将日益增大。</p>
+<h2 id="11-_阻塞渲染">11. 阻塞渲染</h2><p>JavaScript 和 CSS 资源的加载都会阻塞页面的渲染过程。通过某些技巧，开发者可以尽快加载 JavaScript 和 CSS 资源，从而让浏览器尽快显示网站的内容。</p>
+<p>对 CSS 来说，本质上符合当前页面媒体属性的 CSS 规则会具有较高的处理优先级。页面的媒体属性由 CSS 的媒体查询进行匹配。媒体查询通知浏览器哪一个 CSS 脚本针对哪一种媒体属性。举例来说，相对于当前屏幕显示的 CSS，用于打印的 CSS 的优先级较低。</p>
+<p>可以为 <code>&lt;link&gt;</code> 标签设置与媒体查询有关的属性：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">media</span>=<span class="value">"only screen and (max-device-width: 480px)"</span> <span class="attribute">href</span>=<span class="value">"mobile-device.css"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>对 JavaScript 来说，关键是恰当地使用内嵌 JavaScript（即在 HTML 中的 JavaScript）。内嵌 JavaScript 应该尽可能简短，且不能阻塞对页面其他部分的阻塞。换言之，位于 HTML 文档树之中的内嵌 JavaScript 会阻塞 HTML 脚本的解析，强制解析引擎直到脚本执行完成才能继续解析。如果 HTML 树中有大量这种阻塞脚本或者阻塞时间过长，势必严重破坏应用程序的用户体验。内嵌 JavaScript 有助于防止网络获取过多的脚本。对于反复用到的脚本，或者体积较大的脚本，不建议使用内联形式。</p>
+<p>一种有效防止 JavaScript 阻塞 HTML 解析的方法是以异步的方式加载 <code>&lt;script&gt;</code> 标签。这种方式限制了我们队 DOM 的访问（无法使用 <code>document.write</code>)，但可以让浏览器在解析和渲染页面的时候无需考虑 JavaScript 的执行状态。换言之，为了获取最佳的启动速度，应该确保所有非必需的脚本都要以异步的形式加载：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"async.js"</span> <span class="keyword">async</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="12-_servce_workers_和_stream">12. servce workers 和 stream</h2><p>Jake Archibald 的<a href="https://jakearchibald.com/2016/streams-ftw/#streaming-results" target="_blank" rel="external">最新文章</a> 对提高渲染速度提出了一个很有意思的方案：结合 service workers 和 stream 进行页面渲染。结果相当令人信服：</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Cjo9iq8k-bc" frameborder="0" allowfullscreen></iframe>
+
+<p>不幸的是，这一技巧所用到的 API 尚在变化之中，所以还不能应用于实际开发中。这一技巧的核心是在网站和客户端之间存放一个 service worker。service worker 可以用于缓存数据（比如网站的头部等不常变动的部分），避免网络查找失败。如果缓存数据丢失，可以通过 stream 快速获取。</p>
+<h2 id="扩展阅读">扩展阅读</h2><p>更多有关性能优化的信息和工具请参考以下链接：</p>
+<p><a href="https://github.com/paulirish/The-cost-of-transpiling-es2015-in-2016" target="_blank" rel="external">Best Practices for Speeding up Your Website - Yahoo Developer Network</a><br><a href="http://yslow.org/" target="_blank" rel="external">YSlow - a tool that checks for Yahoo’s recommended optimizations</a><br><a href="https://developers.google.com/speed/docs/insights/rules" target="_blank" rel="external">PageSpeed Insights - Google Developers</a><br><a href="https://developers.google.com/speed/pagespeed/" target="_blank" rel="external">PageSpeed Tools - Google Developers</a><br><a href="http://blogs.msdn.com/b/ie/archive/2014/10/08/http-2-the-long-awaited-sequel.aspx" target="_blank" rel="external">HTTP/2: The Long-Awaited Sequel</a></p>
+<h2 id="结论">结论</h2><p>随着应用程序变得越来越庞大和复杂，性能优化在 web 开发中的地位也越来越重要。针对性的性能优化至关重要，有助于降低时间成本和维护成本。web 应用程序历经发展，其作用已经不再是单一的内容展现，学习通用的性能优化模式，可以将一个难以使用的应用程序转为一个易于上手的工具。没有任何规则是绝对的，只有不断研究和剖析技术栈的深层次逻辑，才能合理进行性能优化。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>翻译自：<a href="https://auth0.com/blog/2016/02/22/12-steps-to-a-faster-web-app/">12 steps to a faster web app</a></p>
+</blockquote>
+<p>现在，web app 日益重视用户的交互体验，了解性能优化的方式则可以有效提高用户体验。阅读和实践下面的性能优化技巧，可以帮你改善应用的流畅度、渲染时间和其他方面的性能表现。</p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Lazy Loading Images on the Web]]></title>
+    <link href="http://pinggod.com/2016/Lazy-loading-images-on-the-web/"/>
+    <id>http://pinggod.com/2016/Lazy-loading-images-on-the-web/</id>
+    <published>2016-02-17T04:00:04.000Z</published>
+    <updated>2016-02-24T05:31:50.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>Summarized from <a href="http://developer.telerik.com/featured/lazy-loading-images-on-the-web/" target="_blank" rel="external">《Lazy Loading Images on the Web》</a>.</p>
+</blockquote>
+<p>Lazy loading images on the web means only download images which are in or near the viewport, and don’t load any other images that visitors will not likely see. To accomplish this effect, we just need a little bit of JavaScript.</p>
+<p>At its most basic implementation always need to do:</p>
+<ul>
+<li>Build HTML with special data attribute</li>
+<li>Watch changes to the viewport or scrolling</li>
+<li>Swap the data attribute to src attribute</li>
+</ul>
+<a id="more"></a>
+<h2 id="Plain_JavaScript">Plain JavaScript</h2><p>The first step is creating HTML element with data attribute:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">img</span> <span class="attribute">data-src</span>=<span class="value">"path/to/source"</span> <span class="attribute">alt</span>=<span class="value">""</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Second, using <code>getBoundingClientRect()</code> to test whether an image is within the viewport:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isElementInViewport</span> (<span class="params">el</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> rect = el.getBoundingClientRect();</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        rect.top &gt;= <span class="number">0</span> &amp;&amp;</span><br><span class="line">        rect.left &gt;= <span class="number">0</span> &amp;&amp;</span><br><span class="line">        rect.bottom &lt;= (<span class="built_in">window</span>.innerHeight || <span class="built_in">document</span>.documentElement.clientHeight) &amp;&amp;</span><br><span class="line">        rect.right &lt;= (<span class="built_in">window</span>.innerWidth || <span class="built_in">document</span>.documentElement.clientWidth)</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Last, geting all of images that we want to lazy load and swap the <code>data-src</code> value to <code>src</code> value:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//these handlers will be removed once the images have loaded</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"DOMContentLoaded"</span>, lazyLoadImages);</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"load"</span>, lazyLoadImages);</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"resize"</span>, lazyLoadImages);</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"scroll"</span>, lazyLoadImages);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">lazyLoadImages</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> images = <span class="built_in">document</span>.querySelectorAll(<span class="string">"#main-wrapper img[data-src]"</span>),</span><br><span class="line">        item;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// load images that have entered the viewport</span></span><br><span class="line">    [].forEach.call(images, <span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isElementInViewport(item)) &#123;</span><br><span class="line">            item.setAttribute(<span class="string">"src"</span>,item.getAttribute(<span class="string">"data-src"</span>));</span><br><span class="line">            item.removeAttribute(<span class="string">"data-src"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// if all the images are loaded, stop calling the handler</span></span><br><span class="line">    <span class="keyword">if</span> (images.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">window</span>.removeEventListener(<span class="string">"DOMContentLoaded"</span>, lazyLoadImages);</span><br><span class="line">        <span class="built_in">window</span>.removeEventListener(<span class="string">"load"</span>, lazyLoadImages);</span><br><span class="line">        <span class="built_in">window</span>.removeEventListener(<span class="string">"resize"</span>, lazyLoadImages);</span><br><span class="line">        <span class="built_in">window</span>.removeEventListener(<span class="string">"scroll"</span>, lazyLoadImages);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Plugin_&amp;&amp;_Library">Plugin &amp;&amp; Library</h2><p>The following is some jquery plugins or libraries that can do similarly works:</p>
+<ul>
+<li><a href="https://github.com/tuupola/jquery_lazyload" target="_blank" rel="external">https://github.com/tuupola/jquery_lazyload</a></li>
+<li><a href="http://dinbror.dk/blazy/" target="_blank" rel="external">http://dinbror.dk/blazy/</a></li>
+<li><a href="http://luis-almeida.github.io/unveil/" target="_blank" rel="external">http://luis-almeida.github.io/unveil/</a></li>
+<li><a href="https://github.com/ressio/lazy-load-xt" target="_blank" rel="external">https://github.com/ressio/lazy-load-xt</a></li>
+</ul>
+<h2 id="Responsive_images_service">Responsive images service</h2><p>Why we need this? Using this service to get responsive images. For example, we can upload a huge image in backend and download appropriate image based on the device’s screen size and pixel density to compresse response size.</p>
+<blockquote>
+<p>Before generating different dimensions images, it’s better to use image compression tool to reduce file size, such like <a href="https://tinypng.com/" target="_blank" rel="external">https://tinypng.com/</a>. </p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>Summarized from <a href="http://developer.telerik.com/featured/lazy-loading-images-on-the-web/">《Lazy Loading Images on the Web》</a>.</p>
+</blockquote>
+<p>Lazy loading images on the web means only download images which are in or near the viewport, and don’t load any other images that visitors will not likely see. To accomplish this effect, we just need a little bit of JavaScript.</p>
+<p>At its most basic implementation always need to do:</p>
+<ul>
+<li>Build HTML with special data attribute</li>
+<li>Watch changes to the viewport or scrolling</li>
+<li>Swap the data attribute to src attribute</li>
+</ul>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[HTML5 Canvas]]></title>
+    <link href="http://pinggod.com/2016/HTML5-canvas/"/>
+    <id>http://pinggod.com/2016/HTML5-canvas/</id>
+    <published>2016-02-16T05:17:10.000Z</published>
+    <updated>2016-02-28T14:39:46.000Z</updated>
+    <content type="html"><![CDATA[<p>Canvas 是 HTML5 新引进的特性，通过 Canvas 技术可以使用 JavaScript 在浏览器中绘制图形。目前主流浏览器（IE9+）都支持该特性。创建一个最简单的 canvas 只需要两步，第一步是创建一个 canvas 标签： </p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"canvas"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>接下来使用 JavaScript 获取 canvas 的上下文：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> canvas = <span class="built_in">document</span>.querySelector(<span class="string">'#canvas'</span>);</span><br><span class="line"><span class="keyword">const</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>大功告成！</p>
+<h2 id="修改大小">修改大小</h2><p>canvas 画布的默认尺寸为 300px * 150px，如果想要修改该尺寸，可以在 canvas 标签上添加 width 和 height 属性：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"canvas"</span> <span class="attribute">width</span>=<span class="value">"500"</span> <span class="attribute">height</span>=<span class="value">"500"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>width 和 height 属性不仅仅指定了画布的大小，而且同时制定了画布的分辨率。另一个值得注意的是，不用给这两个属性值添加单位。如果画布的尺寸不确定，还可以使用 JavaScript 进行控制：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">canvas.width = <span class="number">500</span>;</span><br><span class="line">canvas.height = <span class="number">500</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="画线">画线</h2><p>在 canvas 中画线只需要三行代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// move context to position (100, 100)</span></span><br><span class="line">ctx.moveTo(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// draw a line from current position of context to (500, 500)</span></span><br><span class="line">ctx.lineTo(<span class="number">500</span>, <span class="number">500</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// all above was not executed util calling stroke or fill method</span></span><br><span class="line">ctx.stroke()</span><br></pre></td></tr></table></figure>
+<p>下面是常用的 context 方法：</p>
+<ul>
+<li><code>lienWidth</code>, 设置线段的粗细</li>
+<li><code>lineCap</code>, 设置线段两端的样式： <code>butt(default)</code> / <code>round</code> / <code>square</code></li>
+<li><code>lineJoin</code>, 设置两条线段连接处的样式：<code>miter(default)</code> / <code>bevel</code> / <code>round</code></li>
+<li><code>strokeStyle</code>, 设置线段的颜色</li>
+<li><code>stroke</code>，绘制线段</li>
+<li><code>fillStyle</code>, 设置填充区域的颜色</li>
+<li><code>fill</code>, 填充一段区域</li>
+</ul>
+<blockquote>
+<p>使用 <code>beginPath()</code> 和 <code>closePath()</code> 可以绘制多条独立的线段：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">ctx.beginPath() </span><br><span class="line">ctx.moveTo(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">ctx.lineTo(<span class="number">500</span>, <span class="number">500</span>);</span><br><span class="line">ctx.lineTo(<span class="number">100</span>, <span class="number">500</span>);</span><br><span class="line">ctx.closePath();</span><br><span class="line">ctx.fillStyle = <span class="string">"green"</span>;</span><br><span class="line">ctx.fill();</span><br><span class="line"></span><br><span class="line">ctx.beginPath();</span><br><span class="line">ctx.moveTo(<span class="number">200</span>, <span class="number">100</span>);</span><br><span class="line">ctx.lineTo(<span class="number">300</span>, <span class="number">200</span>);</span><br><span class="line">ctx.closePath();</span><br><span class="line">ctx.lineWidth = <span class="number">20</span>;</span><br><span class="line">ctx.strokeStyle = <span class="string">"yellow"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="绘制矩形">绘制矩形</h2><p><code>ctx.rect(x, y, width, height)</code> 方法可以用来绘制一个矩形:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">cxt.beginPath();</span><br><span class="line">cxt.rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">cxt.closePath();</span><br><span class="line"></span><br><span class="line">cxt.lineWidth = <span class="number">10</span>;</span><br><span class="line">cxt.fillStyle = <span class="string">'red'</span>;</span><br><span class="line">cxt.strokeStyle = <span class="string">'blue'</span>;</span><br><span class="line"></span><br><span class="line">cxt.fill();</span><br><span class="line">cxt.stroke();</span><br></pre></td></tr></table></figure>
+<p>下面是两个更简洁的矩形绘制方法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">cxt.lineWidth = <span class="number">10</span>;</span><br><span class="line">cxt.fillStyle = <span class="string">'red'</span>;</span><br><span class="line">cxt.strokeStyle = <span class="string">'blue'</span>;</span><br><span class="line"></span><br><span class="line">cxt.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">cxt.strokeRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="画圆">画圆</h2><p><code>ctx.arc(x, y, r, startAngle, endAngle, anticlockwise)</code> 方法可以用来绘制一个圆形，圆形位于 (x, y)，半径为 r，起始点为 <code>startAngle</code>，终点为 <code>endAngle</code>，<code>anticlockwise</code> 决定旋转方向，默认值为顺时针方向。</p>
+<canvas id="arc-canvas-demo"></canvas>
+
+<style>
+#arc-canvas-demo {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+</style>
+
+<script>
+(function() {
+    "use strict";
+    var canvas = document.querySelector('#arc-canvas-demo');
+    var ctx = canvas.getContext('2d');
+    if (ctx) {
+        canvas.width = 100;
+        canvas.height = 100;
+        ctx.beginPath();
+        ctx.arc(50, 50, 50, 0, 1.5 * Math.PI);
+        ctx.closePath()
+        ctx.lineWidth = 1;
+        ctx.fillStyle = "#42b983";
+        ctx.fill();
+    }
+    else {
+        canvas.innerHTML = "Update your browser to enjoy canvas :) !"
+    }
+})();
+</script>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">ctx.beginPath();</span><br><span class="line">ctx.arc(<span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, <span class="number">0</span>, <span class="number">1.5</span> * <span class="built_in">Math</span>.PI);</span><br><span class="line">ctx.closePath()</span><br><span class="line">ctx.lineWidth = <span class="number">1</span>;</span><br><span class="line">ctx.fillStyle = <span class="string">"#42b983"</span>;</span><br><span class="line">ctx.fill();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>ctx.clearrect(xTopLeft, yTopLeft, xBottomRight, yBottomRight)</code> 方法可以用来清除特定区域。</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Canvas 是 HTML5 新引进的特性，通过 Canvas 技术可以使用 JavaScript 在浏览器中绘制图形。目前主流浏览器（IE9+）都支持该特性。创建一个最简单的 canvas 只需要两步，第一步是创建一个 canvas 标签： </p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"canvas"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>接下来使用 JavaScript 获取 canvas 的上下文：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> canvas = <span class="built_in">document</span>.querySelector(<span class="string">'#canvas'</span>);</span><br><span class="line"><span class="keyword">const</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br></pre></td></tr></table></figure>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Tmux]]></title>
+    <link href="http://pinggod.com/2016/Tmux/"/>
+    <id>http://pinggod.com/2016/Tmux/</id>
+    <published>2016-02-13T05:09:06.000Z</published>
+    <updated>2016-02-13T10:45:07.000Z</updated>
+    <content type="html"><![CDATA[<p>Recently, I am learning some different programming languages which exciting and a little bit tired. Why tired? Coding, testing code and taking notes always need two or three panes in one shell window for each programming language every time, and this is where tmux comes in.</p>
+<p><img src="/img/tmux-structure.png" alt="tmux-demo"></p>
+<blockquote>
+<p>Tmux is a terminal multiplexer, and it lets developers switch easily between programs in one termial, detach them and reattach them to a different terminal. </p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Key_bindings">Key bindings</h2><p>The GitHub repo <a href="https://github.com/gpakosz/.tmux" target="_blank" rel="external">.tmux</a> is a pretty and versatile self-contained tmux configuration which I am using. <code>C-a</code> is the prefix key provided by this repo, while we can keep use default <code>C-b</code> prefix. The following tables show common key bindings which come into play with prefix key, from session to pane:</p>
+<p><strong>SESSION KEY BINGDINGS</strong></p>
+<ul>
+<li><code>tmux ls</code>，显示所有 session</li>
+<li><code>tmux new -s session-name</code>，新建 session</li>
+<li><code>tmux attach -t session-name</code>，进入 session</li>
+<li><code>tmux kill-session -t session-name</code>，关闭 session</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Key</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">C-f</td>
+<td style="text-align:left">find session</td>
+</tr>
+<tr>
+<td style="text-align:center">d</td>
+<td style="text-align:left">hang-up session</td>
+</tr>
+<tr>
+<td style="text-align:center">r</td>
+<td style="text-align:left">reload configuration</td>
+</tr>
+</tbody>
+</table>
+<p><strong>WINDOW KEY BINGDINGS</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Key</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">c</td>
+<td style="text-align:left">create new window</td>
+</tr>
+<tr>
+<td style="text-align:center">,</td>
+<td style="text-align:left">rename current window</td>
+</tr>
+<tr>
+<td style="text-align:center">s</td>
+<td style="text-align:left">list all windows</td>
+</tr>
+<tr>
+<td style="text-align:center">f</td>
+<td style="text-align:left">find window</td>
+</tr>
+<tr>
+<td style="text-align:center">0~9</td>
+<td style="text-align:left">switch window according to serial number</td>
+</tr>
+<tr>
+<td style="text-align:center">&amp;</td>
+<td style="text-align:left">exit tmux and close current window</td>
+</tr>
+<tr>
+<td style="text-align:center">space</td>
+<td style="text-align:left">adjust layout</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PANE KEY BINGDINGS</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Key</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">%</td>
+<td style="text-align:left">create new pane with horizontal direction</td>
+</tr>
+<tr>
+<td style="text-align:center">“</td>
+<td style="text-align:left">create new pane with vertical direction</td>
+</tr>
+<tr>
+<td style="text-align:center">hjkl</td>
+<td style="text-align:left">switch pane</td>
+</tr>
+<tr>
+<td style="text-align:center">HJKL</td>
+<td style="text-align:left">adjust layout size of panes</td>
+</tr>
+<tr>
+<td style="text-align:center">o</td>
+<td style="text-align:left">cycle panes</td>
+</tr>
+<tr>
+<td style="text-align:center">q</td>
+<td style="text-align:left">display serial number of panes</td>
+</tr>
+<tr>
+<td style="text-align:center">x</td>
+<td style="text-align:left">close current pane</td>
+</tr>
+<tr>
+<td style="text-align:center">{/}</td>
+<td style="text-align:left">switch postion of panes</td>
+</tr>
+<tr>
+<td style="text-align:center">Enter</td>
+<td style="text-align:left">enter copy-mode</td>
+</tr>
+<tr>
+<td style="text-align:center">l</td>
+<td style="text-align:left">clear pane and history</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Recently, I am learning some different programming languages which exciting and a little bit tired. Why tired? Coding, testing code and taking notes always need two or three panes in one shell window for each programming language every time, and this is where tmux comes in.</p>
+<p><img src="/img/tmux-structure.png" alt="tmux-demo"></p>
+<blockquote>
+<p>Tmux is a terminal multiplexer, and it lets developers switch easily between programs in one termial, detach them and reattach them to a different terminal. </p>
+</blockquote>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Truthy and Falsy]]></title>
     <link href="http://pinggod.com/2016/Truthy-and-Falsy/"/>
     <id>http://pinggod.com/2016/Truthy-and-Falsy/</id>
     <published>2016-02-12T02:30:54.000Z</published>
-    <updated>2016-02-12T02:52:00.000Z</updated>
+    <updated>2016-02-17T05:16:21.000Z</updated>
     <content type="html"><![CDATA[<p>Truty value and falsy value is a little bit different from Boolean value. In JavaScript, the truthy value is strict equal to <code>true</code> when evaluated in a Boolean context, and the falsy value is evaluted to <code>false</code>.</p>
-<a id="more"></a>
 <p>The following value is common falsy value:</p>
 <ul>
 <li>false</li>
@@ -32,6 +707,7 @@
 <li>‘’</li>
 <li>document.all</li>
 </ul>
+<a id="more"></a>
 <p>All value are truthy value except falsy value:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">!!&#123;&#125; === <span class="literal">true</span></span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">!!<span class="built_in">document</span>.all === <span class="literal">false</span></span><br><span class="line"><span class="comment">// =&gt; true</span></span><br></pre></td></tr></table></figure>
 <h6 id="Reference">Reference</h6><ul>
@@ -40,7 +716,17 @@
 </ul>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>Truty value and falsy value is a little bit different from Boolean value. In JavaScript, the truthy value is strict equal to <code>true</code> when evaluated in a Boolean context, and the falsy value is evaluted to <code>false</code>.</p>]]>
+    <![CDATA[<p>Truty value and falsy value is a little bit different from Boolean value. In JavaScript, the truthy value is strict equal to <code>true</code> when evaluated in a Boolean context, and the falsy value is evaluted to <code>false</code>.</p>
+<p>The following value is common falsy value:</p>
+<ul>
+<li>false</li>
+<li>null</li>
+<li>undefined</li>
+<li>0</li>
+<li>NaN</li>
+<li>‘’</li>
+<li>document.all</li>
+</ul>]]>
     
     </summary>
     
@@ -306,7 +992,7 @@
     <link href="http://pinggod.com/2015/mac-tool-kit/"/>
     <id>http://pinggod.com/2015/mac-tool-kit/</id>
     <published>2015-12-26T10:17:00.000Z</published>
-    <updated>2016-01-16T02:26:23.000Z</updated>
+    <updated>2016-03-13T15:55:00.000Z</updated>
     <content type="html"><![CDATA[<p>这会是一篇持续更新的文章，用于记录我在 mac 中常用的开发工具。过去的一年（2015）里，我使用 mac 作为开发的主力平台，在上面折腾过各类软件，以实现最高的开发效率和最舒适的开发环境。一切都是为了开发成果服务，脱离结果强调过程不是我支持的态度，简而言之，这些都是一些增益技巧。</p>
 <p>文中工具的排序规则（核心是优先安装具有依赖关系的软件）：</p>
 <ol>
@@ -345,6 +1031,7 @@
 <li><a href="https://www.python.org" target="_blank" rel="external">python / python3</a>，python 开发环境</li>
 <li><a href="http://nginx.org/" target="_blank" rel="external">nginx</a>，反向代理服务器</li>
 <li><a href="https://github.com/jakubroztocil/httpie" target="_blank" rel="external">httpie</a>，替代 curl 的 HTTP 终端工具</li>
+<li><a href="https://asciinema.org/" target="_blank" rel="external">asciinema</a>，终端录屏工具</li>
 </ul>
 </li>
 <li><p><a href="http://caskroom.io/" target="_blank" rel="external">Homebrew Cask</a>，使用 hombrew 安装，可用于安装 OS X 应用：</p>
@@ -1037,219 +1724,6 @@
     <summary type="html">
     <![CDATA[<p>在 React 所实践的组件化中，非常重要的一点就是组件的生命周期，简而言之是组件的挂载、更新和卸载流程。下图详细列述了 React 组件在整个生命周期中所涉及的方法和行为：</p>
 <p><img src="/img/react-lifecycle.png" alt="React 组件的生命周期"></p>]]>
-    
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Sass]]></title>
-    <link href="http://pinggod.com/2015/Sass/"/>
-    <id>http://pinggod.com/2015/Sass/</id>
-    <published>2015-11-19T09:19:52.000Z</published>
-    <updated>2015-12-27T09:29:02.000Z</updated>
-    <content type="html"><![CDATA[<p>从 <a href="http://benfrain.com/" target="_blank" rel="external">Ben Frain</a> 的书中可以看出，他是一个勇于实践、善于学习的开发者。一直以来都很关注他的动态，当他的新书《Sass 和 Compass 设计师指南》初版时，就迫不及待地入手了，这是我和 Sass 的第一次见面。后来机缘巧合翻译了 <a href="http://sass-guidelin.es/zh" target="_blank" rel="external">Sass Guidelines</a> 和其它一些颇具实践性的 Sass 文章，零零散散至今大概有了一年的时间。</p>
-<p>以前的翻译专注于“学习”，在这篇文章之后，我将会分配更多的精力到“实践”中，做一些共享性的库或工具回馈社区。</p>
-<div class="tip"><br>    预处理器很强大，但它只是编写 CSS 的辅助工具。出于对扩展和维护等方面的考虑，在大型项目中有必要使用预处理器构建 CSS；但是对于小型项目，原生的 CSS 可能是一种更好的选择。不要肆意使用预处理器！<br></div>
-
-<a id="more"></a>
-<h2 id="Quick_Start">Quick Start</h2><p>Sass 扩展了 CSS 的现有语法，并提供了一些新的语法糖。在下面的简短代码中，集合了 Sass 中最常用的模块引用 <code>@import</code>、变量和嵌套：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 设置字符集</span></span><br><span class="line"><span class="at_rule">@<span class="keyword">charset</span> <span class="string">"UTF-8"</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入模块</span></span><br><span class="line"><span class="at_rule">@<span class="keyword">import</span> <span class="string">"reset"</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建变量</span></span><br><span class="line"><span class="variable">$primary-color</span><span class="value">: <span class="hexcolor">#333</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 嵌套</span></span><br><span class="line"><span class="tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">color</span><span class="value">: <span class="variable">$primary-color</span>;</span></span><br><span class="line">    <span class="tag">ul</span> &#123;</span><br><span class="line">        <span class="attribute">list-style-type</span><span class="value">: none;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="插值字符串">插值字符串</h2><p>Sass 中的插值字符串 <code>#{$var}</code> 有两方面的作用：动态拼接字符串和去除字符串首尾的引号。示例如下：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> header</span>(<span class="variable">$tag</span>) &#123;</span></span><br><span class="line">    #&#123;<span class="variable">$tag</span>&#125;<span class="pseudo">:before</span> &#123;</span><br><span class="line">        <span class="attribute">content</span><span class="value">: <span class="string">"#&#123;$tag&#125;"</span>;</span></span><br><span class="line">        <span class="comment">// 等同于 content: $tag;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.post-content</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> header</span>(<span class="string">"h1"</span>);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译结果：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.post-content</span> <span class="tag">h1</span><span class="pseudo">:before</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">"h1"</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<h2 id="父级引用符：&amp;">父级引用符：<code>&amp;</code></h2><p>可以将父级引用符 <code>&amp;</code> 看做是一个值为父级选择器的插值语法：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">text-decoration</span><span class="value">: none;</span></span><br><span class="line">    &amp;<span class="pseudo">:hover</span> &#123;</span><br><span class="line">        <span class="attribute">text-decoration</span><span class="value">: underline;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译结果：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">a</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">a</span><span class="pseudo">:hover</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> underline</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<h2 id="占位符选择器">占位符选择器</h2><p>占位符选择器是 Sass 特有的一种选择器，声明时以 <code>%</code> 开头，编译时不会输出到 CSS 文件中，主要用于抽象组件的公共部分，配合 <code>@extend</code> 指令实现样式的继承机制：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line">%<span class="attribute">font</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span><span class="value">: <span class="number">14px</span>;</span></span><br><span class="line">    <span class="attribute">font-family</span><span class="value">: <span class="string">"Source Sans Pro"</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">body</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">extend</span> %font;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译结果：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">body</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">14px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">font-family</span>:<span class="value"> <span class="string">"Source Sans Pro"</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<h2 id="数据类型">数据类型</h2><ul>
-<li>字符串 (string): “foo”, foo</li>
-<li>数值 (number): 1.3, 13, 10px</li>
-<li>列表 (list): ( 1.5em 1em 0 2em, Helvetica, Arial, sa ns-serif )</li>
-<li>映射 (map): ( key1: value1, key2: value2 )</li>
-<li>颜色值 (color): blue, #FFFFFF, rgb, hsl, rgba, hsla</li>
-<li>布尔值 (bool): true, false</li>
-<li>空类型 (null): null</li>
-</ul>
-<h2 id="操作符">操作符</h2><ul>
-<li>赋值 <code>:</code></li>
-<li>计算 <code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>、<code>%</code></li>
-<li>比较 <code>==</code>、<code>!=</code>、<code>&gt;</code>、<code>&gt;=</code>、<code>&lt;</code>、<code>&lt;=</code></li>
-<li>逻辑 <code>and</code>、<code>or</code>、<code>not</code></li>
-</ul>
-<p>其中，<code>+</code> 除了用作算术运算之外，也可以用于拼接字符串和求取颜色值。在 Sass 中字符串分为两种：引用字符串（quoted string，外部被引号包裹）和未引用字符串（unquoted string，外部没有引号）。使用 <code>+</code> 拼接字符串时，最终生成的字符串类型为第一个运算子的字符串类型：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span><span class="value">: <span class="string">"Source Sans "</span> + TC;</span></span><br><span class="line">    <span class="tag">p</span> &#123;</span><br><span class="line">        <span class="attribute">font-family</span><span class="value">: sans- + <span class="string">"serif"</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译结果：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">body</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">font-family</span>:<span class="value"> <span class="string">"Source Sans TC"</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">body</span> <span class="tag">p</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">font-family</span>:<span class="value"> sans-serif</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>使用 <code>+</code> 求取颜色值时，必须保证运算子具有相同的不透明度：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">color</span><span class="value">: <span class="function">rgba</span>(<span class="number">70</span>, <span class="number">132</span>, <span class="number">153</span>, <span class="number">1</span>) + <span class="function">rgba</span>(<span class="number">32</span>, <span class="number">68</span>, <span class="number">121</span>, <span class="number">1</span>);</span></span><br><span class="line">    <span class="comment">// =&gt; color: #66c8ff;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">background-color</span><span class="value">: <span class="function">rgba</span>(<span class="number">70</span>, <span class="number">132</span>, <span class="number">153</span>, .<span class="number">9</span>) + <span class="function">rgba</span>(<span class="number">32</span>, <span class="number">68</span>, <span class="number">121</span>, .<span class="number">7</span>);</span></span><br><span class="line">    <span class="comment">// alpha channels must be equal when combining colors </span></span><br><span class="line">    <span class="comment">// 报错：不透明通道值必须相等</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div class="tip"><br>    <code>/</code> 在 CSS 中是有意义的，为了避免和 Sass 除法运算的混淆，所有的除法操作都应该使用小括号 <code>()</code> 包裹，比如使用 <code>font-size: (10px / 2)</code> 产出 <code>font-size: 5px</code>。<br></div>
-
-<h2 id="变量标识符">变量标识符</h2><p>Sass 中的变量有三种身份：普通变量、默认值变量（<code>!default</code>）和全局变量（<code>!global</code>），而且这些变量具有作用域的概念，每个代码块 <code>{}</code> 内一个作用域，整个代码文件内也有一个作用域。</p>
-<p>当我们引用普通变量时，Sass 首先会从当前作用域开始检索变量，如果找不到就上溯到父级作用域，直到递归到最顶层的作用域：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="variable">$color</span><span class="value">: orange;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">div</span> &#123;</span><br><span class="line">    <span class="comment">// 对 $color 重新赋值</span></span><br><span class="line">    <span class="variable">$color</span><span class="value">: blue;</span></span><br><span class="line">    <span class="attribute">color</span><span class="value">: <span class="variable">$color</span>;</span></span><br><span class="line">    <span class="tag">p</span> &#123;</span><br><span class="line">        <span class="attribute">color</span><span class="value">: <span class="variable">$color</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">color</span><span class="value">: <span class="variable">$color</span>;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译结果：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">div</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">color</span>:<span class="value"> blue</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">div</span> <span class="tag">p</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">color</span>:<span class="value"> blue</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">a</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">color</span>:<span class="value"> orange</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>默认值变量往往用于主题的配置文件，起到标识默认值，方便后续的重写覆盖。在最顶层作用域下，变量默认具有全局性，此时使用 <code>!global</code> 并没有实际意义；在块级作用域中，可以通过 <code>!global</code> 将变量提升为全局变量，但这么做势必降低代码的可维护性，所以目前全局变量显得有些鸡肋。</p>
-</blockquote>
-<h2 id="@_指令"><code>@</code> 指令</h2><ul>
-<li>@import 模块引用</li>
-<li>@media 媒体查询</li>
-<li>@extend 选择器继承</li>
-<li>@at-root 嵌套提取</li>
-<li>@debug / @warn / @error 异常和测试</li>
-</ul>
-<p><code>@extend</code> 的强大无可置疑，但是复杂性也一直为人诟病，稍微控制不当就会生成冗余的选择器。归根结底，使用 <code>@extend</code> 是为了继承组件的公有样式，所以在不影响功能的基础上，应该适当的束缚它的能力。到目前为止，最优秀的实践方式就是 <code>@extend</code> 搭配占位符选择器。</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line">%btn &#123;</span><br><span class="line">    <span class="attribute">color</span><span class="value">: white;</span></span><br><span class="line">    <span class="attribute">font-size</span><span class="value">: <span class="number">20px</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.btn-danger</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">extend</span> %btn;</span></span><br><span class="line">    <span class="attribute">background-color</span><span class="value">: red;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.btn-default</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">extend</span> %btn;</span></span><br><span class="line">    <span class="attribute">background-color</span><span class="value">: gray;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译结果：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.btn-danger</span>, <span class="class">.btn-default</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> white</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">20px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.btn-danger</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> red</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.btn-default</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> gray</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>在这个组合中，占位符选择器本身不会被编译到 CSS 文件中，可以节省文件体积，而且 <code>@extend</code> 只继承了单一的占位符选择器，杜绝了选择器泛滥。此外，相比起 <code>@mixin</code> 来，<code>@extend</code> 搭配占位符选择器生成的结果会聚合在同一个样式集中：</p>
-<p><img src="/img/mixin-vs-extend.png" alt="@extend vs @mixin"></p>
-<blockquote>
-<p>如果再上升一个层次分工的话，那就需要比较一下 <code>@mixin</code> 和 <code>@extend</code>。这两种方式都可以生成公有样式，但是仅此而已就是浪费了 <code>@mixin</code> 的能力。就目前的最佳实践来说，建议使用 <code>@extend</code> 搭配占位符选择器继承公有样式，使用 <code>@mixin</code> 产出动态样式。<code>@mixin</code> 的详细介绍见后续小节。</p>
-</blockquote>
-<h2 id="控制指令">控制指令</h2><ul>
-<li>@if … @else if … @else … 条件判断</li>
-<li>@for $var from start through end [start, end] 循环</li>
-<li>@for $var from start to end [start, end) 循环</li>
-<li>@each … in … 遍历</li>
-<li>@while</li>
-</ul>
-<p><code>@each</code> 可以用来遍历 list 和 map 类型的数据，示例如下：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="variable">$btn</span><span class="value">: (</span><br><span class="line">    danger: red, </span><br><span class="line">    primary: blue, </span><br><span class="line">    warning: orange</span><br><span class="line">);</span></span><br><span class="line"></span><br><span class="line"><span class="at_rule">@<span class="keyword">each</span> <span class="variable">$type</span>, <span class="variable">$color</span><span class="preprocessor"> in</span> <span class="variable">$btn</span> &#123;</span></span><br><span class="line">    <span class="class">.btn-</span>#&#123;<span class="variable">$type</span>&#125; &#123;</span><br><span class="line">        <span class="attribute">color</span><span class="value">: <span class="variable">$color</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译结果：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.btn-danger</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> red</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.btn-primary</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> blue</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.btn-warning</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> orange</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<h2 id="混合宏_@mixin">混合宏 <code>@mixin</code></h2><p>在 <code>@extend</code> 部分已经介绍到 <code>@mixin</code> 的一个功能是生成公有样式，但事实上，建议你避开使用该功能，而是着眼于使用 <code>@mixin</code> 动态生成共有样式，更优雅地实现组件复用：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> btn</span>(<span class="variable">$fontSize</span>, <span class="variable">$borderRadius</span>) &#123;</span></span><br><span class="line">    <span class="attribute">font-size</span><span class="value">: <span class="variable">$fontSize</span>;</span></span><br><span class="line">    <span class="attribute">border-radius</span><span class="value">: <span class="variable">$borderRadius</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.btn-sm</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> btn</span>(<span class="number">14px</span>,<span class="preprocessor"> 3px</span>);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.btn-lg</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> btn</span>(<span class="number">18px</span>,<span class="preprocessor"> 5px</span>);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译结果：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.btn-sm</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">14px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">3px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.btn-lg</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">18px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">5px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<p><code>@mixin</code> 的参数除了上面示例的普通参数，还包括默认值参数和不定参数。默认值参数通过提供默认样式，可以在参数缺失时，保障代码的健壮性：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> btn</span>(<span class="variable">$fontSize</span>, <span class="variable">$borderRadius</span>:<span class="preprocessor"> 5px</span>) &#123;</span></span><br><span class="line">    <span class="attribute">font-size</span><span class="value">: <span class="variable">$fontSize</span>;</span></span><br><span class="line">    <span class="attribute">border-radius</span><span class="value">: <span class="variable">$borderRadius</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.btn-lg</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> btn</span>(<span class="number">18px</span>);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译结果：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.btn-lg</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">18px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">5px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>不定参数可以保存零个或多个值，最常用的地方就是为同一属性添加多个值，比如多重阴影：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> box-shadow</span>(<span class="variable">$shadows</span>...) &#123;</span></span><br><span class="line">    -moz-<span class="attribute">box-shadow</span><span class="value">: <span class="variable">$shadows</span>;</span></span><br><span class="line">    -webkit-<span class="attribute">box-shadow</span><span class="value">: <span class="variable">$shadows</span>;</span></span><br><span class="line">    <span class="attribute">box-shadow</span><span class="value">: <span class="variable">$shadows</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.shadows</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> box-shadow</span>(<span class="number">0px</span><span class="preprocessor"> 4px</span><span class="preprocessor"> 5px</span> <span class="hexcolor">#666</span>,<span class="preprocessor"> 2px</span><span class="preprocessor"> 6px</span><span class="preprocessor"> 10px</span> <span class="hexcolor">#999</span>);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译结果：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.shadows</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">-moz-box-shadow</span>:<span class="value"> <span class="number">0px</span> <span class="number">4px</span> <span class="number">5px</span> <span class="hexcolor">#666</span>, <span class="number">2px</span> <span class="number">6px</span> <span class="number">10px</span> <span class="hexcolor">#999</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">-webkit-box-shadow</span>:<span class="value"> <span class="number">0px</span> <span class="number">4px</span> <span class="number">5px</span> <span class="hexcolor">#666</span>, <span class="number">2px</span> <span class="number">6px</span> <span class="number">10px</span> <span class="hexcolor">#999</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">box-shadow</span>:<span class="value"> <span class="number">0px</span> <span class="number">4px</span> <span class="number">5px</span> <span class="hexcolor">#666</span>, <span class="number">2px</span> <span class="number">6px</span> <span class="number">10px</span> <span class="hexcolor">#999</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>此外，在传参时也可以使用不定参数：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> colors</span>(<span class="variable">$text</span>, <span class="variable">$background</span>, <span class="variable">$border</span>) &#123;</span></span><br><span class="line">    <span class="attribute">color</span><span class="value">: <span class="variable">$text</span>;</span></span><br><span class="line">    <span class="attribute">background-color</span><span class="value">: <span class="variable">$background</span>;</span></span><br><span class="line">    <span class="attribute">border-color</span><span class="value">: <span class="variable">$border</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$values</span><span class="value">: <span class="hexcolor">#ff0000</span>, <span class="hexcolor">#00ff00</span>, <span class="hexcolor">#0000ff</span>;</span></span><br><span class="line"><span class="class">.primary</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> colors</span>(<span class="variable">$values</span>...);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$value-map</span><span class="value">: (text: <span class="hexcolor">#00ff00</span>, background: <span class="hexcolor">#0000ff</span>, border: <span class="hexcolor">#ff0000</span>);</span></span><br><span class="line"><span class="class">.secondary</span> &#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> colors</span>(<span class="variable">$value-map</span>...);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译结果：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.primary</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#ff0000</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#00ff00</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-color</span>:<span class="value"> <span class="hexcolor">#0000ff</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.secondary</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#00ff00</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#0000ff</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-color</span>:<span class="value"> <span class="hexcolor">#ff0000</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<div class="tip"><br>    在 <code>@mixin</code> 中配置参数时，先写普通参数，然后是默认值参数，最后是不定参数。<br></div>
-
-<h2 id="函数指令_@function">函数指令 <code>@function</code></h2><p>相比起上面的继承和动态生成，<code>@function</code> 在生成方式上自由度更高。此外，还可以嵌套上面的各种指令和操作符，对数据进行筛选、在加工，生成特定样式。在下面的代码中，混合宏根据栅格的数量，动态生成容器的宽度：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="variable">$grid-width</span><span class="value">: <span class="number">40px</span>;</span></span><br><span class="line"><span class="variable">$gutter-width</span><span class="value">: <span class="number">10px</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="at_rule">@function<span class="preprocessor"> width</span>(<span class="variable">$n</span>) &#123;</span></span><br><span class="line">    <span class="at_rule">@return <span class="variable">$n</span> * <span class="variable">$grid-width</span> + (<span class="variable">$n</span><span class="preprocessor"> -</span><span class="preprocessor"> 1</span>) * <span class="variable">$gutter-width</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.container</span> &#123; </span><br><span class="line">    <span class="attribute">width</span><span class="value">: <span class="function">width</span>(<span class="number">5</span>);</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译结果：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.container</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">240px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<h6 id="参考资料">参考资料</h6><ul>
-<li><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#blue-instance_method" target="_blank" rel="external">Sass 内建函数</a></li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>从 <a href="http://benfrain.com/">Ben Frain</a> 的书中可以看出，他是一个勇于实践、善于学习的开发者。一直以来都很关注他的动态，当他的新书《Sass 和 Compass 设计师指南》初版时，就迫不及待地入手了，这是我和 Sass 的第一次见面。后来机缘巧合翻译了 <a href="http://sass-guidelin.es/zh">Sass Guidelines</a> 和其它一些颇具实践性的 Sass 文章，零零散散至今大概有了一年的时间。</p>
-<p>以前的翻译专注于“学习”，在这篇文章之后，我将会分配更多的精力到“实践”中，做一些共享性的库或工具回馈社区。</p>
-<div class="tip"><br>    预处理器很强大，但它只是编写 CSS 的辅助工具。出于对扩展和维护等方面的考虑，在大型项目中有必要使用预处理器构建 CSS；但是对于小型项目，原生的 CSS 可能是一种更好的选择。不要肆意使用预处理器！<br></div>]]>
-    
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[数据类型的分类]]></title>
-    <link href="http://pinggod.com/2015/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%86%E7%B1%BB/"/>
-    <id>http://pinggod.com/2015/数据类型的分类/</id>
-    <published>2015-11-15T11:29:36.000Z</published>
-    <updated>2015-12-15T09:15:01.000Z</updated>
-    <content type="html"><![CDATA[<p>开始写作本文的时候，我已经顺利地度过了四个月的前端实习生活，其间经手的项目勉强称得上稳定和健壮。但是刚刚学习前端的那些日子，可没现在这么自信，回想起来仍然颇多感慨。</p>
-<p>《JavaScript 典型应用与最佳实践》是我学习 JavaScript 的启蒙书籍，初版于 2008 年，面色古老而又心思缜密。其中的原始值和引用值一节，让我对 JavaScript 中数据类型的理解豁然开朗。如果从写作的角度看这本书，它的亮点在于以一种结构化的思维由浅入深地引导读者，主干和分支条缕清晰。有趣的是，在我用谷歌为结构化思维（Structed Thinking）查找一些理论依据的时候，链接到了一本更古老的书籍《金字塔原理：思考、写作和解决问题的逻辑》，书中介绍的正是作者自 1963 年以来反复实践的一套结构化思维，具体的细节等我读完后再聊吧。</p>
-<a id="more"></a>
-<p>最近项目中使用到的技术都比较激进，比如 ES6 / React / Flux 等等。在 ES6 的代码中你能看到诸多其他语言的影子，比如 Python，所以上一周我决定重新回顾一下 Python 中的要点，选用的参考资料是由 Wesley J. Chun 编写的《Python 核心编程（第二版）》。</p>
-<p>当读到 4.8 节《标准类型的分类》时，我可以确定，这又是一次结构化思维在知识传播过程中华丽的表演。在高级程序设计语言中，数据类型是必不可少的一部分。理解一门语言的数据类型，也是最基础的一步。虽然下面的示例交错使用 Python 和 JavaScript，但其中所叙述的本质是具有广泛性的。</p>
-<h2 id="Python">Python</h2><p>Python 中每个对象都有三个特性：id, type 和 value。这些特性在对象初始化时创建。Python 内建了多种数据类型，基本类型包括：</p>
-<ul>
-<li>integer, long integer, float, complex number</li>
-<li>string</li>
-<li>list</li>
-<li>tuple</li>
-<li>dictionary</li>
-</ul>
-<p>对数据类型分类，可以让我们更清晰地理解类型之间的关系以及工作原理。首先，使用存储模型进行分类。存储类型的衡量标准就是看对象能保存多少个对象。对于只能存储单个基本类型的对象，我们称之为原子或标量存储；那些可以存储多个基本类型的对象，称之为容器存储。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">分类</th>
-<th style="text-align:center">Python 类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">标量 / 原子存储</td>
-<td style="text-align:center">数值、字符串</td>
-</tr>
-<tr>
-<td style="text-align:center">容器类型</td>
-<td style="text-align:center">列表、元素、字典</td>
-</tr>
-</tbody>
-</table>
-<p>然后，使用更新模型进行分类，更新模型的分类依据是看对象是否允许多次赋值。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">分类</th>
-<th style="text-align:center">Python 类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">可变类型</td>
-<td style="text-align:center">列表、字典</td>
-</tr>
-<tr>
-<td style="text-align:center">不可变类型</td>
-<td style="text-align:center">数值、字符串、元组</td>
-</tr>
-</tbody>
-</table>
-<p>最后，使用访问模型进行分类，访问模型的分类依据是看访问方式：直接存取、顺序存取以及映射存取。直接存储通过地址直接访问内存获取数据，数值属于这一类型；顺序存取通过对象的索引从 0 顺序访问内部元素，字符串、列表和元组都属于这一类型；映射存储与顺序存取类型，不同点在于它使用哈希键来访问数据，字典属于这一类型。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">分类</th>
-<th style="text-align:center">Python 类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">直接访问</td>
-<td style="text-align:center">数值</td>
-</tr>
-<tr>
-<td style="text-align:center">顺序访问</td>
-<td style="text-align:center">字符串、列表、元组</td>
-</tr>
-<tr>
-<td style="text-align:center">映射访问</td>
-<td style="text-align:center">字典</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>文中使用这么多的模型对数据类型分类，将基本类型和扩展类型进行区别，描述了各种类型的具体特征。简而言之，文中调侃了一句话：“一个优秀的工匠应该知道自己的工具箱有什么宝贝”。</p>
-</blockquote>
-<h2 id="JavaScript">JavaScript</h2><p>ECMAScript 规范中定义了变量的两种类型：原始值类型和引用值类型。用以区分的依据就是它们在内存中的存储类型：值存储和址存储。</p>
-<p>为什么要分值和地址两种方式？一般而言，值存储的变量（原始值类型）都具有占据空间小、大小固定的特点。只有 string 是个特例，虽然它不具备大小固定的要求，但它是不可变的，是稳定而又会被频繁调用的。在其他语言中，string 大多是可变的。</p>
-<p>址存储的类型，具有占据空间大、大小不固定的特点，因此如果使用值存储的方式放在内存中，将会影响程序运行的性能。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>开始写作本文的时候，我已经顺利地度过了四个月的前端实习生活，其间经手的项目勉强称得上稳定和健壮。但是刚刚学习前端的那些日子，可没现在这么自信，回想起来仍然颇多感慨。</p>
-<p>《JavaScript 典型应用与最佳实践》是我学习 JavaScript 的启蒙书籍，初版于 2008 年，面色古老而又心思缜密。其中的原始值和引用值一节，让我对 JavaScript 中数据类型的理解豁然开朗。如果从写作的角度看这本书，它的亮点在于以一种结构化的思维由浅入深地引导读者，主干和分支条缕清晰。有趣的是，在我用谷歌为结构化思维（Structed Thinking）查找一些理论依据的时候，链接到了一本更古老的书籍《金字塔原理：思考、写作和解决问题的逻辑》，书中介绍的正是作者自 1963 年以来反复实践的一套结构化思维，具体的细节等我读完后再聊吧。</p>]]>
     
     </summary>
     

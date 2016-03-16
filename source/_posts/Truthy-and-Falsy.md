@@ -5,8 +5,6 @@ desc: javascript knowledge of truthy value and falsy value
 
 Truty value and falsy value is a little bit different from Boolean value. In JavaScript, the truthy value is strict equal to `true` when evaluated in a Boolean context, and the falsy value is evaluted to `false`.
 
-<!-- more -->
-
 The following value is common falsy value:
 
 - false
@@ -16,6 +14,8 @@ The following value is common falsy value:
 - NaN
 - ''
 - document.all
+
+<!-- more -->
 
 All value are truthy value except falsy value:
 
