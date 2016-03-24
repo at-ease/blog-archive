@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://pinggod.com/"/>
-  <updated>2016-03-16T11:25:07.000Z</updated>
+  <updated>2016-03-16T11:56:08.000Z</updated>
   <id>http://pinggod.com/</id>
   
   <author>
@@ -19,11 +19,11 @@
     <link href="http://pinggod.com/2016/%E6%B4%97%E7%89%8C%E7%AE%97%E6%B3%95/"/>
     <id>http://pinggod.com/2016/洗牌算法/</id>
     <published>2016-03-16T05:45:02.000Z</published>
-    <updated>2016-03-16T11:25:07.000Z</updated>
+    <updated>2016-03-16T11:56:08.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>翻译自 <a href="https://www.kirupa.com/html5/shuffling_array_js.htm" target="_blank" rel="external">Shuffling an Array in JavaScript</a></p>
 </blockquote>
-<p>洗牌算法是一个比较形象的术语，本质上让一个数组内的元素随机排列。举例来说，我们有一个如下图所示的数组，数组长度为 9，数组内元素的值顺次分别是 1~9：</p>
+<p>洗牌算法是一个比较形象的术语，本质上是让一个数组内的元素随机排列。举例来说，我们有一个如下图所示的数组，数组长度为 9，数组内元素的值顺次分别是 1~9：</p>
 <p><img src="/img/shuffle-array-1.png" alt="shffle-array-1"></p>
 <p>从上面这个数组入手，我们要做的就是打乱数组内元素的顺序：</p>
 <p><img src="/img/shuffle-array-2.png" alt="shffle-array-2"></p>
@@ -140,7 +140,7 @@
 </script>
 
 <p>上图是使用 Highcharts 制作的随机性测试图表，以可视化的方式校验本文中洗牌算法的随机性。每次刷新页面都会重新计算和生成该图表。</p>
-<p>生成上图的数据是这样计算而来的：首先创建一个数组（上图使用的数组为 <code>[0, 1, 2 ... 18, 19, 20]</code>），然后使用本文中的洗牌算法重新排序，排序完成后记录每一个元素的值……以此步骤执行 100000 次，最后对同一索引位置上的数值进行求和。如此执行 10000 次之后，索引之间的总值应该相差不大。</p>
+<p>生成上图的数据是这样计算而来的：首先创建一个数组（上图使用的数组为 <code>[0, 1, 2 ... 18, 19, 20]</code>），然后使用本文中的洗牌算法重新排序，排序完成后记录每一个元素的值……以此步骤执行 10000 次，最后对同一索引位置上的数值进行求和。如此执行 10000 次之后，索引之间的总值应该相差不大。</p>
 <p>由计算可得：</p>
 <p>$$average=\frac{(0+20)\times21\times10000}{2\times21}=100k$$</p>
 <h6 id="参考资料">参考资料</h6><ul>
@@ -154,7 +154,7 @@
     <![CDATA[<blockquote>
 <p>翻译自 <a href="https://www.kirupa.com/html5/shuffling_array_js.htm">Shuffling an Array in JavaScript</a></p>
 </blockquote>
-<p>洗牌算法是一个比较形象的术语，本质上让一个数组内的元素随机排列。举例来说，我们有一个如下图所示的数组，数组长度为 9，数组内元素的值顺次分别是 1~9：</p>
+<p>洗牌算法是一个比较形象的术语，本质上是让一个数组内的元素随机排列。举例来说，我们有一个如下图所示的数组，数组长度为 9，数组内元素的值顺次分别是 1~9：</p>
 <p><img src="/img/shuffle-array-1.png" alt="shffle-array-1"></p>
 <p>从上面这个数组入手，我们要做的就是打乱数组内元素的顺序：</p>
 <p><img src="/img/shuffle-array-2.png" alt="shffle-array-2"></p>]]>
@@ -168,18 +168,18 @@
     <link href="http://pinggod.com/2016/JavaScript-21-%E9%97%AE/"/>
     <id>http://pinggod.com/2016/JavaScript-21-问/</id>
     <published>2016-03-12T12:22:26.000Z</published>
-    <updated>2016-03-12T15:45:24.000Z</updated>
+    <updated>2016-03-16T12:22:18.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>翻译自：<a href="https://www.codementor.io/javascript/tutorial/21-essential-javascript-tech-interview-practice-questions-answers" target="_blank" rel="external">21 Essential JavaScript Interview Questions</a></p>
 </blockquote>
-<p>JavaScript 因其历史原因一直存在诸多缺陷，本文所讨论的只是其中的一小部分，适合为初学者答疑解惑，此外文中观点尚存在不足之处，或者对部分问题 ES6 已经纠正和改善。</p>
+<p>JavaScript 因其历史原因一直存在诸多缺陷，本文所讨论的只是其中的一小部分，适合为初学者答疑解惑，此外文中观点尚存在不足之处，或者对部分问题 ES6 已经提出了新的解决方案。</p>
 <a id="more"></a>
-]]></content>
+<h2 id="一">一</h2>]]></content>
     <summary type="html">
     <![CDATA[<blockquote>
 <p>翻译自：<a href="https://www.codementor.io/javascript/tutorial/21-essential-javascript-tech-interview-practice-questions-answers">21 Essential JavaScript Interview Questions</a></p>
 </blockquote>
-<p>JavaScript 因其历史原因一直存在诸多缺陷，本文所讨论的只是其中的一小部分，适合为初学者答疑解惑，此外文中观点尚存在不足之处，或者对部分问题 ES6 已经纠正和改善。</p>]]>
+<p>JavaScript 因其历史原因一直存在诸多缺陷，本文所讨论的只是其中的一小部分，适合为初学者答疑解惑，此外文中观点尚存在不足之处，或者对部分问题 ES6 已经提出了新的解决方案。</p>]]>
     
     </summary>
     
