@@ -155,7 +155,9 @@ ctx.fill();
 > `ctx.clearrect(xTopLeft, yTopLeft, xBottomRight, yBottomRight)` 方法可以用来清除特定区域。
 
 
+###### 参考资料
 
+- [Canvas 绘图详解](http://www.imooc.com/video/3492)
 
 
 

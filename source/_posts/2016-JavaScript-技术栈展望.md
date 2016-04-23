@@ -164,7 +164,7 @@ Netflix 的 [Falcor](https://github.com/Netflix/falcor) 看起来提供了和 Gr
 
 到目前为止，我还没有发现满足上述所有条件的解决方案。
 
-如果你正在使用 RESFful，建议参考 [Swagger](http://swagger.io/) 来编写 API。
+如果你正在使用 RESTful，建议参考 [Swagger](http://swagger.io/) 来编写 API。
 
 ## Electron
 

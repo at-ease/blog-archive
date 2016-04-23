@@ -1,4 +1,10 @@
 title: {{ title }}
-tags:
+date: {{ date }}
 desc:
 ---
+
+
+
+
+
+<!-- more -->

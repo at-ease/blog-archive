@@ -15,9 +15,7 @@ ul(class="inline")
     li  Item B
 ```
 
-
 <!-- more -->
-
 
 ## 属性
 
