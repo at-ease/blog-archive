@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://pinggod.com/"/>
-  <updated>2016-04-18T05:24:00.000Z</updated>
+  <updated>2016-05-05T02:26:05.000Z</updated>
   <id>http://pinggod.com/</id>
   
   <author>
@@ -16,11 +16,232 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>React Falcor ES6 and Automated JavaScript Testing</title>
+    <link href="http://pinggod.com/2016/React-Falcor-ES6-and-automated-JavaScript-Testing/"/>
+    <id>http://pinggod.com/2016/React-Falcor-ES6-and-automated-JavaScript-Testing/</id>
+    <published>2016-04-28T02:09:34.000Z</published>
+    <updated>2016-05-05T02:26:05.000Z</updated>
+    
+    <content type="html">&lt;p&gt;本文是对新技术的一个尝试，向各位演示构建用户界面、服务器和数据接口的新方式，换句话说，这里会同时涉及前后端的技术，最终的完整代码请查看&lt;a href=&quot;https://github.com/Widen/fullstack-react&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt; GitHub 仓库&lt;/a&gt;。Widen（作者所在的公司）的传统技术栈包含了服务端的 Java 、前端的 AngularJS、处理 REST API 的 Jersey 以及其他周边库，比如 jQuery、underscore、lodash 等。为了向各位演示新技术，我设计了一些基本示例，这些示例主要遵循了以下几点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;技术要新颖。抛弃上述提及的现有技术栈，完全使用一套新的技术栈，从新的角度重新审视前后端开发并驱动自身的技术成长&lt;/li&gt;
+&lt;li&gt;学习曲线要平缓。AngularJS 1.x 的学习曲线已经够陡峭了，我发现 AngularJS 2.x 好像有过之而无不及。我非常希望避免过多的模板代码，在不影响可扩展性的同时提高应用程序的启动和运行速度。此外，实现前端开发的模块化也是目标之一。REST API 越来越难以维护和改进，前端开发者必须和后端工程师合作协议抛出一系列 API 才能正确地将 Model 数据映射到前端页面。当 UI 发生变化时，REST API 往往也需要变化，所以我们迫切需要一种新的方案&lt;/li&gt;
+&lt;li&gt;运行要高效。传统的 REST API 有一些痼疾，比如不必要的请求开销、过多的请求次数以及不必要的响应开销。我很少关心前端的渲染性能，因为 React 和 AugularJS 都在内部进行了很好的优化&lt;/li&gt;
+&lt;li&gt;代码要优雅。我一直在寻找某些方法或工具让代码变得优雅起来，便于阅读和理解。无论是查找还是修改 UI 方面的代码都应该是简单明了的，在理想情况下，我只需要管好我自己的 Modal 就好了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;为了达成上述目标，我决定使用从未接触过的技术替换自己熟悉的技术栈，在整个过程中肯定会有大量的学习和思考，而这也是我要通过本文和各位分享的焦点。在下文中，我将会一一指出这些技术，然后做一些简单的介绍，最后就是实战演练。&lt;/p&gt;
+&lt;h2 id=&quot;技术栈概览&quot;&gt;&lt;a href=&quot;#技术栈概览&quot; class=&quot;headerlink&quot; title=&quot;技术栈概览&quot;&gt;&lt;/a&gt;技术栈概览&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;React，与 Angular 和 Ember 的大而全不同，它更专注于视图层。React 使用 JSX 语法构建页面标签，这些标签被真实渲染到页面之前称为 virtual DOM。React 相当于代理开发者高效地处理页面渲染，减少重绘和回流，从而提高页面性能。简而言之，React 的优点就是优雅易用易上手&lt;/li&gt;
+&lt;li&gt;Falcor，Netflix 开源的库，与传统的 REST API 提供精确、预定的数据不同，该库的思路是提供一个完整的数据，再由开发者向 API 服务器发送个性化的需求。&lt;/li&gt;
+&lt;li&gt;Webpack：&lt;/li&gt;
+&lt;li&gt;ES6：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://engineering.widen.com/blog/future-of-the-web-react-falcor/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Future of Web Development - React, Falcor, and ES6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://engineering.widen.com/blog/testing-future-web-stack/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Full-Stack Automated JavaScript Testing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文是对新技术的一个尝试，向各位演示构建用户界面、服务器和数据接口的新方式，换句话说，这里会同时涉及前后端的技术，最终的完整代码请查看&lt;a href=&quot;https://github.com/Widen/fullstack-react&quot;&gt; GitHub 仓库&lt;/a&gt;。Widen（作者所在的公司）的传统技术栈包含了服务端的 Java 、前端的 AngularJS、处理 REST API 的 Jersey 以及其他周边库，比如 jQuery、underscore、lodash 等。为了向各位演示新技术，我设计了一些基本示例，这些示例主要遵循了以下几点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;技术要新颖。抛弃上述提及的现有技术栈，完全使用一套新的技术栈，从新的角度重新审视前后端开发并驱动自身的技术成长&lt;/li&gt;
+&lt;li&gt;学习曲线要平缓。AngularJS 1.x 的学习曲线已经够陡峭了，我发现 AngularJS 2.x 好像有过之而无不及。我非常希望避免过多的模板代码，在不影响可扩展性的同时提高应用程序的启动和运行速度。此外，实现前端开发的模块化也是目标之一。REST API 越来越难以维护和改进，前端开发者必须和后端工程师合作协议抛出一系列 API 才能正确地将 Model 数据映射到前端页面。当 UI 发生变化时，REST API 往往也需要变化，所以我们迫切需要一种新的方案&lt;/li&gt;
+&lt;li&gt;运行要高效。传统的 REST API 有一些痼疾，比如不必要的请求开销、过多的请求次数以及不必要的响应开销。我很少关心前端的渲染性能，因为 React 和 AugularJS 都在内部进行了很好的优化&lt;/li&gt;
+&lt;li&gt;代码要优雅。我一直在寻找某些方法或工具让代码变得优雅起来，便于阅读和理解。无论是查找还是修改 UI 方面的代码都应该是简单明了的，在理想情况下，我只需要管好我自己的 Modal 就好了&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Math.random()</title>
+    <link href="http://pinggod.com/2016/Math-random/"/>
+    <id>http://pinggod.com/2016/Math-random/</id>
+    <published>2016-04-26T11:01:03.000Z</published>
+    <updated>2016-04-28T01:52:17.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot; id=&quot;canvas2img&quot; style=&quot;height: 120px; width: 100%; overflow: hidden;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;canvas id=&quot;canvas&quot; style=&quot;display: none;&quot;&gt;&lt;/canvas&gt;&lt;/p&gt;
+&lt;script&gt;
+&#39;use strict&#39;;
+
+(function () {
+    var image = document.querySelector(&#39;#canvas2img&#39;);
+    var canvas = document.querySelector(&#39;#canvas&#39;);
+    var container = document.querySelector(&#39;.post-block&#39;);
+    var cxt = canvas.getContext(&#39;2d&#39;);
+    var width = container.offsetWidth;
+    var height = 120;
+
+    canvas.width = width;
+    canvas.height = height;
+
+    for (var y = 0; y &lt; height; y++) {
+        for (var x = 0; x &lt; width; x++) {
+            cxt.fillStyle = Math.random() &lt; 0.5 ? &#39;black&#39; : &#39;white&#39;;
+            cxt.fillRect(x, y, x + 1, y + 1);
+        }
+    }    
+
+    image.src = canvas.toDataURL();
+})();
+&lt;/script&gt;
+
+&lt;p&gt;唐纳德·克努特曾在《计算机程序设计的艺术》（卷二）中指出：“当今使用的大部分随机数生成器都不够优秀，而且开发者倾向于拿来就用，不去了解具体的生成策略。以至于我们常常发现一些略有瑕疵、年代久远的随机数生成器会被盲目地用在一个又一个的程序中，而对于它们的局限性，却无人问津。”&lt;/p&gt;
+&lt;p&gt;我希望在读过本文之后能够让大家对以下两件事深表认同，虽然其中一件尚存在争议：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;我们不应该忽视 V8 PRNG（pseudo-random number generator）的局限性，至少应该了解更安全的 CSPRNG（Cryptographically Secure Pseudo-Random Number Generator）&lt;/li&gt;
+&lt;li&gt;当前 V8 引擎中的 &lt;code&gt;Math.random()&lt;/code&gt; 存在问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;Betable（作者所在的公司）的业务非常依赖随机数，最常见的需求就是生成一个随机标识符，而且对这标识符有一个严格的要求：不允许生成同一个标识符两次，也就是杜绝碰撞。&lt;/p&gt;
+&lt;p&gt;但事实上影响碰撞效果的因素只有两个：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;标识符的总量，即有多少种可能性&lt;/li&gt;
+&lt;li&gt;标识符的生成策略&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;为了避免基于生日悖论（birthday paradox）的攻击，我们生成的标识符由 64 种字符（数字、大小写字母以及 &lt;code&gt;-&lt;/code&gt; 和 &lt;code&gt;_&lt;/code&gt; ）组成 22 位字符串，比如 EB5iGydiUL0h4bRu1ZyRIi 和 HV2ZKGVJJklN0eH35IgNaB。也就是说标识符总共存在 2^132 种可能性，如果每秒会生成一百万个标识符，那么在未来三百年内发生碰撞的几率只有六十亿分之一。&lt;/p&gt;
+&lt;p&gt;有了足够的标识符之后，我们就要考虑标识符的生成策略。传统方式是使用伪随机数字生成器（PRNG），这一生成器也是许多标准库的选择。因为我们的很多服务是基于 Node.js 构建的，所以会用到 V8 引擎中的 Math.random()，该函数返回一个 &lt;code&gt;[0, 1)&lt;/code&gt; 之间的数字。&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; ALPHABET = &lt;span class=&quot;string&quot;&gt;&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;random_base64 = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;random_base64&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;length&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; str = &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; i=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; length; ++i) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; rand = &lt;span class=&quot;built_in&quot;&gt;Math&lt;/span&gt;.floor(&lt;span class=&quot;built_in&quot;&gt;Math&lt;/span&gt;.random() * ALPHABET.length);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        str += ALPHABET.substring(rand, rand+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; str;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在上面的代码中我们创建了一个包含所有字符的序列，然后基于 Math.random() 的返回值从中随机选取字符，最终拼接成长为 &lt;code&gt;length&lt;/code&gt; 的标识符字符串。&lt;/p&gt;
+&lt;p&gt;这一生成策略看起来很完美，直到有一天我们收到了 Nick Forte 的邮件，他在邮件中声称它接收到了两个相同的标识符。这让我们意识到其中必有蹊跷。John von Neumann 曾经毫不留情地指责：“开发者对使用算法生成随机数的自负和执迷不悟，是一切的原罪。”简而言之，确定性的方法无法真实地创造随机性，比如数理运算。这道理听起来矛盾重重似是而非……&lt;/p&gt;
+&lt;h2 id=&quot;PRNG&quot;&gt;&lt;a href=&quot;#PRNG&quot; class=&quot;headerlink&quot; title=&quot;PRNG&quot;&gt;&lt;/a&gt;PRNG&lt;/h2&gt;&lt;p&gt;从下图演示的随机数生成流程中可以清晰看出，PRNG 算法生成的并不是随机数，而是一种伪随机。对于大多数的使用场景，伪随机的做法并没有错，重点是这种伪随机要足够以假乱真。在伪随机性之外，下图还揭示了另一个问题：周期性循环。虽然周期长短都无法保证伪随机的质量，但长周期显然要好于短周期，如果我们知道周期的存在但无法计算这一周期长度时，那么就可以将其周期上限视为小于等于随机数的数量，这也是一个优秀的 PRNG 算法应具有的特点。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/math-random-prng-2016-04-27.png&quot; alt=&quot;math-random-prng-2016-04-27&quot;&gt;&lt;/p&gt;
+&lt;p&gt;接下来，让我们深入分析一下 PRNG 生成的随机序列所存在的缺陷。举例来说，我们需要使用 PRNG 处理 [0, 15] 十六个整数生成类似 &lt;code&gt;(2, 13, 4)&lt;/code&gt; 和 &lt;code&gt;(5, 12, 15)&lt;/code&gt; 之类的元组，理论上说应该有 16^3 种可能性，但简单的 PRNG 只会生成少量的非重复结果（这里是 16 种）：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/math-random-prng-2-2016-04-27.png&quot; alt=&quot;math-random-prng-2-2016-04-27&quot;&gt;&lt;/p&gt;
+&lt;p&gt;还记得本文最初提到的随机标识符吗？生成标识符的原理就和生成上面的元组一样，最终能够生成的非重复结果就取决于 PRNG 的内部状态和循环周期。&lt;/p&gt;
+&lt;h2 id=&quot;Math-random&quot;&gt;&lt;a href=&quot;#Math-random&quot; class=&quot;headerlink&quot; title=&quot;Math.random()&quot;&gt;&lt;/a&gt;Math.random()&lt;/h2&gt;&lt;p&gt;对于 Nick 在邮件中提到的问题，我们迅速审查了相关的代码逻辑，但并没有找到任何缺陷，这说明问题涉及的技术层面可能会非常深。ECMAScript 规范是这样描述 Math.random() 的：“返回一个整数，该整数的取值范围大于等于 0 而小于 1，浏览器开发商使用自定义的算法或策略从该范围内实现均匀分布的随机或伪随机效果。”&lt;/p&gt;
+&lt;p&gt;显然，规范中遗漏了大量的细节。首先，它没有定义精度。由于 ECMAScript 使用 IEEE 754 双精度浮点数存储所有数值，所以理论上应该有 53 位的精确度，即随机数的随机范围是 &lt;code&gt;[1/x^53, 2^53-1]&lt;/code&gt;，但实际上，V8 中的 Math.random() 只有 32 位精度，不过这已经足够我们用的了。&lt;/p&gt;
+&lt;p&gt;真正的问题是规范放任浏览器开发者自由实现该方法，且没有限制最小的周期长度，唯一对分布的要求也只是“近似均匀”。&lt;/p&gt;
+&lt;h2 id=&quot;V8-PRNG&quot;&gt;&lt;a href=&quot;#V8-PRNG&quot; class=&quot;headerlink&quot; title=&quot;V8 PRNG&quot;&gt;&lt;/a&gt;V8 PRNG&lt;/h2&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; MAX_RAND = &lt;span class=&quot;built_in&quot;&gt;Math&lt;/span&gt;.pow(&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;32&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; state = [seed(), seed()];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; mwc1616 = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;mwc1616&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; r0 = (&lt;span class=&quot;number&quot;&gt;18030&lt;/span&gt; * (state[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] &amp;amp; &lt;span class=&quot;number&quot;&gt;0xFFFF&lt;/span&gt;)) + (state[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] &amp;gt;&amp;gt;&amp;gt; &lt;span class=&quot;number&quot;&gt;16&lt;/span&gt;) | &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; r1 = (&lt;span class=&quot;number&quot;&gt;36969&lt;/span&gt; * (state[&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;] &amp;amp; &lt;span class=&quot;number&quot;&gt;0xFFFF&lt;/span&gt;)) + (state[&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;] &amp;gt;&amp;gt;&amp;gt; &lt;span class=&quot;number&quot;&gt;16&lt;/span&gt;) | &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    state = [r0, r1];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; x = ((r0 &amp;lt;&amp;lt; &lt;span class=&quot;number&quot;&gt;16&lt;/span&gt;) + (r1 &amp;amp; &lt;span class=&quot;number&quot;&gt;0xFFFF&lt;/span&gt;)) | &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (x &amp;lt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        x = x + MAX_RAND;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; x / MAX_RAND;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上述代码就是 V8 PRNG 的核心逻辑。在老版本的 V8 源码中对此有一段注释：“随机数生成器使用了 George Marsaglia 的 MWC 算法。”根据这段注释，我从谷歌搜索到了以下信息：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;George Marsaglia 是一个毕生致力于 PRNG 的数学家，他还开发了用于测试随机数生成质量的工具 &lt;a href=&quot;https://en.wikipedia.org/wiki/Diehard_tests&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Diehard tests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;MWC（multiply-with-carry）是由 Marsaglia 发明的 PRNG 算法，非常类似于 LCG（linear congruential generators，线性同余法），其优势在于生成的循环周期更长，接近于 CPU 的循环周期。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不过，V8 PRNG 与经典的 MWC 生成器并不相同，因为它不是对 MWC 生成器的简单扩展，而是组合使用了两个 MWC 子生成器（r0 和 r1），并最终拼接成一个随机数。这里略过相关的数学计算，只说结论，每个子生成器最长的循环周期长度都是 2^30，合并后为 2^60。&lt;/p&gt;
+&lt;p&gt;上文提到过，我们定义的标识符有 2^132 种可能性，所以 V8 的 Math.random() 并不能满足这一需求。尽管如此，我们仍使用该函数并假设生成的随机数是均匀分布的，那么生成一亿个标识符后出现碰撞的可能性才只有 0.4%，但现在发生碰撞的时间也太早了，所以我们的分析一定有什么地方出错了。之前已经证明循环周期长度是正确的，那么很有可能生成的随机数不是均匀分布的，一定有其他的结构影响了生成的序列。&lt;/p&gt;
+&lt;h2 id=&quot;双子生成器&quot;&gt;&lt;a href=&quot;#双子生成器&quot; class=&quot;headerlink&quot; title=&quot;双子生成器&quot;&gt;&lt;/a&gt;双子生成器&lt;/h2&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; ALPHABET = &lt;span class=&quot;string&quot;&gt;&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;random_base64 = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;random_base64&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;length&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; str = &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; i=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; length; ++i) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// Math.random(): ((r0 &amp;lt;&amp;lt; 16) + (r1 &amp;amp; 0xFFFF)) | 0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; rand = &lt;span class=&quot;built_in&quot;&gt;Math&lt;/span&gt;.floor(&lt;span class=&quot;built_in&quot;&gt;Math&lt;/span&gt;.random() * ALPHABET.length);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        str += ALPHABET.substring(rand, rand+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; str;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面代码中的 &lt;code&gt;Math.floor(Math.random() * ALPHABET.length)&lt;/code&gt; 一句非常重要，它被用来扩大随机数的范围并取整，同时它也会让最终的随机数丢失低字节，倾向于高字节。究其原因，是因为 V8 的算法在合并两个子生成器的结果时，使用的不是异或计算，而是简单粗暴的拼接。这是非常严重的缺陷。当我们将 Math.random() 的范围扩展到 [0, 64) 并取整后，就已经改变了它的平衡性，更多的倾向于使用高位字节。这些高位字节通常来自于 MWC 子生成器中的第一个生成器。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/math-random-prng-3-2016-04-27.png&quot; alt=&quot;math-random-prng-3-2016-04-27&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果单独分析一下第一个子生成器，就会发现它具有 32 位的内部状态，实际的循环周期长度是 5.9 亿左右（18030*2^15，计算细节请参考文末资料），所以使用这个生成器只能生成 5.9 亿标识符，也就是生成 30000 个标识符后就有超过 50% 的概率发生碰撞。&lt;/p&gt;
+&lt;p&gt;但如果这是真的话，那么在生成标识符之后不久就会发生碰撞。为了理解这一现象，想想我们之前生成元组的示例，在这个示例中也没发生生日悖论，这是因为这个序列根本不是随机的，所以不能假装它是。V8 PRNG 和我们的随机标识符也是同样的道理，在特定条件下，PRNG 的伪随机性反倒不易生成碰撞。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/math-random-prng-2-2016-04-27.png&quot; alt=&quot;math-random-prng-2016-04-27&quot;&gt;&lt;/p&gt;
+&lt;p&gt;虽然在这种场景下生成器对我们的需求有益，但既然存在错误，我们就应该寻求更高质量的 PRNG，一个有效的方式就是让生成器的循环周期长度远大于随机数的可能性。这里有一个启发式的方法：如果需要生成具有 n 中可能性的随机数，那么就需要一个循环周期长度为 n^2 的 PRNG（相关细节请参考 Pierre L’Ecuyer 的 &lt;a href=&quot;http://www.iro.umontreal.ca/~lecuyer/myftp/papers/handstat.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;random number generation&lt;/a&gt;）。&lt;/p&gt;
+&lt;p&gt;对于我们所遇到的问题，可以说是过于关注序列的重叠度，而忽视统计随机性了。如果一个生成器要生成 n 个长度为 l 的序列，且循环周期长度为 p，那么其重叠概率就是 &lt;code&gt;[1-(nl)/(p-1)]^(n-1)&lt;/code&gt;，或当 p 足够大时接近 ln^2/p（相关细节请参考文末资料）。这告诉我们需要一个相当大的循环周期，否则序列的随机性就会变得脆弱。&lt;/p&gt;
+&lt;p&gt;简而言之，如果你正在使用 V8 的 Math.random() 生成随机数序列，那么为了保证随机性，序列长度应该小于 24000；如果想避免碰撞，那么应该选择其他的方法生成随机序列。&lt;/p&gt;
+&lt;h2 id=&quot;MWC1616&quot;&gt;&lt;a href=&quot;#MWC1616&quot; class=&quot;headerlink&quot; title=&quot;MWC1616&quot;&gt;&lt;/a&gt;MWC1616&lt;/h2&gt;&lt;p&gt;Marsaglia 在 1997 年提出了 MWC1616，他认为该方法可以通过所有的随机性测试。不幸的是，他在九十年代末使用的 Diehard tests 并不符合今天的标准。如果使用更加现代的测试框架测试，就会发现该算法在当时问题百出。&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// January 12, 1999 / V8 PRNG: ((r0 &amp;lt;&amp;lt; 16) + (r1 ^ 0xFFFF)) % 2^32 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; x = ((r0 &amp;lt;&amp;lt; &lt;span class=&quot;number&quot;&gt;16&lt;/span&gt;) + (r1 &amp;amp; &lt;span class=&quot;number&quot;&gt;0xFFFF&lt;/span&gt;)) | &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// January 20, 1999: (r0 &amp;lt;&amp;lt; 16) + r1) % 2^32&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; x = ((r0 &amp;lt;&amp;lt; &lt;span class=&quot;number&quot;&gt;16&lt;/span&gt;) + r1) | &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;就我所知，拼接子生成器的结果创造随机数并没有什么数学方面的依据，最常见的都是使用模运算进行合并。Marsaglia 在 Usenet 发布了 MWC1616 之后也意识到了这个问题，所以在 1999 年 1 月 12 日又发布了如今被 V8 所有的  MVC1616 版本。八天之后，他又发表了另一个不同的版本。新版本对于两个子生成器的合并更加均衡。&lt;/p&gt;
+&lt;p&gt;这两个版本的 MWC1616 都被其他程序引用了，所以就出现了误解。1 月 20 日的 MWC1616 的基数被标记为 b = 2^16，且被注释为仅限用于 32 位的算术。当你使用该版本的时候，会被警告替换该算法，但实际上它比 V8 Math.random() 中适用的 MWC 要好。此外更令人不解的是，1 月 20 日的 MWC1616 被维基百科作为随机数生成的示例演示，而 TestU01 中包含了两种 1 月 12 日 MWC1616 的实现，一个是 MWC1616，一个是 MWC97R。&lt;/p&gt;
+&lt;p&gt;希望这篇文章可以提醒开发者，并强化 Knuth 的观察结果：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通常来说，PRNG 存在瑕疵，开发者应该具体情况具体分析，理解这些算法的局限性&lt;/li&gt;
+&lt;li&gt;特别的，不要使用 MWC1616，它并不够好&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;CSPRNG&quot;&gt;&lt;a href=&quot;#CSPRNG&quot; class=&quot;headerlink&quot; title=&quot;CSPRNG&quot;&gt;&lt;/a&gt;CSPRNG&lt;/h2&gt;&lt;p&gt;为了修复我们的标识符生成器，需要一种解析速度快、可替代 Math.random() 的方法。虽然有很多 JavaScript 的 PRNG 实现可用，但我们主要针对以下几点查找这一方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;循环周期长，远大于标识符的 2^132 种可能性&lt;/li&gt;
+&lt;li&gt;有良好的支持且经得起测试&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;幸运的是，Node.js 的标准库提供了另一个 PRNG 就满足这两点要求：&lt;code&gt;crypto.randomBytes()&lt;/code&gt;，一个密码学安全伪随机数生成器（CSPRNG）。如果是在浏览器上，也可以使用 &lt;code&gt;crypto.getRandomValues()&lt;/code&gt; 实现。&lt;/p&gt;
+&lt;p&gt;但这并不是完美的通用解决方案，有以下三个原因：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CSPRNG 通常是非线性变换，慢于非密码的解决方案&lt;/li&gt;
+&lt;li&gt;许多 CSPRNG 系统不支持种子状态，进而使得序列结果不可复现&lt;/li&gt;
+&lt;li&gt;CSPRNG 强调不可预测性重于质量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不过：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;速度是相对的，CSPRNG 对大多数使用场景来说都是很快的&lt;/li&gt;
+&lt;li&gt;对于不可预测，这也让我们无法区分真正的随机性，也就是我们想要的伪随机性序列&lt;/li&gt;
+&lt;li&gt;以“安全加密”为主打的生成器往往代码审查更严格且随机性测试更全面&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果你无法信任非加密方案的质量，或者除非使用既定的收发方案保证质量，使用 CSPRNG 都是你最好的选择。如果你不信任标准库中的 CSPRNG，那么可以使用由 kenel 维护的 &lt;a href=&quot;http://sockpuppet.org/blog/2014/02/25/safely-generate-random-numbers/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;urandom&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;我无法告诉你 &lt;code&gt;crypto.randomBytes()&lt;/code&gt; 的确切循环周期，是因为还没人遇到过这一问题，我只能说它很安全。如果你相信 OpenSSL 生成的公钥和私钥的安全性，那么就没有理由不相信它。在实际开发中，使用 &lt;code&gt;crypto.randomBytes()&lt;/code&gt; 可以轻松解决 &lt;code&gt;Math.random()&lt;/code&gt; 的问题。&lt;/p&gt;
+&lt;p&gt;实际上，Chrome 也可以令 Math.random() 调用 crypto.randomBytes() 中使用的 CSPRNG，详见 &lt;a href=&quot;http://trac.webkit.org/browser/trunk/Source/WTF/wtf/RandomNumber.cpp#L41&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;what Webkit is doing&lt;/a&gt;。也即是说，有很多安全且高质量的非加密方案。&lt;/p&gt;
+&lt;h2 id=&quot;V8’s-PRNG&quot;&gt;&lt;a href=&quot;#V8’s-PRNG&quot; class=&quot;headerlink&quot; title=&quot;V8’s PRNG&quot;&gt;&lt;/a&gt;V8’s PRNG&lt;/h2&gt;&lt;p&gt;我的目标是说服你 V8 的 Math.random() 有瑕疵且应该被替换。到目前为止我们已经发现它规律性的输出、在测试上的失败以及真实环境的低性能等问题。如果你期待更多的证据，那就看以下图片吧（译者注：以下图片演示的问题可能已被修复）：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/20160428-math-random-csprng.png&quot; alt=&quot;/img/20160428-math-random-csprng.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;此时你应该认可 V8 中的 Math.random() 存在缺陷且应该被修复了吧。那么问题来了，我们应该如何修复它呢？虽然修复很简单，但是继续使用 MWC 显然是无意义的，我们有更好的选择。&lt;/p&gt;
+&lt;p&gt;下面列出了我们对随机数生成器的要求：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;随机数空间大，种子状态多——理想情况下，要大于 1024 位，因为这是其他生成器保证质量的上限。对于 2^1024 种可能性，足以满足 99.9% 的需求了，且具有强大的安全性&lt;/li&gt;
+&lt;li&gt;速度至少要和当前的实现保持一致&lt;/li&gt;
+&lt;li&gt;高效的内存使用率&lt;/li&gt;
+&lt;li&gt;循环周期药厂，任何大于 2^50 周期长度的生成器都是可用的，大于 2^100 则可让伪随机性以假乱真&lt;/li&gt;
+&lt;li&gt;经得起随机性测试&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当前有许多 PRNG 算法满足或远超上述要求。&lt;a href=&quot;https://en.wikipedia.org/wiki/Xorshift&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Xorshift&lt;/a&gt; 速度快且耐得住严格的统计测试。xorgens4096 是 xorshift 的变体，基于 JavaScript 开发实现，它有 4096 位状态空间，循环周期长达 2^4096，并且比 Chrome 中的 MWC16 运行速度更快。此外，它能够无系统故障地通过 BigCrush 的测试。&lt;/p&gt;
+&lt;p&gt;最近的实践表明，使用 xorshift 生成的结果乘以常量的结果也可以通过 BigCrush 对非线性转换生成器的测试。此类生成器被称为 xorshift*，它们解析速度快、易于时间且内存使用效率高，其中 xorshift102* 就满足甚至超过以上的全部要求。如果内存占用问题严重，也可以使用 xorshift64*，它比 MWC1616 的内存占用率相同，但循环周期更长、解析更快。另一个线性和非线性的混合生成器是 PCG，它声称具有和 xorshift* 具有相似的性能和质量。&lt;/p&gt;
+&lt;p&gt;所以说我们有许多可选择的算法，其中，最安全的选择也许就是标准的 Mersenne Twiste（马特赛特旋转演算法）。该算法最受欢迎的变体 MT19937 诞生于九十年代末，从那时开始它就成为了许多软件标准的随机数生成策略。它并不是完美的，但久经考验和分析，且易于理解。值得炫耀的是，它的循环周期长达 2^19937-1，基本上不会发生碰撞，但使用该算法会强制要求 2KB 的状态空间和相应的内存占用、性能消耗。虽然无法解释，但它和 Chrome 中 Math.random() 的执行速度一样快。&lt;/p&gt;
+&lt;p&gt;所以我的建议就是 V8 应该考虑一下 Dean McNamee 六年前的建议，使用马特赛特旋转演算法实现 Math.random() 了。它解析速度快、健壮且安全，对不了解 PRNG 运行机制的开发者也是安全无害的。当然也可以选择其他方案，但请不要再使用 MWC1616 了！&lt;/p&gt;
+&lt;h2 id=&quot;Summary&quot;&gt;&lt;a href=&quot;#Summary&quot; class=&quot;headerlink&quot; title=&quot;Summary&quot;&gt;&lt;/a&gt;Summary&lt;/h2&gt;&lt;p&gt;本文也是够长的，我们总结一下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;V8 中的 Math.random() 使用的 PRNG 算法是 MWC1616。如果你只使用 16 位，那么它的循环周期长度就会很短。通常来说，它在质量测试中的表现很差，对于大多数的重要场景，它所伪造的随机性是不安全的。&lt;/li&gt;
+&lt;li&gt;如果你没时间实现非加密的方案，那就直接使用 CSPRNG 吧。最安全的的方式就是使用 &lt;a href=&quot;http://sockpuppet.org/blog/2014/02/25/safely-generate-random-numbers/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;urandom&lt;/a&gt;。在浏览器环境中，可以使用 &lt;code&gt;crypto.getRandomValues()&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;也有许多比 MWC1616 速度更快、质量更高的非加密 PRNG 算法。V8 应该使用它们重新实现 Math.random()。Mersenne Twiste 可以说是最受欢迎的方案了，有可能也是最安全的方案。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;注意，Mozilla 中使用了来自 Java 的 util.Random 包，且略差于 MWC1616，所以 SpiderMonkey 也应该升级相关方法。&lt;/p&gt;
+&lt;h6 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://digitalcommons.wayne.edu/cgi/viewcontent.cgi?article=1725&amp;amp;context=jmasm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://digitalcommons.wayne.edu/cgi/viewcontent.cgi?article=1725&amp;amp;context=jmasm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Multiply-with-carry#General_theory&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://en.wikipedia.org/wiki/Multiply-with-carry#General_theory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://xorshift.di.unimi.it/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://xorshift.di.unimi.it/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.mathpages.com/home/kmath580/kmath580.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.mathpages.com/home/kmath580/kmath580.htm&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot; id=&quot;canvas2img&quot; style=&quot;height: 120px; width: 100%; overflow: hidden;&quot; alt=&quot;该随机图像由 CANVAS 生成，刷新页面可重新生成&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;canvas id=&quot;canvas&quot; style=&quot;display: none;&quot;&gt;&lt;/canvas&gt;&lt;/p&gt;
+&lt;script&gt;
+&#39;use strict&#39;;
+
+(function () {
+    var image = document.querySelector(&#39;#canvas2img&#39;);
+    var canvas = document.querySelector(&#39;#canvas&#39;);
+    var container = document.querySelector(&#39;.post-block&#39;);
+    var cxt = canvas.getContext(&#39;2d&#39;);
+    var width = container.offsetWidth;
+    var height = 120;
+
+    canvas.width = width;
+    canvas.height = height;
+
+    for (var y = 0; y &lt; height; y++) {
+        for (var x = 0; x &lt; width; x++) {
+            cxt.fillStyle = Math.random() &lt; 0.5 ? &#39;black&#39; : &#39;white&#39;;
+            cxt.fillRect(x, y, x + 1, y + 1);
+        }
+    }    
+
+    image.src = canvas.toDataURL();
+})();
+&lt;/script&gt;
+
+&lt;p&gt;唐纳德·克努特曾在《计算机程序设计的艺术》（卷二）中指出：“当今使用的大部分随机数生成器都不够优秀，而且开发者倾向于拿来就用，不去了解具体的生成策略。以至于我们常常发现一些略有瑕疵、年代久远的随机数生成器会被盲目地用在一个又一个的程序中，而对于它们的局限性，却无人问津。”&lt;/p&gt;
+&lt;p&gt;我希望在读过本文之后能够让大家对以下两件事深表认同，虽然其中一件尚存在争议：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;我们不应该忽视 V8 PRNG（pseudo-random number generator）的局限性，至少应该了解更安全的 CSPRNG（Cryptographically Secure Pseudo-Random Number Generator）&lt;/li&gt;
+&lt;li&gt;当前 V8 引擎中的 &lt;code&gt;Math.random()&lt;/code&gt; 存在问题&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>PhantomJS</title>
     <link href="http://pinggod.com/2016/PhantomJS/"/>
     <id>http://pinggod.com/2016/PhantomJS/</id>
     <published>2016-04-14T04:22:56.000Z</published>
-    <updated>2016-04-18T05:24:00.000Z</updated>
+    <updated>2016-04-30T08:05:34.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/ariya/phantomjs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PhantomJS&lt;/a&gt; 是一个脚本化的无界面 WebKit，以 JavaScript 为脚本语言实现各项功能，官方列举的使用场景包括：无界面测试，页面自动化，屏幕截图和网络监控。在 Mac 下，可以使用 Homebrew 安装最新版本：&lt;/p&gt;
 &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;brew install phantomjs&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -122,7 +343,7 @@
 &lt;li&gt;&lt;code&gt;includeJs(url, callback)&lt;/code&gt;，向当前页面添加额外的脚本，且当脚本执行完毕后调用回调函数&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;injectJs(filename)&lt;/code&gt;，与 &lt;code&gt;includeJs&lt;/code&gt; 不同的是，加载的脚本可以跟当前页面不同域&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;openUrl(url, httpConf, settings)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;open(url, callback)&lt;/code&gt;、&lt;code&gt;open(url, method, callback)&lt;/code&gt;、&lt;code&gt;open(url, method, data, callback)&lt;/code&gt;、&lt;code&gt;open(url, settings, callback&lt;/code&gt;，打开 &lt;code&gt;url&lt;/code&gt; 页面，加载完成后触发回调函数，回电函数接收一个状态参数 &lt;code&gt;status&lt;/code&gt;，该状态函数的值为 &lt;code&gt;success&lt;/code&gt; 或 &lt;code&gt;fail&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;open(url, callback)&lt;/code&gt;、&lt;code&gt;open(url, method, callback)&lt;/code&gt;、&lt;code&gt;open(url, method, data, callback)&lt;/code&gt;、&lt;code&gt;open(url, settings, callback)&lt;/code&gt;，打开 &lt;code&gt;url&lt;/code&gt; 页面，加载完成后触发回调函数，回电函数接收一个状态参数 &lt;code&gt;status&lt;/code&gt;，该状态函数的值为 &lt;code&gt;success&lt;/code&gt; 或 &lt;code&gt;fail&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;reload&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;renderBase64(format)&lt;/code&gt;，将页面导出为 &lt;code&gt;format&lt;/code&gt; 格式，该格式的可选值包括 &lt;code&gt;PNG&lt;/code&gt;、&lt;code&gt;GIF&lt;/code&gt; 和 &lt;code&gt;JPEG&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;render(filename[, {format, quality}])&lt;/code&gt;，将页面导出为 &lt;code&gt;fromat&lt;/code&gt; 格式，系统会根据指定的 &lt;code&gt;filename&lt;/code&gt; 文件名自动匹配格式，或者自定义格式，&lt;code&gt;quality&lt;/code&gt; 是 0~100 的数值，用于指定导出文件的质量&lt;/li&gt;
@@ -235,7 +456,7 @@
 &lt;li&gt;&lt;code&gt;closeGracefully()&lt;/code&gt;，&lt;code&gt;close()&lt;/code&gt; 的温和版本，确保优先发送响应头信息并在最后发送 &lt;code&gt;response.write(&amp;quot;&amp;quot;)&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; webserver = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;webserver&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; server = webserver.create();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; service = server.listen(&lt;span class=&quot;string&quot;&gt;&#39;127.0.0.1:8989&#39;&lt;/span&gt;, &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    keepAlive: &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;req, res&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    res.statusCode = &lt;span class=&quot;number&quot;&gt;200&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    res.write(&lt;span class=&quot;string&quot;&gt;&#39;&amp;lt;html&amp;gt;&amp;lt;body&amp;gt;Hello!Sean&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    res.close();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&quot;Server is runing at &quot;&lt;/span&gt; + server.port);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;实践演练&quot;&gt;&lt;a href=&quot;#实践演练&quot; class=&quot;headerlink&quot; title=&quot;实践演练&quot;&gt;&lt;/a&gt;实践演练&lt;/h2&gt;&lt;h5 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h5&gt;&lt;ul&gt;
+&lt;h5 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h5&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://phantomjs.org/documentation/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PhantomJS 官方文档&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://phantomjs.org/api/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PhantomJS 官方 API&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -583,12 +804,9 @@
     <link href="http://pinggod.com/2016/%E6%B4%97%E7%89%8C%E7%AE%97%E6%B3%95/"/>
     <id>http://pinggod.com/2016/洗牌算法/</id>
     <published>2016-03-16T05:45:02.000Z</published>
-    <updated>2016-04-03T03:34:59.000Z</updated>
+    <updated>2016-04-28T01:57:50.000Z</updated>
     
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;翻译自 &lt;a href=&quot;https://www.kirupa.com/html5/shuffling_array_js.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Shuffling an Array in JavaScript&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;洗牌算法是一个比较形象的术语，本质上是让一个数组内的元素随机排列。举例来说，我们有一个如下图所示的数组，数组长度为 9，数组内元素的值顺次分别是 1~9：&lt;/p&gt;
+    <content type="html">&lt;p&gt;洗牌算法是一个比较形象的术语，本质上是让一个数组内的元素随机排列。举例来说，我们有一个如下图所示的数组，数组长度为 9，数组内元素的值顺次分别是 1~9：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/shuffle-array-1.png&quot; alt=&quot;shffle-array-1&quot;&gt;&lt;/p&gt;
 &lt;p&gt;从上面这个数组入手，我们要做的就是打乱数组内元素的顺序：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/shuffle-array-2.png&quot; alt=&quot;shffle-array-2&quot;&gt;&lt;/p&gt;
@@ -718,10 +936,7 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;翻译自 &lt;a href=&quot;https://www.kirupa.com/html5/shuffling_array_js.htm&quot;&gt;Shuffling an Array in JavaScript&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;洗牌算法是一个比较形象的术语，本质上是让一个数组内的元素随机排列。举例来说，我们有一个如下图所示的数组，数组长度为 9，数组内元素的值顺次分别是 1~9：&lt;/p&gt;
+      &lt;p&gt;洗牌算法是一个比较形象的术语，本质上是让一个数组内的元素随机排列。举例来说，我们有一个如下图所示的数组，数组长度为 9，数组内元素的值顺次分别是 1~9：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/shuffle-array-1.png&quot; alt=&quot;shffle-array-1&quot;&gt;&lt;/p&gt;
 &lt;p&gt;从上面这个数组入手，我们要做的就是打乱数组内元素的顺序：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/shuffle-array-2.png&quot; alt=&quot;shffle-array-2&quot;&gt;&lt;/p&gt;
@@ -840,12 +1055,9 @@
     <link href="http://pinggod.com/2016/2016-JavaScript-%E6%8A%80%E6%9C%AF%E6%A0%88%E5%B1%95%E6%9C%9B/"/>
     <id>http://pinggod.com/2016/2016-JavaScript-技术栈展望/</id>
     <published>2016-03-11T03:45:31.000Z</published>
-    <updated>2016-04-11T02:46:56.000Z</updated>
+    <updated>2016-04-28T01:58:12.000Z</updated>
     
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;翻译自 &lt;a href=&quot;https://medium.com/javascript-and-opinions/state-of-the-art-javascript-in-2016-ab67fc68eb0b#.iwbk5gf69&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;State of the Art JavaScript in 2016&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;如果你正在筹划新的前端项目或者重构现有项目，那么你需要认识到现在的前端开发环境已经今非昔比，这其中有太多的选择了：React、Flux、Angular、Aurelia、Mocha、Jasmine、Babel、TypeScript、Flow…… 它们的本意是将开发简单化，却无形中提高了学习成本，也给未来项目的维护带来了不确定性。&lt;/p&gt;
+    <content type="html">&lt;p&gt;如果你正在筹划新的前端项目或者重构现有项目，那么你需要认识到现在的前端开发环境已经今非昔比，这其中有太多的选择了：React、Flux、Angular、Aurelia、Mocha、Jasmine、Babel、TypeScript、Flow…… 它们的本意是将开发简单化，却无形中提高了学习成本，也给未来项目的维护带来了不确定性。&lt;/p&gt;
 &lt;p&gt;好在这一现象正在退热，优胜劣汰，优秀的项目慢慢沉淀下来，开发方式也越来越清晰。有些开发者正在尝试使用基于上述技术的框架进行开发，也在一定程度上减少了学习成本。&lt;/p&gt;
 &lt;p&gt;本文中主要介绍了一些我在 web 应用开发中所涉及和推崇的技术，其中有一些技术上存在争议，所以我对于每一技术都只做简单的介绍和分析。所有的这些观点都是基于我个人的经验和对社区的接触总结而来的，所以各位还请按需各取所用。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -960,10 +1172,7 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;翻译自 &lt;a href=&quot;https://medium.com/javascript-and-opinions/state-of-the-art-javascript-in-2016-ab67fc68eb0b#.iwbk5gf69&quot;&gt;State of the Art JavaScript in 2016&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;如果你正在筹划新的前端项目或者重构现有项目，那么你需要认识到现在的前端开发环境已经今非昔比，这其中有太多的选择了：React、Flux、Angular、Aurelia、Mocha、Jasmine、Babel、TypeScript、Flow…… 它们的本意是将开发简单化，却无形中提高了学习成本，也给未来项目的维护带来了不确定性。&lt;/p&gt;
+      &lt;p&gt;如果你正在筹划新的前端项目或者重构现有项目，那么你需要认识到现在的前端开发环境已经今非昔比，这其中有太多的选择了：React、Flux、Angular、Aurelia、Mocha、Jasmine、Babel、TypeScript、Flow…… 它们的本意是将开发简单化，却无形中提高了学习成本，也给未来项目的维护带来了不确定性。&lt;/p&gt;
 &lt;p&gt;好在这一现象正在退热，优胜劣汰，优秀的项目慢慢沉淀下来，开发方式也越来越清晰。有些开发者正在尝试使用基于上述技术的框架进行开发，也在一定程度上减少了学习成本。&lt;/p&gt;
 &lt;p&gt;本文中主要介绍了一些我在 web 应用开发中所涉及和推崇的技术，其中有一些技术上存在争议，所以我对于每一技术都只做简单的介绍和分析。所有的这些观点都是基于我个人的经验和对社区的接触总结而来的，所以各位还请按需各取所用。&lt;/p&gt;
     
@@ -977,12 +1186,9 @@
     <link href="http://pinggod.com/2016/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E5%8D%81%E4%BA%8C%E4%B8%AA%E6%96%B9%E9%9D%A2/"/>
     <id>http://pinggod.com/2016/性能优化的十二个方面/</id>
     <published>2016-03-04T12:37:34.000Z</published>
-    <updated>2016-03-27T07:37:37.000Z</updated>
+    <updated>2016-04-28T01:58:33.000Z</updated>
     
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;翻译自：&lt;a href=&quot;https://auth0.com/blog/2016/02/22/12-steps-to-a-faster-web-app/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;12 steps to a faster web app&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;现在，web app 日益重视用户的交互体验，了解性能优化的方式则可以有效提高用户体验。阅读和实践下面的性能优化技巧，可以帮你改善应用的流畅度、渲染时间和其他方面的性能表现。&lt;/p&gt;
+    <content type="html">&lt;p&gt;现在，web app 日益重视用户的交互体验，了解性能优化的方式则可以有效提高用户体验。阅读和实践下面的性能优化技巧，可以帮你改善应用的流畅度、渲染时间和其他方面的性能表现。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;对 web app 进行性能优化是一份冗杂沉重的工作，这不仅是因为构建一个 web app 需要前后端协作，而且需要多方面的技术栈：数据库、后端、前端，需要运行在多种平台：iOS，安卓，Chrome，Firefox，Edge。这太复杂了！不过，还是有一些历经实践的通用方式可以用来优化 web app 的性能。在接下来的小节中，我们将逐步介绍相关的细节。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1059,10 +1265,7 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;翻译自：&lt;a href=&quot;https://auth0.com/blog/2016/02/22/12-steps-to-a-faster-web-app/&quot;&gt;12 steps to a faster web app&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;现在，web app 日益重视用户的交互体验，了解性能优化的方式则可以有效提高用户体验。阅读和实践下面的性能优化技巧，可以帮你改善应用的流畅度、渲染时间和其他方面的性能表现。&lt;/p&gt;
+      &lt;p&gt;现在，web app 日益重视用户的交互体验，了解性能优化的方式则可以有效提高用户体验。阅读和实践下面的性能优化技巧，可以帮你改善应用的流畅度、渲染时间和其他方面的性能表现。&lt;/p&gt;
     
     </summary>
     
@@ -1074,12 +1277,9 @@
     <link href="http://pinggod.com/2016/Lazy-loading-images-on-the-web/"/>
     <id>http://pinggod.com/2016/Lazy-loading-images-on-the-web/</id>
     <published>2016-02-17T04:00:04.000Z</published>
-    <updated>2016-02-24T05:31:50.000Z</updated>
+    <updated>2016-04-28T01:58:50.000Z</updated>
     
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;Summarized from &lt;a href=&quot;http://developer.telerik.com/featured/lazy-loading-images-on-the-web/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Lazy Loading Images on the Web》&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Lazy loading images on the web means only download images which are in or near the viewport, and don’t load any other images that visitors will not likely see. To accomplish this effect, we just need a little bit of JavaScript.&lt;/p&gt;
+    <content type="html">&lt;p&gt;Lazy loading images on the web means only download images which are in or near the viewport, and don’t load any other images that visitors will not likely see. To accomplish this effect, we just need a little bit of JavaScript.&lt;/p&gt;
 &lt;p&gt;At its most basic implementation always need to do:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Build HTML with special data attribute&lt;/li&gt;
@@ -1108,10 +1308,7 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;Summarized from &lt;a href=&quot;http://developer.telerik.com/featured/lazy-loading-images-on-the-web/&quot;&gt;《Lazy Loading Images on the Web》&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Lazy loading images on the web means only download images which are in or near the viewport, and don’t load any other images that visitors will not likely see. To accomplish this effect, we just need a little bit of JavaScript.&lt;/p&gt;
+      &lt;p&gt;Lazy loading images on the web means only download images which are in or near the viewport, and don’t load any other images that visitors will not likely see. To accomplish this effect, we just need a little bit of JavaScript.&lt;/p&gt;
 &lt;p&gt;At its most basic implementation always need to do:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Build HTML with special data attribute&lt;/li&gt;
@@ -1129,7 +1326,7 @@
     <link href="http://pinggod.com/2016/HTML5-canvas/"/>
     <id>http://pinggod.com/2016/HTML5-canvas/</id>
     <published>2016-02-16T05:17:10.000Z</published>
-    <updated>2016-04-06T06:40:01.000Z</updated>
+    <updated>2016-05-05T01:29:16.000Z</updated>
     
     <content type="html">&lt;p&gt;Canvas 是 HTML5 新引进的特性，通过 Canvas 技术可以使用 JavaScript 在浏览器中绘制图形。目前主流浏览器（IE9+）都支持该特性。创建一个最简单的 canvas 只需要两步，第一步是创建一个 canvas 标签： &lt;/p&gt;
 &lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;canvas&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;id&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;canvas&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;canvas&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -1162,8 +1359,7 @@
 &lt;p&gt;下面是两个更简洁的矩形绘制方法：&lt;/p&gt;
 &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cxt.lineWidth = &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cxt.fillStyle = &lt;span class=&quot;string&quot;&gt;&#39;red&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cxt.strokeStyle = &lt;span class=&quot;string&quot;&gt;&#39;blue&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cxt.fillRect(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cxt.strokeRect(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h2 id=&quot;画圆&quot;&gt;&lt;a href=&quot;#画圆&quot; class=&quot;headerlink&quot; title=&quot;画圆&quot;&gt;&lt;/a&gt;画圆&lt;/h2&gt;&lt;p&gt;&lt;code&gt;ctx.arc(x, y, r, startAngle, endAngle, anticlockwise)&lt;/code&gt; 方法可以用来绘制一个圆形，圆形位于 (x, y)，半径为 r，起始点为 &lt;code&gt;startAngle&lt;/code&gt;，终点为 &lt;code&gt;endAngle&lt;/code&gt;，&lt;code&gt;anticlockwise&lt;/code&gt; 决定旋转方向，默认值为顺时针方向。&lt;/p&gt;
-&lt;canvas id=&quot;arc-canvas-demo&quot;&gt;&lt;/canvas&gt;
-
+&lt;p&gt;&lt;canvas id=&quot;arc-canvas-demo&quot;&gt;&lt;/canvas&gt;&lt;/p&gt;
 &lt;style&gt;
 #arc-canvas-demo {
     display: block;
@@ -1198,6 +1394,31 @@
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;ctx.clearrect(xTopLeft, yTopLeft, xBottomRight, yBottomRight)&lt;/code&gt; 方法可以用来清除特定区域。&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;h2 id=&quot;图形变换&quot;&gt;&lt;a href=&quot;#图形变换&quot; class=&quot;headerlink&quot; title=&quot;图形变换&quot;&gt;&lt;/a&gt;图形变换&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rotate(deg)&lt;/code&gt;，旋转&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;scale(sx, sy)&lt;/code&gt;，缩放&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;translate(x, y)&lt;/code&gt;，位移&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;save()&lt;/code&gt;，图形变换前保存当前状态&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;restore()&lt;/code&gt;，图形变换后恢复上一状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;执行图形变换操作时，需要组合使用 &lt;code&gt;save()/restore()&lt;/code&gt; 函数来保存和恢复上下文执行环境的状态，避免状态叠加，比如下面代码的第二个矩形，将会叠加成 (400, 400) 的偏移量：&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 第一个矩形&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.translate(&lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.fillRect(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;400&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;400&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 第二个矩形&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 这里本意是想将第二个矩形偏移 (300, 300)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 实际上会由于前面偏移量的影响，实际偏移是叠加之前偏移量的偏移 (100 + 300, 100 + 300)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.translate(&lt;span class=&quot;number&quot;&gt;300&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;300&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.fillRect(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;400&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;400&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 解决方法是使用 save() 和 restore() 对状态进行保存和恢复&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.save();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.translate(&lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.fillRect(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;400&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;400&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.restore();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.save();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.translate(&lt;span class=&quot;number&quot;&gt;300&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;300&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.fillRect(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;400&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;400&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.restore();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;此外，CANVAS 提供了一个支持变换矩阵的函数 &lt;code&gt;transform(a, b, c, d, e, f)&lt;/code&gt;:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;--         --&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|  a  c  e  |&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|  b  d  f  |&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|  0  0  1  |&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;--         --&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;a 表示水平缩放，默认值为 1&lt;/li&gt;
+&lt;li&gt;b 表示水平倾斜，默认值为 0&lt;/li&gt;
+&lt;li&gt;c 表示垂直倾斜，默认值为 0&lt;/li&gt;
+&lt;li&gt;d 表示垂直缩放，默认值为 1&lt;/li&gt;
+&lt;li&gt;e 表示水平位移，默认值为 0&lt;/li&gt;
+&lt;li&gt;f 表示垂直位移，默认值为 0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;fillStyle&quot;&gt;&lt;a href=&quot;#fillStyle&quot; class=&quot;headerlink&quot; title=&quot;fillStyle&quot;&gt;&lt;/a&gt;fillStyle&lt;/h2&gt;&lt;p&gt;除了可以赋予具体的颜色，fillStyle 还可以是线性渐变、径向渐变、图片、CANVAS 和视频等：&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 创建线性渐变&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; linear = ctx.createLinearGradient(xStart, yStart, xEnd, yEnd);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;linear.addColorStop(stop, color);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.fillStyle = linear;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 创建径向渐变&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; radial = ctx.createRadialGradient(x0, y0, z0, x1, y1, z1);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;radial.addColorStop(stop, color);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.fillStyle = radial;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 创建图像填充&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; image = ctx.createPattern(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Image(&lt;span class=&quot;string&quot;&gt;&#39;path/to/image&#39;&lt;/span&gt;), repeat-style);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.fillStyle = image;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 创建 CANVAS 填充&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; canvas = ctx.createPattern(canvas, repeat-style);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.fillStyle = canvas;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 创建视频填充&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; video = ctx.createPattern(video, repeat-style);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.fillStyle = canvas;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;stop&lt;/code&gt; 的取值范围是 &lt;code&gt;[0, 1]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;repeat-style&lt;/code&gt; 的可选值是 &lt;code&gt;no-repeat&lt;/code&gt;、&lt;code&gt;repeat-x&lt;/code&gt;、&lt;code&gt;repeat-y&lt;/code&gt; 和 &lt;code&gt;repeat&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h6 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h6&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.imooc.com/video/3492&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Canvas 绘图详解&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -2163,12 +2384,9 @@
     <link href="http://pinggod.com/2015/%E6%B1%82%E5%80%BC%E7%AD%96%E7%95%A5/"/>
     <id>http://pinggod.com/2015/求值策略/</id>
     <published>2015-12-10T05:43:07.000Z</published>
-    <updated>2015-12-15T09:15:01.000Z</updated>
+    <updated>2016-04-28T01:59:31.000Z</updated>
     
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;须知参差多态乃是幸福本源。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;求值策略所要解决的问题是：何时求值。之所以要控制求值的时间，往往是出于对内存占用和执行效率的考虑。在维基百科的求值策略词条中，列出了五种求值策略：&lt;/p&gt;
+    <content type="html">&lt;p&gt;求值策略所要解决的问题是：何时求值。之所以要控制求值的时间，往往是出于对内存占用和执行效率的考虑。在维基百科的求值策略词条中，列出了五种求值策略：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;预先求值，表达式绑定到变量时，立即求值并附加给变量&lt;/li&gt;
 &lt;li&gt;延迟求值，表达式绑定到变量后，并不求值，直到变量被调用时才求值&lt;/li&gt;
@@ -2184,14 +2402,14 @@
 &lt;p&gt;如此说来，那么我们应该选择预先求值的求值策略，这样的好处是：变量 x 初始化时表达式立即计算，x 被重新赋值为 83，重新赋值后表达式所占用的内存空间被释放掉，达到了节省内存空间的目的；多次调用变量 x 时，x 的值已经是可以直接用于运算的数值，而不是需要计算的表达式，减少了重复运算，提高了执行效率。&lt;/p&gt;
 &lt;p&gt;如果事情按照上面描述的美好愿景发展的话，就没有延迟求值策略出现的必要了。在 3 处，我们向函数 func() 传递了变量 x。这里的 func() 类似于一个黑盒，我们不了解其内部的处理机制，也无法确定 x 是否会被使用。这个时候延迟求值的价值就体现出来了，如果变量 x 在函数内部没有被使用，就不会执行求值，避免了预先求值所要执行的求值运算。&lt;/p&gt;
 &lt;p&gt;随着表达式的复杂度逐渐提高，预先求值和延迟求值在内存占用、执行效率上的差异就会愈发明显。所以根据数据类型的复杂度，js 将数据类型分为原始值和引用值，传递参数时，原始值按值传递，引用值按引用传递。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;须知参差多态乃是幸福本源。&lt;/p&gt;
+&lt;/blockquote&gt;
 </content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;须知参差多态乃是幸福本源。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;求值策略所要解决的问题是：何时求值。之所以要控制求值的时间，往往是出于对内存占用和执行效率的考虑。在维基百科的求值策略词条中，列出了五种求值策略：&lt;/p&gt;
+      &lt;p&gt;求值策略所要解决的问题是：何时求值。之所以要控制求值的时间，往往是出于对内存占用和执行效率的考虑。在维基百科的求值策略词条中，列出了五种求值策略：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;预先求值，表达式绑定到变量时，立即求值并附加给变量&lt;/li&gt;
 &lt;li&gt;延迟求值，表达式绑定到变量后，并不求值，直到变量被调用时才求值&lt;/li&gt;
@@ -2201,79 +2419,6 @@
 &lt;/ul&gt;
 &lt;p&gt;顾名思义，预先求值和延迟求值是一对对立的求值策略。在下面的 js 代码段中，声明了变量 x，x 赋值后又被调用了三次：&lt;/p&gt;
 &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; x = &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt; + &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; * (&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; + &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt; ^ &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(x);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(x + &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;func(x);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Inline* and Absolute</title>
-    <link href="http://pinggod.com/2015/inline-and-absolute/"/>
-    <id>http://pinggod.com/2015/inline-and-absolute/</id>
-    <published>2015-12-06T03:32:17.000Z</published>
-    <updated>2015-12-27T09:31:08.000Z</updated>
-    
-    <content type="html">&lt;p&gt;在一个容器中，所有元素都是 inline / inline-block 类型，此时可以使用 absolute + margin 的方式实现相对定位，而且相对定位的位置就是脱离文档流之前的位置。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/inline-and-absolute.png&quot; alt=&quot;absolute and margin&quot;&gt;&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h6 id=&quot;在线示例&quot;&gt;&lt;a href=&quot;#在线示例&quot; class=&quot;headerlink&quot; title=&quot;在线示例&quot;&gt;&lt;/a&gt;在线示例&lt;/h6&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://codepen.io/pinggod/pen/WrNJmE&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;absolute and marign&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在一个容器中，所有元素都是 inline / inline-block 类型，此时可以使用 absolute + margin 的方式实现相对定位，而且相对定位的位置就是脱离文档流之前的位置。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/inline-and-absolute.png&quot; alt=&quot;absolute and margin&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Pug</title>
-    <link href="http://pinggod.com/2015/Pug/"/>
-    <id>http://pinggod.com/2015/Pug/</id>
-    <published>2015-12-03T05:24:27.000Z</published>
-    <updated>2016-03-27T07:36:22.000Z</updated>
-    
-    <content type="html">&lt;div class=&quot;tip&quot;&gt;&lt;br&gt;    由于商标版权问题，Jade 已经改名为了 Pug，详见 &lt;a href=&quot;https://github.com/pugjs/jade/issues/2184&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;issue&lt;/a&gt;。&lt;br&gt;&lt;/div&gt;
-
-&lt;p&gt;如果你熟悉 Sublime Text 和 Emmet 的组合，那么 Pug 也会是你的菜。Pug 类似于 Python，都采用了对缩进敏感的语法形式，比如下面这段代码创建了一个无序列表：&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ul(&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt;&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;inline&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    li  Item C&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    li  Item A&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    li  Item B&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;属性&quot;&gt;&lt;a href=&quot;#属性&quot; class=&quot;headerlink&quot; title=&quot;属性&quot;&gt;&lt;/a&gt;属性&lt;/h2&gt;&lt;p&gt;Pug 的另一大特点就是和 JavaScript 的融合度很高，比如设置属性：&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; authenticated = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;body(&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt;&lt;/span&gt;= authenticated ? &lt;span class=&quot;string&quot;&gt;&#39;authed&#39;&lt;/span&gt; : &lt;span class=&quot;string&quot;&gt;&#39;anon&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; currentUrl = &lt;span class=&quot;string&quot;&gt;&#39;/about&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;a(&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt;&lt;/span&gt;=&amp;#123;active: currentUrl === &lt;span class=&quot;string&quot;&gt;&#39;/&#39;&lt;/span&gt;&amp;#125; href=&lt;span class=&quot;string&quot;&gt;&#39;/&#39;&lt;/span&gt;) Home&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;a(&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt;&lt;/span&gt;=&amp;#123;active: currentUrl === &lt;span class=&quot;string&quot;&gt;&#39;/about&#39;&lt;/span&gt;&amp;#125; href=&lt;span class=&quot;string&quot;&gt;&#39;/about&#39;&lt;/span&gt;) About&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;此外，给标签设置行内样式时，需要以对象的形式赋值给 style：&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;a(style=&amp;#123;color: &lt;span class=&quot;string&quot;&gt;&#39;red&#39;&lt;/span&gt;, background: &lt;span class=&quot;string&quot;&gt;&#39;green&#39;&lt;/span&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;插值&quot;&gt;&lt;a href=&quot;#插值&quot; class=&quot;headerlink&quot; title=&quot;插值&quot;&gt;&lt;/a&gt;插值&lt;/h2&gt;&lt;p&gt;Pug 提供了字符串插值和标签插值。其中，字符串插值由于要考虑到安全性问题，所以又分成了转义和不转义两种情况：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;// 转义插值 #&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- var theGreat = &quot;&amp;lt;span&amp;gt;escape!&amp;lt;/span&amp;gt;&quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;p This will be safe: #&amp;#123;theGreat&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 不转义插值 !&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- var theGreat = &quot;&amp;lt;span&amp;gt;escape!&amp;lt;/span&amp;gt;&quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;p This will be safe: !&amp;#123;theGreat&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 标签插值&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;p #[a(href=&quot;Pug-lang.com&quot;) Pug]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;编译结果：&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&amp;lt;!-- 转义插值 #&amp;#123;&amp;#125;--&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;This will be safe: &amp;amp;lt;span&amp;amp;gt;escape!&amp;amp;lt;/span&amp;amp;gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&amp;lt;!-- 不转义插值 !&amp;#123;&amp;#125;--&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;This will be safe: &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;span&lt;/span&gt;&amp;gt;&lt;/span&gt;escape!&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;span&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&amp;lt;!-- 标签插值--&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;href&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;Pug-lang.com&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;Pug&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;a&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;逻辑语句&quot;&gt;&lt;a href=&quot;#逻辑语句&quot; class=&quot;headerlink&quot; title=&quot;逻辑语句&quot;&gt;&lt;/a&gt;逻辑语句&lt;/h2&gt;&lt;p&gt;Pug 提供了条件、分支、循环、遍历四种逻辑语句，这四种语句继承自 JavaScript，只是语法上有些差异:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;条件语句：if … else if … else&lt;/li&gt;
-&lt;li&gt;分支语句：case … when … default&lt;/li&gt;
-&lt;li&gt;循环语句：while&lt;/li&gt;
-&lt;li&gt;遍历数组：each $elem in [elem…]&lt;/li&gt;
-&lt;li&gt;遍历对象：each $key, $value in {key: value}&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;// 分支语句&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- var friends = 10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case friends&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    when 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        p you have no friends&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    when 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        p you have a friend&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    default&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        p you have #&amp;#123;friends&amp;#125; friends&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;mixin&quot;&gt;&lt;a href=&quot;#mixin&quot; class=&quot;headerlink&quot; title=&quot;mixin&quot;&gt;&lt;/a&gt;mixin&lt;/h2&gt;&lt;p&gt;Pug 和 Sass 都提供了 mixin 语法来实现代码的复用，两者语法也很相似：&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mixin list(id, ...items)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ul(id=id)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        each item &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; items&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            li= item&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;+list(&lt;span class=&quot;string&quot;&gt;&#39;my-list&#39;&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;mixin 一般放在独立的文件中，需要使用 &lt;code&gt;include&lt;/code&gt; 指令导入到其他文件中。&lt;/p&gt;
-&lt;h2 id=&quot;extends&quot;&gt;&lt;a href=&quot;#extends&quot; class=&quot;headerlink&quot; title=&quot;extends&quot;&gt;&lt;/a&gt;extends&lt;/h2&gt;&lt;p&gt;&lt;code&gt;extends&lt;/code&gt; 是 Pug 的模板继承语法，通过 &lt;code&gt;extends filename.Pug&lt;/code&gt; 可以将模板文件导入到其他文件中。继承机制基本上是一个复制代码片段的过程，为了能够动态修改其中的部分内容，Pug 提供了 &lt;code&gt;block&lt;/code&gt; 语法：&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 声明 block&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;block content&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    p Hello&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 修改 block&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 同名重新赋值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;block content&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    p Hi&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 前置追加&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;block append content&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    p APPEND&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 后置追加&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;block prepend content&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    p PREPEND&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;div class=&quot;tip&quot;&gt;&lt;br&gt;    由于商标版权问题，Jade 已经改名为了 Pug，详见 &lt;a href=&quot;https://github.com/pugjs/jade/issues/2184&quot;&gt;issue&lt;/a&gt;。&lt;br&gt;&lt;/div&gt;
-
-&lt;p&gt;如果你熟悉 Sublime Text 和 Emmet 的组合，那么 Pug 也会是你的菜。Pug 类似于 Python，都采用了对缩进敏感的语法形式，比如下面这段代码创建了一个无序列表：&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ul(&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt;&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;inline&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    li  Item C&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    li  Item A&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    li  Item B&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     

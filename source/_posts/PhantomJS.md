@@ -136,7 +136,7 @@ var page = webpage.create();
 - `includeJs(url, callback)`，向当前页面添加额外的脚本，且当脚本执行完毕后调用回调函数
 - `injectJs(filename)`，与 `includeJs` 不同的是，加载的脚本可以跟当前页面不同域
 - `openUrl(url, httpConf, settings)`
-- `open(url, callback)`、`open(url, method, callback)`、`open(url, method, data, callback)`、`open(url, settings, callback`，打开 `url` 页面，加载完成后触发回调函数，回电函数接收一个状态参数 `status`，该状态函数的值为 `success` 或 `fail`
+- `open(url, callback)`、`open(url, method, callback)`、`open(url, method, data, callback)`、`open(url, settings, callback)`，打开 `url` 页面，加载完成后触发回调函数，回电函数接收一个状态参数 `status`，该状态函数的值为 `success` 或 `fail`
 - `reload`
 - `renderBase64(format)`，将页面导出为 `format` 格式，该格式的可选值包括 `PNG`、`GIF` 和 `JPEG`
 - `render(filename[, {format, quality}])`，将页面导出为 `fromat` 格式，系统会根据指定的 `filename` 文件名自动匹配格式，或者自定义格式，`quality` 是 0~100 的数值，用于指定导出文件的质量
@@ -337,64 +337,6 @@ var service = server.listen('127.0.0.1:8989', {
 
 console.log("Server is runing at " + server.port);
 ```
-
-## 实践演练
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ##### 参考资料
 

@@ -1,9 +1,8 @@
 title: Lazy loading images on the web
 date: 2016-02-17 12:00:04
 desc: introduction of three methods to lazy loading images on the web
+from: http://developer.telerik.com/featured/lazy-loading-images-on-the-web/
 ---
-
-> Summarized from [《Lazy Loading Images on the Web》](http://developer.telerik.com/featured/lazy-loading-images-on-the-web/).
 
 Lazy loading images on the web means only download images which are in or near the viewport, and don't load any other images that visitors will not likely see. To accomplish this effect, we just need a little bit of JavaScript.
 

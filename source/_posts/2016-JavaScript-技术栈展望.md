@@ -1,9 +1,8 @@
 title: 2016 JavaScript 技术栈展望
 date: 2016-03-11 11:45:31
 desc: 本文展望了 2016 年 JavaScript 在实际开发中会用到的技术工具。
+from: https://medium.com/javascript-and-opinions/state-of-the-art-javascript-in-2016-ab67fc68eb0b#.iwbk5gf69
 ---
-
-> 翻译自 [State of the Art JavaScript in 2016](https://medium.com/javascript-and-opinions/state-of-the-art-javascript-in-2016-ab67fc68eb0b#.iwbk5gf69)
 
 如果你正在筹划新的前端项目或者重构现有项目，那么你需要认识到现在的前端开发环境已经今非昔比，这其中有太多的选择了：React、Flux、Angular、Aurelia、Mocha、Jasmine、Babel、TypeScript、Flow…… 它们的本意是将开发简单化，却无形中提高了学习成本，也给未来项目的维护带来了不确定性。
 

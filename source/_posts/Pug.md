@@ -1,10 +1,6 @@
-title: Pug
+title: Pug & Jade
 date: 2015-12-03 13:24:27
 ---
-
-<div class="tip">
-    由于商标版权问题，Jade 已经改名为了 Pug，详见 [issue](https://github.com/pugjs/jade/issues/2184)。
-</div>
 
 如果你熟悉 Sublime Text 和 Emmet 的组合，那么 Pug 也会是你的菜。Pug 类似于 Python，都采用了对缩进敏感的语法形式，比如下面这段代码创建了一个无序列表：
 
@@ -16,6 +12,10 @@ ul(class="inline")
 ```
 
 <!-- more -->
+
+<div class="tip">
+由于商标版权问题，Jade 已经改名为了 Pug，详见 [issue](https://github.com/pugjs/jade/issues/2184)。
+</div>
 
 ## 属性
 

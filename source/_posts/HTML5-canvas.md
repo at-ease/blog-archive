@@ -112,7 +112,6 @@ cxt.strokeRect(0, 0, 100, 100);
 `ctx.arc(x, y, r, startAngle, endAngle, anticlockwise)` 方法可以用来绘制一个圆形，圆形位于 (x, y)，半径为 r，起始点为 `startAngle`，终点为 `endAngle`，`anticlockwise` 决定旋转方向，默认值为顺时针方向。
 
 <canvas id="arc-canvas-demo"></canvas>
-
 <style>
 #arc-canvas-demo {
     display: block;
@@ -154,22 +153,112 @@ ctx.fill();
 
 > `ctx.clearrect(xTopLeft, yTopLeft, xBottomRight, yBottomRight)` 方法可以用来清除特定区域。
 
+## 图形变换
+
+- `rotate(deg)`，旋转
+- `scale(sx, sy)`，缩放
+- `translate(x, y)`，位移
+- `save()`，图形变换前保存当前状态
+- `restore()`，图形变换后恢复上一状态
+
+执行图形变换操作时，需要组合使用 `save()/restore()` 函数来保存和恢复上下文执行环境的状态，避免状态叠加，比如下面代码的第二个矩形，将会叠加成 (400, 400) 的偏移量：
+
+```js
+// 第一个矩形
+ctx.translate(100, 100);
+ctx.fillRect(0, 0, 400, 400);
+
+// 第二个矩形
+// 这里本意是想将第二个矩形偏移 (300, 300)
+// 实际上会由于前面偏移量的影响，实际偏移是叠加之前偏移量的偏移 (100 + 300, 100 + 300)
+ctx.translate(300, 300);
+ctx.fillRect(0, 0, 400, 400);
+
+// 解决方法是使用 save() 和 restore() 对状态进行保存和恢复
+
+ctx.save();
+ctx.translate(100, 100);
+ctx.fillRect(0, 0, 400, 400);
+ctx.restore();
+
+ctx.save();
+ctx.translate(300, 300);
+ctx.fillRect(0, 0, 400, 400);
+ctx.restore();
+```
+
+此外，CANVAS 提供了一个支持变换矩阵的函数 `transform(a, b, c, d, e, f)`:
+
+```text
+--         --
+|  a  c  e  |
+|  b  d  f  |
+|  0  0  1  |
+--         --
+```
+
+- a 表示水平缩放，默认值为 1
+- b 表示水平倾斜，默认值为 0
+- c 表示垂直倾斜，默认值为 0
+- d 表示垂直缩放，默认值为 1
+- e 表示水平位移，默认值为 0
+- f 表示垂直位移，默认值为 0
+
+## fillStyle
+
+除了可以赋予具体的颜色，fillStyle 还可以是线性渐变、径向渐变、图片、CANVAS 和视频等：
+
+```js
+// 创建线性渐变
+var linear = ctx.createLinearGradient(xStart, yStart, xEnd, yEnd);
+linear.addColorStop(stop, color);
+ctx.fillStyle = linear;
+
+// 创建径向渐变
+var radial = ctx.createRadialGradient(x0, y0, z0, x1, y1, z1);
+radial.addColorStop(stop, color);
+ctx.fillStyle = radial;
+
+// 创建图像填充
+var image = ctx.createPattern(new Image('path/to/image'), repeat-style);
+ctx.fillStyle = image;
+
+// 创建 CANVAS 填充
+var canvas = ctx.createPattern(canvas, repeat-style);
+ctx.fillStyle = canvas;
+
+// 创建视频填充
+var video = ctx.createPattern(video, repeat-style);
+ctx.fillStyle = canvas;
+```
+
+- `stop` 的取值范围是 `[0, 1]`
+- `repeat-style` 的可选值是 `no-repeat`、`repeat-x`、`repeat-y` 和 `repeat`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ###### 参考资料
 
 - [Canvas 绘图详解](http://www.imooc.com/video/3492)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
